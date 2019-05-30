@@ -1,6 +1,6 @@
 # Python JUCE
 
-Python classes & functions for manipulating Projucer `.jucer` files.
+Python classes & functions for manipulating Projucer `.jucer` files. Only vanilla python is used. No dependencies!
 
 ## Install
 
@@ -33,4 +33,17 @@ jucerFile.version = '0.2.1'
 jucerFile.save()                                # Override on save
 jucerFile.save_as('some/path/project.jucer')    # Save to new location
 
+```
+
+## Development
+
+### Makefile
+
+```sh
+make deps       # pip install -r requirements.txt
+make develop    # pip install -e .
+make test       # Unit tests
+make coverage   # Coverage report
+make docs       # Documentation
+make stats      # Repository stats (using cloc)
 ```
