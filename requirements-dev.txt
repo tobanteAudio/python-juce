@@ -5,3 +5,7 @@ autopep8
 # TESTS
 pytest
 pytest-cov
+
+# DOCUMENTATION
+sphinx
+recommonmark    # Markdown
