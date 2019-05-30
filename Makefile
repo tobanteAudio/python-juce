@@ -17,4 +17,5 @@ coverage:
 	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) 
 
 stats:
-	@cloc $(PACKAGE_NAME)
+	@cloc $(PACKAGE_NAME) $(TEST_DIRECTORY)
+	
