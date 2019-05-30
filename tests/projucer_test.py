@@ -1,7 +1,23 @@
 from juce.projucer import JucerFile
 
 
-def test_properties():
+def test_GuiApp_project_properties():
+    path = 'tests/assets/GuiApp.jucer'
+    jucerFile = JucerFile(path)
+
+    # Properties (get)
+    assert jucerFile.path == path
+    assert jucerFile.id == 'hgSXn0'
+    assert jucerFile.name == 'GuiApp'
+    assert jucerFile.project_type == 'guiapp'
+    assert jucerFile.jucer_version == '5.4.3'
+    assert jucerFile.version == None
+    assert jucerFile.company == None
+    assert jucerFile.company_website == None
+    assert jucerFile.company_email == None
+
+
+def test_modEQ_project_properties():
     path = 'tests/assets/modEQ.jucer'
     jucerFile = JucerFile(path)
 
