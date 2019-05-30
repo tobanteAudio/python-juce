@@ -2,7 +2,7 @@ from juce.projucer import JucerFile
 
 
 def test_properties():
-    path = 'assets/modEQ.jucer'
+    path = 'tests/assets/modEQ.jucer'
     jucerFile = JucerFile(path)
 
     # Properties (get)
