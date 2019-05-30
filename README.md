@@ -12,7 +12,7 @@ cd python-juce
 pip install -e .
 ```
 
-### Usage
+## Usage
 
 ```python
 from juce.projucer import JucerFile
