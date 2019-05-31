@@ -2,7 +2,7 @@
 
 Python classes & functions for manipulating Projucer `.jucer` files. Only vanilla python is used. No dependencies!
 
-[Documentation](https://python-juce.readthedocs.io/en/latest/index.html)
+[Documentation](https://python-juce.readthedocs.io/en/latest)
 
 ## Status
 
