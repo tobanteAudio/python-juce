@@ -3,6 +3,7 @@ default: develop
 
 PACKAGE_NAME = juce
 TEST_DIRECTORY = tests
+EXAMPLES_DIRECTORY = examples
 DOC_DIRECTORY = docs
 
 install:
@@ -18,7 +19,8 @@ test:
 	@pytest $(TEST_DIRECTORY)
 
 lint:
-	@pylint $(PACKAGE_NAME)
+	@flake8 $(PACKAGE_NAME) $(TEST_DIRECTORY) $(EXAMPLES_DIRECTORY)
+	@pylint $(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 coverage:
 	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) 

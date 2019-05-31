@@ -29,7 +29,8 @@ class Projucer():
     EXE_NAME = 'Projucer'
 
     def __init__(self, path=None):
-        """The script will look in $PATH & the path argument for the Projucer executable
+        """The script will look in $PATH & the path argument for
+        the Projucer executable
         """
         self._path = []
         self._which = shutil.which(Projucer.EXE_NAME, path=None)

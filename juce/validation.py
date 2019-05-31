@@ -97,7 +97,9 @@ RTAS_CATEGORIES = ["ePlugInCategory_None",
 
 
 def is_valid_four_digit_code(code):
-    """Returns true if a code with 4 digits and at least one upper case letter was given"""
+    """Returns true if a code with 4 digits and at least
+    one upper case letter was given
+    """
     if len(code) == 4:
         for char in code:
             if char.isupper():

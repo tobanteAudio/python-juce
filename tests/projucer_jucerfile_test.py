@@ -58,7 +58,7 @@ def none_or(dictionary, key):
 
 def table_tests():
     for test in PROPTERY_RESULTS:
-        test_project_properties(test)
+        project_properties(test)
 
 
 def project_properties(test):
@@ -110,8 +110,8 @@ def test_write_to_file():
     jucerFile.save()
     jucerFile.save_as(out_dir + out2)
 
-    assert os.path.isfile(out_dir + out1) == True
-    assert os.path.isfile(out_dir + out2) == True
+    assert os.path.isfile(out_dir + out1)
+    assert os.path.isfile(out_dir + out2)
 
 
 def test_cpp_standard_validation():
@@ -230,11 +230,11 @@ def test_set_attributes():
     assert jucerFile.plugin_code == new_plugin_code
 
     # Set plugin code, with validation
-    new_plugin_manufacturer_code = "taMq"
-    jucerFile.plugin_manufacturer_code = new_plugin_manufacturer_code
-    assert jucerFile.plugin_manufacturer_code == new_plugin_manufacturer_code
-    jucerFile.plugin_manufacturer_code = 'new_plugin_manufacturer_code'           # Fail
-    assert jucerFile.plugin_manufacturer_code == new_plugin_manufacturer_code
+    new_manufacturer_code = "taMq"
+    jucerFile.plugin_manufacturer_code = new_manufacturer_code
+    assert jucerFile.plugin_manufacturer_code == new_manufacturer_code
+    jucerFile.plugin_manufacturer_code = 'new_manufacturer_code'  # Fail
+    assert jucerFile.plugin_manufacturer_code == new_manufacturer_code
 
     # Set project_type, with validation
     new_project_type = "dll"
