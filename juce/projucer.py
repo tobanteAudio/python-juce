@@ -11,6 +11,8 @@ from juce.validation import (is_valid_aax_category,
                              is_valid_namespace,
                              is_valid_boolean,
                              is_valid_project_type,
+                             is_valid_plugin_code,
+                             is_valid_plugin_manufacturer_code,
                              bool_to_integer_string)
 
 
@@ -204,9 +206,10 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'pluginManufacturerCode')
 
     @plugin_manufacturer_code.setter
-    def plugin_manufacturer_code(self, x):
+    def plugin_manufacturer_code(self, code):
         """Sets the plugin manufacturer code"""
-        print("Setting pluginManufacturerCode with: {}".format(x))
+        if is_valid_plugin_manufacturer_code(code):
+            self.root.set('pluginManufacturerCode', code)
 
     # PLUGIN CODE
     @property
@@ -215,9 +218,10 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'pluginCode')
 
     @plugin_code.setter
-    def plugin_code(self, x):
+    def plugin_code(self, code):
         """Sets the plugin code"""
-        print("Setting pluginCode with: {}".format(x))
+        if is_valid_plugin_code(code):
+            self.root.set('pluginCode', code)
 
     # PLUGIN AU EXPORT PROFILE
     @property

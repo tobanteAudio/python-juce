@@ -162,6 +162,20 @@ def test_modEQ_project_properties():
     jucerFile.binary_data_namespace = new_namespace
     assert jucerFile.binary_data_namespace == new_namespace
 
+    # Set plugin code, with validation
+    new_plugin_code = "taMq"
+    jucerFile.plugin_code = new_plugin_code
+    assert jucerFile.plugin_code == new_plugin_code
+    jucerFile.plugin_code = 'new_plugin_code'           # Fail
+    assert jucerFile.plugin_code == new_plugin_code
+
+    # Set plugin code, with validation
+    new_plugin_manufacturer_code = "taMq"
+    jucerFile.plugin_manufacturer_code = new_plugin_manufacturer_code
+    assert jucerFile.plugin_manufacturer_code == new_plugin_manufacturer_code
+    jucerFile.plugin_manufacturer_code = 'new_plugin_manufacturer_code'           # Fail
+    assert jucerFile.plugin_manufacturer_code == new_plugin_manufacturer_code
+
     # Set project_type, with validation
     new_project_type = "dll"
     jucerFile.project_type = new_project_type
