@@ -43,6 +43,7 @@ jucerFile.version = '0.2.1'
 
 # Basic validation, the following lines fail silently
 jucerFile.cpp_language_standard = '98'          # Not: 11, 14, 17, latest
+jucerFile.project_line_feed = '98'              # Not: '\n' or '\r\n'
 jucerFile.project_type = 'foo'                  # Not: guiapp, consoleapp, library, dll, audioplug
 jucerFile.display_splash_screen = "98"          # Not a boolean
 jucerFile.binary_data_namespace = 'BAD NS'      # Includes unvalid char (space)
@@ -68,10 +69,11 @@ jucerFile.save_as('some/path/project.jucer')    # Save to new location
 make install    # pip install .
 make deps       # pip install -r requirements-dev.txt
 make develop    # pip install -e .
-make test       # Unit tests
-make coverage   # Coverage report
-make docs       # Documentation
-make stats      # Repository stats (using cloc)
+make test       # Unit tests (pytest)
+make lint       # Linting (pylint)
+make coverage   # Coverage report (pytest-cov)
+make docs       # Documentation (sphinx)
+make stats      # Repository stats (cloc)
 ```
 
 ## ToDO
