@@ -53,20 +53,20 @@ def test_modEQ_project_properties():
     assert jucerFile.company == 'tobanteAudio'
     assert jucerFile.company_website == 'https://github.com/tobanteAudio'
     assert jucerFile.company_email == 'tobanteAudio@gmail.com'
-    # assert jucerFile.bundle_identifier ==
-    # assert jucerFile.plugin_name ==
-    # assert jucerFile.plugin_description ==
-    # assert jucerFile.plugin_manufacturer ==
-    # assert jucerFile.plugin_manufacturer_code ==
-    # assert jucerFile.plugin_code ==
-    # assert jucerFile.plugin_au_exporter_profile ==
-    # assert jucerFile.aax_identifier ==
-    # assert jucerFile.vst3_category ==
-    # assert jucerFile.binary_data_namespace ==
-    # assert jucerFile.cpp_language_standard ==
-    # assert jucerFile.plugin_formats ==
-    # assert jucerFile.company_copyright ==
-    # assert jucerFile.display_splash_screen ==
-    # assert jucerFile.report_app_usage ==
-    # assert jucerFile.compiler_flag_schemes ==
-    # assert jucerFile.project_line_feed ==
+    assert jucerFile.bundle_identifier == "com.tobanteAudio.modEQ"
+    assert jucerFile.plugin_name == 'modEQ'
+    assert jucerFile.plugin_description == 'EQ with modulation'
+    assert jucerFile.plugin_manufacturer == 'tobanteAudio'
+    assert jucerFile.plugin_manufacturer_code == 'toAu'
+    assert jucerFile.plugin_code == 'tamq'
+    assert jucerFile.plugin_au_exporter_profile == 'modEQAU'
+    assert jucerFile.aax_identifier == "com.tobanteAudio.modEQ"
+    assert jucerFile.vst3_category == "Analyzer,EQ,Fx"
+    assert jucerFile.binary_data_namespace == 'TobanteAudioData'
+    assert jucerFile.cpp_language_standard == '17'
+    assert jucerFile.plugin_formats == "buildAU,buildStandalone,buildVST3"
+    assert jucerFile.company_copyright == "GNU GENERAL PUBLIC LICENSE Version 3"
+    assert jucerFile.display_splash_screen == '0'
+    assert jucerFile.report_app_usage == '0'
+    assert jucerFile.compiler_flag_schemes == 'NewScheme'
+    assert jucerFile.project_line_feed == '\n'

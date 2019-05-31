@@ -193,7 +193,7 @@ class JucerFile():
     @property
     def plugin_manufacturer_code(self):
         """Returns the plugin manufacturer code"""
-        return get_attribute_from_tag(self.root, 'pluginManufacturer')
+        return get_attribute_from_tag(self.root, 'pluginManufacturerCode')
 
     @plugin_manufacturer_code.setter
     def plugin_manufacturer_code(self, x):
