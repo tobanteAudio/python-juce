@@ -93,6 +93,13 @@ RTAS_CATEGORIES = ["ePlugInCategory_None",
                    "ePlugInCategory_Effect"]
 
 
+def is_valid_project_type(project_type):
+    """Returns true if a valid project type was given"""
+    if project_type in PROJECT_TYPES:
+        return True
+    return False
+
+
 def is_valid_vst2_category(category):
     """Returns true if a valid VST2 category was given"""
     if category in VST2_CATEGORIES:

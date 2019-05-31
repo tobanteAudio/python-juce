@@ -10,6 +10,7 @@ from juce.validation import (is_valid_aax_category,
                              is_valid_cpp_standard,
                              is_valid_namespace,
                              is_valid_boolean,
+                             is_valid_project_type,
                              bool_to_integer_string)
 
 
@@ -92,9 +93,10 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'projectType')
 
     @project_type.setter
-    def project_type(self, x):
+    def project_type(self, project_type):
         """Sets the project project type"""
-        print("Setting projectType with: {}".format(x))
+        if is_valid_project_type(project_type):
+            self.root.set('projectType', project_type)
 
     # JUCER VERSION
     @property

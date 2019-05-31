@@ -1,4 +1,5 @@
 from juce.validation import (is_valid_vst3_category,
+                             is_valid_project_type,
                              is_valid_vst2_category,
                              is_valid_au_category,
                              is_valid_aax_category,
@@ -7,6 +8,20 @@ from juce.validation import (is_valid_vst3_category,
                              is_valid_namespace,
                              is_valid_boolean,
                              bool_to_integer_string)
+
+
+def test_boolean_validation():
+
+    # INVALID
+    assert is_valid_project_type('application') == False
+    assert is_valid_project_type('test-t') == False
+
+    # VALID
+    assert is_valid_project_type('audioplug') == True
+    assert is_valid_project_type('consoleapp') == True
+    assert is_valid_project_type('guiapp') == True
+    assert is_valid_project_type('dll') == True
+    assert is_valid_project_type('library') == True
 
 
 def test_boolean_to_integer_string():

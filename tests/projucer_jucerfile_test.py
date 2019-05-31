@@ -162,6 +162,13 @@ def test_modEQ_project_properties():
     jucerFile.binary_data_namespace = new_namespace
     assert jucerFile.binary_data_namespace == new_namespace
 
+    # Set project_type, with validation
+    new_project_type = "dll"
+    jucerFile.project_type = new_project_type
+    assert jucerFile.project_type == new_project_type
+    jucerFile.project_type = 'new_project_type'           # Fail
+    assert jucerFile.project_type == new_project_type
+
     # Set splash screen, with validation
     jucerFile.display_splash_screen = True
     assert jucerFile.display_splash_screen == '1'
