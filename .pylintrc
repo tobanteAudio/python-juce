@@ -89,7 +89,7 @@ disable=locally-disabled,locally-enabled
 [BASIC]
 
 # Good variable names which should always be accepted, separated by a comma
-good-names=i,j,k,id
+good-names=i,j,k,id,a,b,c
 
 # Bad variable names which should always be refused, separated by a comma
 bad-names=foo,bar,baz,toto,tutu,tata

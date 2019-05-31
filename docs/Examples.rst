@@ -11,18 +11,29 @@ settings are set equal.
 
 .. code-block:: python
 
+    """Multi Project Consistency
+    """
     from juce.projucer import JucerFile
 
-    p1 = JucerFile('path/to/project_1.jucer')
-    p2 = JucerFile('path/to/project_2.jucer')
 
-    assert p1.company == p2.company
-    assert p1.company_email == p2.company_email
-    assert p1.company_website == p2.company_website
-    assert p1.company_copyright == p2.company_copyright
+    def main():
+        """Entry point
+        """
+        a = JucerFile('tests/assets/pluginA.jucer')
+        b = JucerFile('tests/assets/pluginB.jucer')
 
-    assert p1.plugin_manufacturer == p2.plugin_manufacturer
-    assert p1.plugin_manufacturer_code == p2.plugin_manufacturer_code
+        assert a.company == b.company
+        assert a.company_email == b.company_email
+        assert a.company_website == b.company_website
+        assert a.company_copyright == b.company_copyright
 
-    assert p1.display_splash_screen == p2.display_splash_screen
-    assert p1.cpp_language_standard == p2.cpp_language_standard
+        assert a.plugin_manufacturer == b.plugin_manufacturer
+        assert a.plugin_manufacturer_code == b.plugin_manufacturer_code
+
+        assert a.cpp_language_standard == b.cpp_language_standard
+        assert a.display_splash_screen == b.display_splash_screen
+        assert a.report_app_usage == b.report_app_usage
+
+
+    if __name__ == "__main__":
+        main()

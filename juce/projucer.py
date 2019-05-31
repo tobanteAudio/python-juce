@@ -2,6 +2,8 @@
 
 # pylint: disable=too-many-public-methods,no-self-use
 
+import os
+import shutil
 from xml.etree import ElementTree
 
 from juce.util import XML_HEADER, get_attribute_from_tag, get_list_of_path_dirs
@@ -18,18 +20,58 @@ from juce.validation import (
 
 
 class Projucer():
-    """Represents the Projucer executable"""
+    """Represents the Projucer executable
+    """
 
-    def __init__(self):
-        self._path = get_list_of_path_dirs()
+    EXE_NAME = 'Projucer'
 
+    def __init__(self, path=None):
+        """The script will look in $PATH & the path argument for the Projucer executable
+        """
+        if path:
+            # Check path is string
+            assert isinstance(path, str)
+            self._path = [path]
+            # Search in custom path
+            self._which = shutil.which(Projucer.EXE_NAME, path=path)
+            if not self._which:
+                # Fallback to $PATH
+                self._which = shutil.which(Projucer.EXE_NAME, path=None)
+
+        # Append $PATH
+        self._path += get_list_of_path_dirs()
+
+    # PATH
     @property
     def path(self):
-        """Returns a list of paths equal to the $PATH variable"""
+        """List of paths equal to the $PATH variable
+        """
         return self._path
 
+    # PATH COUNT
+    @property
+    def path_count(self):
+        """Number of directories in $PATH
+        """
+        return len(self._path)
+
+    # WHICH
+    @property
+    def which(self):
+        """Path to Projucer executable
+        """
+        return str(self._which)
+
+    @which.setter
+    def which(self, which):
+        assert isinstance(which, str)
+        exists = os.path.isfile(which)
+        if exists:
+            self._which = which
+
     def resave(self, project):
-        """Resaves a Projucer project, to generate build files"""
+        """Resaves a Projucer project, to generate build files
+        """
 
 
 class JucerFile():
