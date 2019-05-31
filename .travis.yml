@@ -11,9 +11,6 @@ install:
   - make develop
 
 script-anchors:
-  - &script-docs
-    - make docs
-
   - &script-linux
     - make docs
     - make lint
@@ -28,16 +25,3 @@ matrix:
       python: "3.7"
       script: *script-linux
     
-    - os: linux
-      sudo: false
-      dist: trusty   
-      python: "3.6"
-      script: *script-docs  
-      deploy:
-        provider: pages
-        skip_cleanup: true
-        local_dir: docs/_build/html
-        github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-        keep_history: true
-        on:
-          branch: master
