@@ -31,17 +31,12 @@ class Projucer():
 class JucerFile():
     """Represents a jucer file containing a JUCE project"""
 
-    """Xml tree"""
-    tree = None
-    """Root element in jucer file (JUCERPROJECT)"""
-    root = None
-
-    def __init__(self, path, fail_silent=True):
+    def __init__(self, path, silent_validation=True):
         """Loads the jucer file as xml"""
         self._path = path
         self.tree = ElementTree.parse(path)
         self.root = self.tree.getroot()
-        self.fail_silent = fail_silent
+        self._silent_validation = silent_validation
 
     # SAVE
     def save(self):
@@ -55,6 +50,17 @@ class JucerFile():
             data = original.read()
         with open(new_path, 'w') as modified:
             modified.write(XML_HEADER + '\n' + data)
+
+    # SILENT VALIDATION
+    @property
+    def silent_validation(self):
+        """Returns the silent validation flag"""
+        return self._silent_validation
+
+    @silent_validation.setter
+    def silent_validation(self, silent_validation):
+        """Sets the jucer silent validation flag"""
+        self._silent_validation = bool(silent_validation)
 
     # PATH
     @property
@@ -368,7 +374,7 @@ class JucerFile():
         print("Setting projectLineFeed with: {}".format(x))
 
     def fail_silent_or_raise(self):
-        if self.fail_silent:
+        if self._silent_validation:
             return
         raise ValueError("Attribute validation failed")
 

@@ -49,7 +49,7 @@ jucerFile.binary_data_namespace = 'BAD NS'      # Includes unvalid char (space)
 jucerFile.plugin_code = 'too'                   # Not 4 characters & No upper case
 
 # Turn on exceptions
-jucerFile.fail_silent = False
+jucerFile.silent_validation = False
 
 # Basic validation, the following line will raise ValueError
 jucerFile.cpp_language_standard = '98'          # Not: 11, 14, 17, latest

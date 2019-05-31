@@ -201,16 +201,34 @@ def test_modEQ_project_properties():
 def test_modEQ_project_attributes_with_exceptions():
     path = 'tests/assets/modEQ.jucer'
     jucerFile = JucerFile(path)
-    jucerFile.fail_silent = False
+    jucerFile.silent_validation = False
 
-    with pytest.raises(ValueError) as excinfo1:
+    with pytest.raises(ValueError) as excinfo:
         jucerFile.plugin_code = 'new_plugin_manufacturer_code'
-    assert "Attribute validation failed" in str(excinfo1.value)
+    assert "Attribute validation failed" in str(excinfo.value)
+    excinfo = None
 
-    with pytest.raises(ValueError) as excinfo2:
+    with pytest.raises(ValueError) as excinfo:
         jucerFile.plugin_manufacturer_code = 'new_plugin_manufacturer_code'
-    assert "Attribute validation failed" in str(excinfo2.value)
+    assert "Attribute validation failed" in str(excinfo.value)
+    excinfo = None
 
-    with pytest.raises(ValueError) as excinfo3:
+    with pytest.raises(ValueError) as excinfo:
         jucerFile.cpp_language_standard = 'new_plugin_manufacturer_code'
-    assert "Attribute validation failed" in str(excinfo3.value)
+    assert "Attribute validation failed" in str(excinfo.value)
+    excinfo = None
+
+    with pytest.raises(ValueError) as excinfo:
+        jucerFile.project_type = 'new_plugin_manufacturer_code'
+    assert "Attribute validation failed" in str(excinfo.value)
+    excinfo = None
+
+    with pytest.raises(ValueError) as excinfo:
+        jucerFile.display_splash_screen = 'new_plugin_manufacturer_code'
+    assert "Attribute validation failed" in str(excinfo.value)
+    excinfo = None
+
+    with pytest.raises(ValueError) as excinfo:
+        jucerFile.report_app_usage = 'new_plugin_manufacturer_code'
+    assert "Attribute validation failed" in str(excinfo.value)
+    excinfo = None
