@@ -11,14 +11,11 @@ install:
   - make develop
 
 script-anchors:
-  - &script-documentation
-    - cd $TRAVIS_BUILD_DIR
-    - make docs
-  
-  - &script-coverage
+  - &script-linux
     - make lint
     - make coverage
     - codecov
+    - make docs
 
 matrix:
   include:
@@ -26,4 +23,12 @@ matrix:
       sudo: false
       dist: xenial   # required for Python >= 3.7
       python: "3.7"
-      script: *script-coverage
+      script: *script-linux
+      deploy:
+        provider: pages
+        skip_cleanup: true
+        local_dir: docs/_build/html
+        github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+        keep_history: true
+        on:
+          branch: master
