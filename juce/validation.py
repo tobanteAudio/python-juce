@@ -152,10 +152,6 @@ def is_valid_boolean(boolean):
         return True
     if boolean == 1:
         return True
-    if boolean == True:
-        return True
-    if boolean == False:
-        return True
 
     return False
 

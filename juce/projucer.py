@@ -158,9 +158,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'bundleIdentifier')
 
     @bundle_identifier.setter
-    def bundle_identifier(self, x):
+    def bundle_identifier(self, identifier):
         """Sets the project bundle identifier"""
-        print("Setting bundleIdentifier with: {}".format(x))
+        self.root.set('bundleIdentifier', identifier)
 
     # PLUGIN NAME
     @property
@@ -169,9 +169,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'pluginName')
 
     @plugin_name.setter
-    def plugin_name(self, x):
+    def plugin_name(self, name):
         """Sets the plugin name"""
-        print("Setting pluginName with: {}".format(x))
+        self.root.set('pluginName', name)
 
     # PLUGIN DESCRIPTION
     @property

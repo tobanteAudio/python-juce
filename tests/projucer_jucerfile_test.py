@@ -132,6 +132,16 @@ def test_modEQ_project_properties():
     jucerFile.company_email = new_email
     assert jucerFile.company_email == new_email
 
+    # Set bundle identifier, no validation
+    new_bundle = "com.test.testplugin"
+    jucerFile.bundle_identifier = new_bundle
+    assert jucerFile.bundle_identifier == new_bundle
+
+    # Set bundle identifier, no validation
+    new_plugin_name = "PluginName"
+    jucerFile.plugin_name = new_plugin_name
+    assert jucerFile.plugin_name == new_plugin_name
+
     # Set copyright, no validation
     new_copyright = "NEW COPYRIGHT"
     jucerFile.company_copyright = new_copyright
