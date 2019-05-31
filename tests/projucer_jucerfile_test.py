@@ -137,10 +137,20 @@ def test_modEQ_project_properties():
     jucerFile.bundle_identifier = new_bundle
     assert jucerFile.bundle_identifier == new_bundle
 
-    # Set bundle identifier, no validation
+    # Set plugin name, no validation
     new_plugin_name = "PluginName"
     jucerFile.plugin_name = new_plugin_name
     assert jucerFile.plugin_name == new_plugin_name
+
+    # Set plugin description, no validation
+    new_plugin_description = "Long long long text"
+    jucerFile.plugin_description = new_plugin_description
+    assert jucerFile.plugin_description == new_plugin_description
+
+    # Set plugin manufacturer, no validation
+    new_plugin_manufacturer = "Evil Corp"
+    jucerFile.plugin_manufacturer = new_plugin_manufacturer
+    assert jucerFile.plugin_manufacturer == new_plugin_manufacturer
 
     # Set copyright, no validation
     new_copyright = "NEW COPYRIGHT"
@@ -148,9 +158,9 @@ def test_modEQ_project_properties():
     assert jucerFile.company_copyright == new_copyright
 
     # Set binary data namespace, with validation
-    new_copyright = "NEWNAMESPACE"
-    jucerFile.company_copyright = new_copyright
-    assert jucerFile.company_copyright == new_copyright
+    new_namespace = "NEWNAMESPACE"
+    jucerFile.binary_data_namespace = new_namespace
+    assert jucerFile.binary_data_namespace == new_namespace
 
     # Set splash screen, with validation
     jucerFile.display_splash_screen = True

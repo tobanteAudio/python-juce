@@ -180,9 +180,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'pluginDesc')
 
     @plugin_description.setter
-    def plugin_description(self, x):
+    def plugin_description(self, description):
         """Sets the plugin description"""
-        print("Setting pluginDescription with: {}".format(x))
+        self.root.set('pluginDesc', description)
 
     # PLUGIN MANUFACTURER
     @property
@@ -191,9 +191,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'pluginManufacturer')
 
     @plugin_manufacturer.setter
-    def plugin_manufacturer(self, x):
+    def plugin_manufacturer(self, manufacturer):
         """Sets the plugin manufacturer"""
-        print("Setting pluginManufacturer with: {}".format(x))
+        self.root.set('pluginManufacturer', manufacturer)
 
     # PLUGIN MANUFACTURER CODE
     @property
