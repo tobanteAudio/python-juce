@@ -11,7 +11,9 @@ GUI_APP_PROPTERY_RESULTS = {
     "u_id": 'hgSXn0',
     "name": 'GuiApp',
     "project_type": 'guiapp',
+    "cpp_language_standard": 'latest',
     "jucer_version": '5.4.3',
+    'defines': 'TOBANTETEST=1\nTOBANTEAUDIO=1,TOBANTEAUDIO2=1'
 }
 
 MODEQ_PROPTERY_RESULTS = {
@@ -40,6 +42,7 @@ MODEQ_PROPTERY_RESULTS = {
     "display_splash_screen": '0',
     "report_app_usage": '0',
     "compiler_flag_schemes": 'NewScheme',
+    'defines': None,
     "project_line_feed": '\n'
 }
 
@@ -97,6 +100,8 @@ def test_project_properties():
             test, "compiler_flag_schemes")
         assert jF.project_line_feed == none_if_key_error(
             test, "project_line_feed")
+        assert jF.defines == none_if_key_error(
+            test, "defines")
 
 
 def test_write_to_file():

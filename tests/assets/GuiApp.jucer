@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="hgSXn0" name="GuiApp" projectType="guiapp" jucerVersion="5.4.3">
+<JUCERPROJECT id="hgSXn0" name="GuiApp" projectType="guiapp" jucerVersion="5.4.3"
+              cppLanguageStandard="latest" defines="TOBANTETEST=1&#10;TOBANTEAUDIO=1,TOBANTEAUDIO2=1">
   <MAINGROUP id="Itw0wK" name="GuiApp">
     <GROUP id="{D4D2B958-A7CC-04E9-0B0F-499C0EB7389F}" name="Source">
       <FILE id="Q5O0vB" name="MainComponent.h" compile="0" resource="0" file="Source/MainComponent.h"/>

@@ -406,6 +406,16 @@ class JucerFile():
             return
         self.fail_silent_or_raise()
 
+    # DEFINES
+    @property
+    def defines(self):
+        """Project defines"""
+        return get_attribute_from_tag(self.root, 'defines')
+
+    @defines.setter
+    def defines(self, defines):
+        self.root.set('defines', defines)
+
     def fail_silent_or_raise(self):
         """If silent_validation is False a ValueError is raised"""
         if self._silent_validation:
