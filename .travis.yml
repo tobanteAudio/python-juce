@@ -11,11 +11,14 @@ install:
   - make develop
 
 script-anchors:
+  - &script-docs
+    - make docs
+
   - &script-linux
+    - make docs
     - make lint
     - make coverage
     - codecov
-    - make docs
 
 matrix:
   include:
@@ -24,6 +27,12 @@ matrix:
       dist: xenial   # required for Python >= 3.7
       python: "3.7"
       script: *script-linux
+    
+    - os: linux
+      sudo: false
+      dist: trusty   
+      python: "3.6"
+      script: *script-docs  
       deploy:
         provider: pages
         skip_cleanup: true
