@@ -8,7 +8,9 @@ from juce.validation import (is_valid_aax_category,
                              is_valid_vst2_category,
                              is_valid_vst3_category,
                              is_valid_cpp_standard,
-                             is_valid_namespace)
+                             is_valid_namespace,
+                             is_valid_boolean,
+                             bool_to_integer_string)
 
 
 class Projucer():
@@ -302,9 +304,11 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'displaySplashScreen')
 
     @display_splash_screen.setter
-    def display_splash_screen(self, x):
+    def display_splash_screen(self, toggle):
         """Sets the plugin splash screen setting"""
-        print("Setting displaySplashScreen with: {}".format(x))
+        if is_valid_boolean(toggle):
+            toggle_number = bool_to_integer_string(toggle)
+            self.root.set('displaySplashScreen', toggle_number)
 
     # REPORT APP USAGE
     @property
@@ -313,9 +317,11 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'reportAppUsage')
 
     @report_app_usage.setter
-    def report_app_usage(self, x):
+    def report_app_usage(self, toggle):
         """Sets the plugin report app usage setting"""
-        print("Setting reportAppUsage with: {}".format(x))
+        if is_valid_boolean(toggle):
+            toggle_number = bool_to_integer_string(toggle)
+            self.root.set('reportAppUsage', toggle_number)
 
     # COMPILER FLAG SCHEMES
     @property

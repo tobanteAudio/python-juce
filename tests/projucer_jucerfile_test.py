@@ -141,3 +141,15 @@ def test_modEQ_project_properties():
     new_copyright = "NEWNAMESPACE"
     jucerFile.company_copyright = new_copyright
     assert jucerFile.company_copyright == new_copyright
+
+    # Set splash screen, with validation
+    jucerFile.display_splash_screen = True
+    assert jucerFile.display_splash_screen == '1'
+    jucerFile.display_splash_screen = False
+    assert jucerFile.display_splash_screen == '0'
+
+    # Set report app usage, with validation
+    jucerFile.report_app_usage = True
+    assert jucerFile.report_app_usage == '1'
+    jucerFile.report_app_usage = False
+    assert jucerFile.report_app_usage == '0'

@@ -4,7 +4,30 @@ from juce.validation import (is_valid_vst3_category,
                              is_valid_aax_category,
                              is_valid_rtas_category,
                              is_valid_cpp_standard,
-                             is_valid_namespace)
+                             is_valid_namespace,
+                             is_valid_boolean,
+                             bool_to_integer_string)
+
+
+def test_boolean_to_integer_string():
+
+    assert bool_to_integer_string(True) == '1'
+    assert bool_to_integer_string(False) == '0'
+    assert bool_to_integer_string(1) == '1'
+    assert bool_to_integer_string(0) == '0'
+
+
+def test_boolean_validation():
+
+    # INVALID
+    assert is_valid_boolean('98') == False
+    assert is_valid_boolean('test-t') == False
+
+    # VALID
+    assert is_valid_boolean(True) == True
+    assert is_valid_boolean(False) == True
+    assert is_valid_boolean(1) == True
+    assert is_valid_boolean(0) == True
 
 
 def test_namespace_validation():
@@ -12,6 +35,7 @@ def test_namespace_validation():
     # INVALID
     assert is_valid_namespace('98') == False
     assert is_valid_namespace('test-t') == False
+    assert is_valid_namespace('test t') == False
 
     # VALID
     assert is_valid_namespace("ns") == True

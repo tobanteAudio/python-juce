@@ -142,4 +142,23 @@ def is_valid_namespace(namespace):
         return False
     if namespace.find("-") != -1:
         return False
+    if namespace.find(" ") != -1:
+        return False
     return True
+
+
+def is_valid_boolean(boolean):
+    if boolean == 0:
+        return True
+    if boolean == 1:
+        return True
+    if boolean == True:
+        return True
+    if boolean == False:
+        return True
+
+    return False
+
+
+def bool_to_integer_string(boolean):
+    return "{}".format(int(boolean))
