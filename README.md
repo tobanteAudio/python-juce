@@ -48,6 +48,12 @@ jucerFile.display_splash_screen = "98"          # Not a boolean
 jucerFile.binary_data_namespace = 'BAD NS'      # Includes unvalid char (space)
 jucerFile.plugin_code = 'too'                   # Not 4 characters & No upper case
 
+# Turn on exceptions
+jucerFile.fail_silent = False
+
+# Basic validation, the following line will raise ValueError
+jucerFile.cpp_language_standard = '98'          # Not: 11, 14, 17, latest
+
 # Write to file
 jucerFile.save()                                # Override on save
 jucerFile.save_as('some/path/project.jucer')    # Save to new location
