@@ -1,4 +1,4 @@
-.PHONY: install deps develop test coverage docs stats
+.PHONY: install deps develop test lint coverage docs stats
 default: develop
 
 PACKAGE_NAME = juce
@@ -16,6 +16,9 @@ develop:
 
 test:
 	@pytest $(TEST_DIRECTORY)
+
+lint:
+	@pylint $(PACKAGE_NAME)
 
 coverage:
 	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) 

@@ -16,6 +16,7 @@ script-anchors:
     - make docs
   
   - &script-coverage
+    - make lint
     - make coverage
     - codecov
 

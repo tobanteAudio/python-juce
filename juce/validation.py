@@ -178,6 +178,7 @@ def is_valid_namespace(namespace):
 
 
 def is_valid_boolean(boolean):
+    """Returns true if the given value represents a bool"""
     if boolean == 0:
         return True
     if boolean == 1:
@@ -187,4 +188,5 @@ def is_valid_boolean(boolean):
 
 
 def bool_to_integer_string(boolean):
+    """Returns '0' for False & '1' for True"""
     return "{}".format(int(boolean))

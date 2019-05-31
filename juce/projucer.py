@@ -1,19 +1,19 @@
-import os
+"""Holds the Projucer & JucerFile classes"""
+
+# pylint: disable=too-many-public-methods,no-self-use
+
 from xml.etree import ElementTree
 
-from juce.xml_helpers import XML_HEADER, get_attribute_from_tag
-from juce.env_helpers import get_list_of_path_dirs
-from juce.validation import (is_valid_aax_category,
-                             is_valid_au_category,
-                             is_valid_vst2_category,
-                             is_valid_vst3_category,
-                             is_valid_cpp_standard,
-                             is_valid_namespace,
-                             is_valid_boolean,
-                             is_valid_project_type,
-                             is_valid_plugin_code,
-                             is_valid_plugin_manufacturer_code,
-                             bool_to_integer_string)
+from juce.util import XML_HEADER, get_attribute_from_tag, get_list_of_path_dirs
+from juce.validation import (
+    is_valid_vst3_category,
+    is_valid_cpp_standard,
+    is_valid_namespace,
+    is_valid_boolean,
+    is_valid_project_type,
+    is_valid_plugin_code,
+    is_valid_plugin_manufacturer_code,
+    bool_to_integer_string)
 
 
 class Projucer():
@@ -26,6 +26,9 @@ class Projucer():
     def path(self):
         """Returns a list of paths equal to the $PATH variable"""
         return self._path
+
+    def resave(self, project):
+        """Resaves a Projucer project, to generate build files"""
 
 
 class JucerFile():
@@ -75,14 +78,14 @@ class JucerFile():
 
     # ID
     @property
-    def id(self):
+    def project_id(self):
         """Returns the project id"""
         return get_attribute_from_tag(self.root, 'id')
 
-    @id.setter
-    def id(self, id):
+    @project_id.setter
+    def project_id(self, project_id):
         """Sets the project id"""
-        self.root.set('id', id)
+        self.root.set('id', project_id)
 
     # NAME
     @property
@@ -243,9 +246,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'pluginAUExportPrefix')
 
     @plugin_au_exporter_profile.setter
-    def plugin_au_exporter_profile(self, x):
+    def plugin_au_exporter_profile(self, exporter_profile):
         """Sets the plugin AU exporter profile"""
-        print("Setting pluginAUExportPrefix with: {}".format(x))
+        print("Setting pluginAUExportPrefix with: {}".format(exporter_profile))
 
     # AAX IDENTIFIER
     @property
@@ -254,9 +257,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'aaxIdentifier')
 
     @aax_identifier.setter
-    def aax_identifier(self, x):
+    def aax_identifier(self, aax_identifier):
         """Sets the plugin aax identifier"""
-        print("Setting aaxIdentifier with: {}".format(x))
+        print("Setting aaxIdentifier with: {}".format(aax_identifier))
 
     # VST3 CATEGORY
     @property
@@ -307,9 +310,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'pluginFormats')
 
     @plugin_formats.setter
-    def plugin_formats(self, x):
+    def plugin_formats(self, formats):
         """Sets the plugin formats"""
-        print("Setting pluginFormats with: {}".format(x))
+        print("Setting pluginFormats with: {}".format(formats))
 
     # COMPANY COPYRIGHT
     @property
@@ -318,9 +321,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'companyCopyright')
 
     @company_copyright.setter
-    def company_copyright(self, copyright):
+    def company_copyright(self, copyright_text):
         """Sets the company copyright"""
-        self.root.set('companyCopyright', copyright)
+        self.root.set('companyCopyright', copyright_text)
 
     # DISPLAY SPLASH SCREEN
     @property
@@ -358,9 +361,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'compilerFlagSchemes')
 
     @compiler_flag_schemes.setter
-    def compiler_flag_schemes(self, x):
+    def compiler_flag_schemes(self, compiler_schemes):
         """Sets the plugin compiler flag schemes"""
-        print("Setting compilerFlagSchemes with: {}".format(x))
+        print("Setting compilerFlagSchemes with: {}".format(compiler_schemes))
 
     # PROJECT LINE FEED
     @property
@@ -369,11 +372,12 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'projectLineFeed')
 
     @project_line_feed.setter
-    def project_line_feed(self, x):
+    def project_line_feed(self, line_feed):
         """Sets the project line feed"""
-        print("Setting projectLineFeed with: {}".format(x))
+        print("Setting projectLineFeed with: {}".format(line_feed))
 
     def fail_silent_or_raise(self):
+        """If silent_validation is False a ValueError is raised"""
         if self._silent_validation:
             return
         raise ValueError("Attribute validation failed")
