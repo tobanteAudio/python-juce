@@ -21,7 +21,7 @@ coverage:
 	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) 
 
 docs:
-	@cp README.md $(DOC_DIRECTORY)/README.md
+	# @cp README.md $(DOC_DIRECTORY)/README.md
 	@cd $(DOC_DIRECTORY) && make html
 	
 stats:
