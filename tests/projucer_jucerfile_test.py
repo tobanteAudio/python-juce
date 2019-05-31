@@ -203,7 +203,14 @@ def test_modEQ_project_attributes_with_exceptions():
     jucerFile = JucerFile(path)
     jucerFile.fail_silent = False
 
-    with pytest.raises(ValueError) as excinfo:
-        jucerFile.plugin_manufacturer_code = 'new_plugin_manufacturer_code'           # Fail
+    with pytest.raises(ValueError) as excinfo1:
+        jucerFile.plugin_code = 'new_plugin_manufacturer_code'
+    assert "Attribute validation failed" in str(excinfo1.value)
 
-    assert "Attribute validation failed" in str(excinfo.value)
+    with pytest.raises(ValueError) as excinfo2:
+        jucerFile.plugin_manufacturer_code = 'new_plugin_manufacturer_code'
+    assert "Attribute validation failed" in str(excinfo2.value)
+
+    with pytest.raises(ValueError) as excinfo3:
+        jucerFile.cpp_language_standard = 'new_plugin_manufacturer_code'
+    assert "Attribute validation failed" in str(excinfo3.value)

@@ -100,6 +100,8 @@ class JucerFile():
         """Sets the project project type"""
         if is_valid_project_type(project_type):
             self.root.set('projectType', project_type)
+            return
+        self.fail_silent_or_raise()
 
     # JUCER VERSION
     @property
@@ -225,6 +227,8 @@ class JucerFile():
         """Sets the plugin code"""
         if is_valid_plugin_code(code):
             self.root.set('pluginCode', code)
+            return
+        self.fail_silent_or_raise()
 
     # PLUGIN AU EXPORT PROFILE
     @property
@@ -259,6 +263,8 @@ class JucerFile():
         """Sets the plugin vst3 category"""
         if is_valid_vst3_category(category):
             print("Setting pluginVST3Category with: {}".format(category))
+            return
+        self.fail_silent_or_raise()
 
     # BINARY DATA NAMESPACE
     @property
@@ -271,6 +277,8 @@ class JucerFile():
         """Sets the plugin binary data namespace"""
         if is_valid_namespace(namespace):
             self.root.set('binaryDataNamespace', namespace)
+            return
+        self.fail_silent_or_raise()
 
     # C++ LANGUAGE STANDARD
     @property
@@ -283,6 +291,8 @@ class JucerFile():
         """Sets the C++ standard"""
         if is_valid_cpp_standard(standard):
             self.root.set('cppLanguageStandard', standard)
+            return
+        self.fail_silent_or_raise()
 
     # PLUGIN FORMATS
     @property
@@ -318,7 +328,8 @@ class JucerFile():
         if is_valid_boolean(toggle):
             toggle_number = bool_to_integer_string(toggle)
             self.root.set('displaySplashScreen', toggle_number)
-
+            return
+        self.fail_silent_or_raise()
     # REPORT APP USAGE
     @property
     def report_app_usage(self):
@@ -331,6 +342,8 @@ class JucerFile():
         if is_valid_boolean(toggle):
             toggle_number = bool_to_integer_string(toggle)
             self.root.set('reportAppUsage', toggle_number)
+            return
+        self.fail_silent_or_raise()
 
     # COMPILER FLAG SCHEMES
     @property
