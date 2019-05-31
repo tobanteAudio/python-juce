@@ -144,10 +144,12 @@ def test_set_attributes():
     path = 'tests/assets/modEQ.jucer'
     jucerFile = JucerFile(path)
 
+    assert jucerFile.silent_validation
+
     # Set id, No validation
     new_id = "jWny5B"
-    jucerFile.id = new_id
-    assert jucerFile.id == new_id
+    jucerFile.project_id = new_id
+    assert jucerFile.project_id == new_id
 
     # Set name, No validation
     new_name = "newName"
@@ -203,6 +205,16 @@ def test_set_attributes():
     new_plugin_manufacturer = "Evil Corp"
     jucerFile.plugin_manufacturer = new_plugin_manufacturer
     assert jucerFile.plugin_manufacturer == new_plugin_manufacturer
+
+    # Set AU profile
+    new_au_profile = "profile"
+    jucerFile.plugin_au_exporter_profile = new_au_profile
+    assert jucerFile.plugin_au_exporter_profile == new_au_profile
+
+    # Set AAX identifier
+    new_aax_id = "profile"
+    jucerFile.aax_identifier = new_aax_id
+    assert jucerFile.aax_identifier == new_aax_id
 
     # Set copyright, no validation
     new_copyright = "NEW COPYRIGHT"
