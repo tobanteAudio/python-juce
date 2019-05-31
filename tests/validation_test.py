@@ -10,7 +10,7 @@ from juce.validation import (is_valid_vst3_category,
                              bool_to_integer_string)
 
 
-def test_boolean_validation():
+def test_project_type_validation():
 
     # INVALID
     assert is_valid_project_type('application') == False
