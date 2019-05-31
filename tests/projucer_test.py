@@ -75,3 +75,8 @@ def test_modEQ_project_properties():
     new_copyright = "NEW COPYRIGHT"
     jucerFile.company_copyright = new_copyright
     assert jucerFile.company_copyright == new_copyright
+
+    # SET BINARY DATA NAMEASPACE, WITH VALIDATION
+    new_copyright = "NEWNAMESPACE"
+    jucerFile.company_copyright = new_copyright
+    assert jucerFile.company_copyright == new_copyright

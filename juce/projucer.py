@@ -3,8 +3,12 @@ from xml.etree import ElementTree
 
 from juce.xml_helpers import XML_HEADER, get_attribute_from_tag
 from juce.env_helpers import get_list_of_path_dirs
-from juce.validation import (is_valid_aax_category, is_valid_au_category,
-                             is_valid_vst2_category, is_valid_vst3_category, is_valid_cpp_standard)
+from juce.validation import (is_valid_aax_category,
+                             is_valid_au_category,
+                             is_valid_vst2_category,
+                             is_valid_vst3_category,
+                             is_valid_cpp_standard,
+                             is_valid_namespace)
 
 
 class Projucer():
@@ -252,9 +256,10 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'binaryDataNamespace')
 
     @binary_data_namespace.setter
-    def binary_data_namespace(self, x):
+    def binary_data_namespace(self, namespace):
         """Sets the plugin binary data namespace"""
-        print("Setting binaryDataNamespace with: {}".format(x))
+        if is_valid_namespace(namespace):
+            self.root.set('binaryDataNamespace', namespace)
 
     # C++ LANGUAGE STANDARD
     @property

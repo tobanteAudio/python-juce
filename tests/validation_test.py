@@ -3,7 +3,21 @@ from juce.validation import (is_valid_vst3_category,
                              is_valid_au_category,
                              is_valid_aax_category,
                              is_valid_rtas_category,
-                             is_valid_cpp_standard)
+                             is_valid_cpp_standard,
+                             is_valid_namespace)
+
+
+def test_namespace_validation():
+
+    # INVALID
+    assert is_valid_namespace('98') == False
+    assert is_valid_namespace('test-t') == False
+
+    # VALID
+    assert is_valid_namespace("ns") == True
+    assert is_valid_namespace("TobanteData") == True
+    assert is_valid_namespace("DATA17") == True
+    assert is_valid_namespace("foo") == True
 
 
 def test_cpp_standard_validation():

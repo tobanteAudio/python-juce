@@ -133,3 +133,13 @@ def is_valid_cpp_standard(standard):
     if standard in CPP_STANDARDS:
         return True
     return False
+
+
+def is_valid_namespace(namespace):
+    """Returns true if the given namespace is valid"""
+    digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    if namespace[0] in digits:
+        return False
+    if namespace.find("-") != -1:
+        return False
+    return True
