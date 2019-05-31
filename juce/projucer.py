@@ -36,11 +36,12 @@ class JucerFile():
     """Root element in jucer file (JUCERPROJECT)"""
     root = None
 
-    def __init__(self, path):
+    def __init__(self, path, fail_silent=True):
         """Loads the jucer file as xml"""
         self._path = path
         self.tree = ElementTree.parse(path)
         self.root = self.tree.getroot()
+        self.fail_silent = fail_silent
 
     # SAVE
     def save(self):
@@ -210,6 +211,8 @@ class JucerFile():
         """Sets the plugin manufacturer code"""
         if is_valid_plugin_manufacturer_code(code):
             self.root.set('pluginManufacturerCode', code)
+            return
+        self.fail_silent_or_raise()
 
     # PLUGIN CODE
     @property
@@ -351,6 +354,10 @@ class JucerFile():
         """Sets the project line feed"""
         print("Setting projectLineFeed with: {}".format(x))
 
+    def fail_silent_or_raise(self):
+        if self.fail_silent:
+            return
+        raise ValueError("Attribute validation failed")
 
 # ET.SubElement(root,'TextSummary').set('Status','Completed')
 

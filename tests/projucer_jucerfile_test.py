@@ -1,5 +1,7 @@
 import os
 
+import pytest
+
 from juce.projucer import JucerFile
 
 
@@ -194,3 +196,14 @@ def test_modEQ_project_properties():
     assert jucerFile.report_app_usage == '1'
     jucerFile.report_app_usage = False
     assert jucerFile.report_app_usage == '0'
+
+
+def test_modEQ_project_attributes_with_exceptions():
+    path = 'tests/assets/modEQ.jucer'
+    jucerFile = JucerFile(path)
+    jucerFile.fail_silent = False
+
+    with pytest.raises(ValueError) as excinfo:
+        jucerFile.plugin_manufacturer_code = 'new_plugin_manufacturer_code'           # Fail
+
+    assert "Attribute validation failed" in str(excinfo.value)
