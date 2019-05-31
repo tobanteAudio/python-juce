@@ -5,8 +5,8 @@
 .vscode
 
 # Project
-output/
 docs/README.md
+tests/output
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

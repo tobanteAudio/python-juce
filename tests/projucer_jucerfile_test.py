@@ -1,4 +1,24 @@
+import os
+
 from juce.projucer import JucerFile
+
+
+def test_write_to_file():
+    original_path = 'tests/assets/modEQ.jucer'
+    jucerFile = JucerFile(original_path)
+
+    out_dir = 'tests/output/'
+    os.mkdir(out_dir)
+
+    out1 = 'output.jucer'
+    out2 = 'output2.jucer'
+    jucerFile.version = '1.0.0'
+    jucerFile.path = out_dir + out1
+    jucerFile.save()
+    jucerFile.save_as(out_dir + out2)
+
+    assert os.path.isfile(out_dir + out1) == True
+    assert os.path.isfile(out_dir + out2) == True
 
 
 def test_cpp_standard_validation():
