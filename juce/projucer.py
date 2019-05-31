@@ -3,6 +3,8 @@ from xml.etree import ElementTree
 
 from juce.xml_helpers import XML_HEADER, get_attribute_from_tag
 from juce.env_helpers import get_list_of_path_dirs
+from juce.validation import (valid_aax_category, valid_au_category,
+                             valid_vst2_category, valid_vst3_category)
 
 
 class Projucer():
@@ -238,9 +240,10 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'pluginVST3Category')
 
     @vst3_category.setter
-    def vst3_category(self, x):
+    def vst3_category(self, category):
         """Sets the plugin vst3 category"""
-        print("Setting pluginVST3Category with: {}".format(x))
+        if valid_vst3_category(category):
+            print("Setting pluginVST3Category with: {}".format(category))
 
     # BINARY DATA NAMESPACE
     @property
