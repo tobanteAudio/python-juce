@@ -7,7 +7,33 @@ from juce.validation import (is_valid_vst3_category,
                              is_valid_cpp_standard,
                              is_valid_namespace,
                              is_valid_boolean,
+                             is_valid_plugin_manufacturer_code,
+                             is_valid_plugin_code,
                              bool_to_integer_string)
+
+
+def test_plugin_code_validation():
+    # INVALID
+    assert is_valid_plugin_code('taetl') == False  # Too long
+    assert is_valid_plugin_code('test') == False   # No upper
+
+    # VALID
+    assert is_valid_plugin_code('toAu') == True
+    assert is_valid_plugin_code('toAU') == True
+    assert is_valid_plugin_code('Gthl') == True
+    assert is_valid_plugin_code('hTFl') == True
+
+
+def test_plugin_manufacturer_code_validation():
+    # INVALID
+    assert is_valid_plugin_manufacturer_code('taetl') == False  # Too long
+    assert is_valid_plugin_manufacturer_code('test') == False   # No upper
+
+    # VALID
+    assert is_valid_plugin_manufacturer_code('toAu') == True
+    assert is_valid_plugin_manufacturer_code('toAU') == True
+    assert is_valid_plugin_manufacturer_code('Gthl') == True
+    assert is_valid_plugin_manufacturer_code('hTFl') == True
 
 
 def test_project_type_validation():

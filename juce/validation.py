@@ -93,6 +93,29 @@ RTAS_CATEGORIES = ["ePlugInCategory_None",
                    "ePlugInCategory_Effect"]
 
 
+def is_valid_four_digit_code(code):
+    """Returns true if a code with 4 digits and at least one upper case letter was given"""
+    if len(code) == 4:
+        for char in code:
+            if char.isupper():
+                return True
+    return False
+
+
+def is_valid_plugin_code(code):
+    """Returns true if a valid plugin code was given"""
+    if is_valid_four_digit_code(code):
+        return True
+    return False
+
+
+def is_valid_plugin_manufacturer_code(code):
+    """Returns true if a valid plugin manufacturer code was given"""
+    if is_valid_four_digit_code(code):
+        return True
+    return False
+
+
 def is_valid_project_type(project_type):
     """Returns true if a valid project type was given"""
     if project_type in PROJECT_TYPES:
