@@ -1,6 +1,20 @@
 from juce.projucer import JucerFile
 
 
+def test_cpp_standard_validation():
+    path = 'tests/assets/modEQ.jucer'
+    jucerFile = JucerFile(path)
+
+    assert jucerFile.cpp_language_standard == '17'
+
+    JucerFile.cpp_language_standard = '11'
+    JucerFile.cpp_language_standard = '14'
+    JucerFile.cpp_language_standard = '17'
+    JucerFile.cpp_language_standard = 'latest'
+
+    JucerFile.cpp_language_standard = 'foo'
+
+
 def test_GuiApp_project_properties():
     path = 'tests/assets/GuiApp.jucer'
     jucerFile = JucerFile(path)

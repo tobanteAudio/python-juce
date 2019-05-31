@@ -1,6 +1,8 @@
-import xml.etree.ElementTree as ET
+import os
+from xml.etree import ElementTree
 
 from juce.xml_helpers import XML_HEADER, get_attribute_from_tag
+from juce.env_helpers import get_list_of_path_dirs
 
 # Features
 # - Set preprocessor defines
@@ -10,21 +12,39 @@ from juce.xml_helpers import XML_HEADER, get_attribute_from_tag
 # - Warnings for useGlobalPath
 
 
+class Projucer():
+    """Represents the Projucer executable"""
+
+    def __init__(self):
+        self._path = get_list_of_path_dirs()
+
+    @property
+    def path(self):
+        """Returns a list of paths equal to the $PATH variable"""
+        return self._path
+
+
 class JucerFile():
+    """Represents a jucer file containing a JUCE project"""
+
     """Xml tree"""
     tree = None
     """Root element in jucer file (JUCERPROJECT)"""
     root = None
 
     def __init__(self, path):
+        """Loads the jucer file as xml"""
         self._path = path
-        self.tree = ET.parse(path)
+        self.tree = ElementTree.parse(path)
         self.root = self.tree.getroot()
 
+    # SAVE
     def save(self):
+        """Saves the jucer file as xml to the current path"""
         self.save_as(self._path)
 
     def save_as(self, new_path):
+        """Saves the jucer file as xml to the given path"""
         self.tree.write(open(new_path, 'wb'), encoding='utf-8')
         with open(new_path, 'r') as original:
             data = original.read()
@@ -249,6 +269,10 @@ class JucerFile():
     @cpp_language_standard.setter
     def cpp_language_standard(self, x):
         """Sets the C++ standard"""
+        possible_values = ['11', '14', '17', 'latest']
+        if x not in possible_values:
+            print("{} is not a possible value. {}".format(x, possible_values))
+            return
         print("Setting cppLanguageStandard with: {}".format(x))
 
     # PLUGIN FORMATS
