@@ -2,8 +2,8 @@
 
 # pylint: disable=too-many-public-methods,no-self-use
 
-import os
 import shutil
+import subprocess
 from xml.etree import ElementTree
 
 from juce.util import XML_HEADER, get_attribute_from_tag, get_list_of_path_dirs
@@ -29,6 +29,7 @@ class Projucer():
         """The script will look in $PATH & the path argument for the Projucer executable
         """
         self._path = []
+        self._which = shutil.which(Projucer.EXE_NAME, path=None)
         if path:
             # Check path is string
             assert isinstance(path, str)
@@ -42,37 +43,55 @@ class Projucer():
         # Append $PATH
         self._path += get_list_of_path_dirs()
 
-    # PATH
     @property
     def path(self):
         """List of paths equal to the $PATH variable
         """
         return self._path
 
-    # PATH COUNT
     @property
     def path_count(self):
         """Number of directories in $PATH
         """
         return len(self._path)
 
-    # WHICH
     @property
     def which(self):
         """Path to Projucer executable
         """
         return str(self._which)
 
-    @which.setter
-    def which(self, which):
-        assert isinstance(which, str)
-        exists = os.path.isfile(which)
-        if exists:
-            self._which = which
-
     def resave(self, project):
         """Resaves a Projucer project, to generate build files
         """
+        assert isinstance(project, str)
+        proc = subprocess.Popen([self._which, '--resave', project],
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT)
+
+        stdout, stderr = proc.communicate()
+
+        if stdout:
+            print(stdout.decode('utf-8'))
+
+        if stderr:
+            print(stderr.decode('utf-8'))
+
+    def status(self, project):
+        """Displays status info about the Projucer project
+        """
+        assert isinstance(project, str)
+        proc = subprocess.Popen([self._which, '--status', project],
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT)
+
+        stdout, stderr = proc.communicate()
+
+        if stdout:
+            print(stdout.decode('utf-8'))
+
+        if stderr:
+            print(stderr.decode('utf-8'))
 
 
 class JucerFile():
@@ -120,13 +139,13 @@ class JucerFile():
 
     # ID
     @property
-    def project_id(self):
-        """Project id"""
+    def u_id(self):
+        """Project unique id"""
         return get_attribute_from_tag(self.root, 'id')
 
-    @project_id.setter
-    def project_id(self, project_id):
-        self.root.set('id', project_id)
+    @u_id.setter
+    def u_id(self, u_id):
+        self.root.set('id', u_id)
 
     # NAME
     @property

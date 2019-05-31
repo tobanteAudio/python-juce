@@ -8,7 +8,7 @@ from juce.projucer import JucerFile
 
 GUI_APP_PROPTERY_RESULTS = {
     "path": 'tests/assets/GuiApp.jucer',
-    "project_id": 'hgSXn0',
+    "u_id": 'hgSXn0',
     "name": 'GuiApp',
     "project_type": 'guiapp',
     "jucer_version": '5.4.3',
@@ -16,7 +16,7 @@ GUI_APP_PROPTERY_RESULTS = {
 
 MODEQ_PROPTERY_RESULTS = {
     "path": 'tests/assets/modEQ.jucer',
-    "project_id": 'jWny5A',
+    "u_id": 'jWny5A',
     "name": 'modEQ',
     "project_type": 'audioplug',
     "jucer_version": '5.4.3',
@@ -60,7 +60,7 @@ def test_project_properties():
 
         # Properties (get)
         assert jF.path == none_if_key_error(test, "path")
-        assert jF.project_id == none_if_key_error(test, "project_id")
+        assert jF.u_id == none_if_key_error(test, "u_id")
         assert jF.name == none_if_key_error(test, "name")
         assert jF.project_type == none_if_key_error(test, "project_type")
         assert jF.jucer_version == none_if_key_error(test, "jucer_version")
@@ -148,8 +148,8 @@ def test_set_attributes():
 
     # Set id, No validation
     new_id = "jWny5B"
-    jucerFile.project_id = new_id
-    assert jucerFile.project_id == new_id
+    jucerFile.u_id = new_id
+    assert jucerFile.u_id == new_id
 
     # Set name, No validation
     new_name = "newName"

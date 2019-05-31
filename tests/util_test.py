@@ -1,3 +1,5 @@
+# pylint: skip-file
+
 from juce.util import get_list_of_path_dirs
 
 
