@@ -46,6 +46,7 @@ jucerFile.cpp_language_standard = '98'          # Not: 11, 14, 17, latest
 jucerFile.project_type = 'foo'                  # Not: guiapp, consoleapp, library, dll, audioplug
 jucerFile.display_splash_screen = "98"          # Not a boolean
 jucerFile.binary_data_namespace = 'BAD NS'      # Includes unvalid char (space)
+jucerFile.plugin_code = 'too'                   # Not 4 characters & No upper case
 
 # Write to file
 jucerFile.save()                                # Override on save
