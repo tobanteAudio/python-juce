@@ -7,12 +7,20 @@ def test_cpp_standard_validation():
 
     assert jucerFile.cpp_language_standard == '17'
 
-    JucerFile.cpp_language_standard = '11'
-    JucerFile.cpp_language_standard = '14'
-    JucerFile.cpp_language_standard = '17'
-    JucerFile.cpp_language_standard = 'latest'
+    jucerFile.cpp_language_standard = '11'
+    assert jucerFile.cpp_language_standard == '11'
 
-    JucerFile.cpp_language_standard = 'foo'
+    jucerFile.cpp_language_standard = '14'
+    assert jucerFile.cpp_language_standard == '14'
+
+    jucerFile.cpp_language_standard = '17'
+    assert jucerFile.cpp_language_standard == '17'
+
+    jucerFile.cpp_language_standard = 'latest'
+    assert jucerFile.cpp_language_standard == 'latest'
+
+    jucerFile.cpp_language_standard = 'foo'
+    assert jucerFile.cpp_language_standard == 'latest'
 
 
 def test_GuiApp_project_properties():

@@ -274,6 +274,7 @@ class JucerFile():
             print("{} is not a possible value. {}".format(x, possible_values))
             return
         print("Setting cppLanguageStandard with: {}".format(x))
+        self.root.set('cppLanguageStandard', x)
 
     # PLUGIN FORMATS
     @property
@@ -341,6 +342,8 @@ class JucerFile():
         """Sets the project line feed"""
         print("Setting projectLineFeed with: {}".format(x))
 
+
+# ET.SubElement(root,'TextSummary').set('Status','Completed')
 
 # def get_project_info(root):
 #     print("INFO:")
