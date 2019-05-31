@@ -5,6 +5,7 @@ autopep8
 # TESTS
 pytest
 pytest-cov
+codecov
 
 # DOCUMENTATION
 sphinx
