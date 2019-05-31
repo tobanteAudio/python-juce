@@ -8,6 +8,12 @@ Python classes & functions for manipulating Projucer `.jucer` files. Only vanill
 | :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
 | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![Build Status](https://travis-ci.org/tobanteAudio/modEQ.svg?branch=master)](https://travis-ci.org/tobanteAudio/python-juce) | ![Codecov](https://img.shields.io/codecov/c/github/tobanteAudio/python-juce.svg) |
 
+## Features
+
+- Read & write `.jucer` files
+- Set project attributes (version, company, etc...)
+- Attribute validation
+
 ## Install
 
 ### Source
@@ -39,6 +45,8 @@ jucerFile.version = '0.2.1'
 jucerFile.save()                                # Override on save
 jucerFile.save_as('some/path/project.jucer')    # Save to new location
 
+# Basic validation
+jucerFile.cpp_language_standard = '98'          # Fails. Not a valid option
 ```
 
 ## Development
@@ -54,3 +62,10 @@ make coverage   # Coverage report
 make docs       # Documentation
 make stats      # Repository stats (using cloc)
 ```
+
+## ToDO
+
+- Set preprocessor defines
+- Set enablePluginBinaryCopyStep
+- Set warning levels, optimizations
+- Warnings for useGlobalPath

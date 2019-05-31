@@ -4,13 +4,6 @@ from xml.etree import ElementTree
 from juce.xml_helpers import XML_HEADER, get_attribute_from_tag
 from juce.env_helpers import get_list_of_path_dirs
 
-# Features
-# - Set preprocessor defines
-# - Set version, name, company, etc...
-# - Set enablePluginBinaryCopyStep
-# - Set warning levels, optimizations
-# - Warnings for useGlobalPath
-
 
 class Projucer():
     """Represents the Projucer executable"""
