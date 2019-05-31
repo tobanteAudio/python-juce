@@ -6,6 +6,98 @@ import pytest
 
 from juce.projucer import JucerFile
 
+GUI_APP_PROPTERY_RESULTS = {
+    "path": 'tests/assets/GuiApp.jucer',
+    "project_id": 'hgSXn0',
+    "name": 'GuiApp',
+    "project_type": 'guiapp',
+    "jucer_version": '5.4.3',
+}
+
+MODEQ_PROPTERY_RESULTS = {
+    "path": 'tests/assets/modEQ.jucer',
+    "project_id": 'jWny5A',
+    "name": 'modEQ',
+    "project_type": 'audioplug',
+    "jucer_version": '5.4.3',
+    "version": '0.4.0',
+    "company": 'tobanteAudio',
+    "company_website": 'https://github.com/tobanteAudio',
+    "company_email": 'tobanteAudio@gmail.com',
+    "bundle_identifier": "com.tobanteAudio.modEQ",
+    "plugin_name": 'modEQ',
+    "plugin_description": 'EQ with modulation',
+    "plugin_manufacturer": 'tobanteAudio',
+    "plugin_manufacturer_code": 'toAu',
+    "plugin_code": 'tamq',
+    "plugin_au_exporter_profile": 'modEQAU',
+    "aax_identifier": "com.tobanteAudio.modEQ",
+    "vst3_category": "Analyzer,EQ,Fx",
+    "binary_data_namespace": 'TobanteAudioData',
+    "cpp_language_standard": '17',
+    "plugin_formats": "buildAU,buildStandalone,buildVST3",
+    "company_copyright": "GNU GENERAL PUBLIC LICENSE Version 3",
+    "display_splash_screen": '0',
+    "report_app_usage": '0',
+    "compiler_flag_schemes": 'NewScheme',
+    "project_line_feed": '\n'
+}
+
+PROPTERY_RESULTS = [GUI_APP_PROPTERY_RESULTS, MODEQ_PROPTERY_RESULTS]
+
+
+def none_if_key_error(dictionary, key):
+    try:
+        return dictionary[key]
+    except KeyError:
+        return None
+
+
+def test_project_properties():
+    for test in PROPTERY_RESULTS:
+        path = test['path']
+        jF = JucerFile(path)
+
+        # Properties (get)
+        assert jF.path == none_if_key_error(test, "path")
+        assert jF.project_id == none_if_key_error(test, "project_id")
+        assert jF.name == none_if_key_error(test, "name")
+        assert jF.project_type == none_if_key_error(test, "project_type")
+        assert jF.jucer_version == none_if_key_error(test, "jucer_version")
+        assert jF.version == none_if_key_error(test, "version")
+        assert jF.company == none_if_key_error(test, "company")
+        assert jF.company_website == none_if_key_error(test, "company_website")
+        assert jF.company_email == none_if_key_error(test, "company_email")
+        assert jF.bundle_identifier == none_if_key_error(
+            test, "bundle_identifier")
+        assert jF.plugin_name == none_if_key_error(test, "plugin_name")
+        assert jF.plugin_description == none_if_key_error(
+            test, "plugin_description")
+        assert jF.plugin_manufacturer == none_if_key_error(
+            test, "plugin_manufacturer")
+        assert jF.plugin_manufacturer_code == none_if_key_error(
+            test, "plugin_manufacturer_code")
+        assert jF.plugin_code == none_if_key_error(test, "plugin_code")
+        assert jF.plugin_au_exporter_profile == none_if_key_error(
+            test, "plugin_au_exporter_profile")
+        assert jF.aax_identifier == none_if_key_error(test, "aax_identifier")
+        assert jF.vst3_category == none_if_key_error(test, "vst3_category")
+        assert jF.binary_data_namespace == none_if_key_error(
+            test, "binary_data_namespace")
+        assert jF.cpp_language_standard == none_if_key_error(
+            test, "cpp_language_standard")
+        assert jF.plugin_formats == none_if_key_error(test, "plugin_formats")
+        assert jF.company_copyright == none_if_key_error(
+            test, "company_copyright")
+        assert jF.display_splash_screen == none_if_key_error(
+            test, "display_splash_screen")
+        assert jF.report_app_usage == none_if_key_error(
+            test, "report_app_usage")
+        assert jF.compiler_flag_schemes == none_if_key_error(
+            test, "compiler_flag_schemes")
+        assert jF.project_line_feed == none_if_key_error(
+            test, "project_line_feed")
+
 
 def test_write_to_file():
     original_path = 'tests/assets/modEQ.jucer'
@@ -48,53 +140,9 @@ def test_cpp_standard_validation():
     assert jucerFile.cpp_language_standard == 'latest'
 
 
-def test_GuiApp_project_properties():
-    path = 'tests/assets/GuiApp.jucer'
-    jucerFile = JucerFile(path)
-
-    # Properties (get)
-    assert jucerFile.path == path
-    assert jucerFile.project_id == 'hgSXn0'
-    assert jucerFile.name == 'GuiApp'
-    assert jucerFile.project_type == 'guiapp'
-    assert jucerFile.jucer_version == '5.4.3'
-    assert jucerFile.version is None
-    assert jucerFile.company is None
-    assert jucerFile.company_website is None
-    assert jucerFile.company_email is None
-
-
-def test_modEQ_project_properties():
+def test_set_attributes():
     path = 'tests/assets/modEQ.jucer'
     jucerFile = JucerFile(path)
-
-    # Properties (get)
-    assert jucerFile.path == path
-    assert jucerFile.project_id == 'jWny5A'
-    assert jucerFile.name == 'modEQ'
-    assert jucerFile.project_type == 'audioplug'
-    assert jucerFile.jucer_version == '5.4.3'
-    assert jucerFile.version == '0.4.0'
-    assert jucerFile.company == 'tobanteAudio'
-    assert jucerFile.company_website == 'https://github.com/tobanteAudio'
-    assert jucerFile.company_email == 'tobanteAudio@gmail.com'
-    assert jucerFile.bundle_identifier == "com.tobanteAudio.modEQ"
-    assert jucerFile.plugin_name == 'modEQ'
-    assert jucerFile.plugin_description == 'EQ with modulation'
-    assert jucerFile.plugin_manufacturer == 'tobanteAudio'
-    assert jucerFile.plugin_manufacturer_code == 'toAu'
-    assert jucerFile.plugin_code == 'tamq'
-    assert jucerFile.plugin_au_exporter_profile == 'modEQAU'
-    assert jucerFile.aax_identifier == "com.tobanteAudio.modEQ"
-    assert jucerFile.vst3_category == "Analyzer,EQ,Fx"
-    assert jucerFile.binary_data_namespace == 'TobanteAudioData'
-    assert jucerFile.cpp_language_standard == '17'
-    assert jucerFile.plugin_formats == "buildAU,buildStandalone,buildVST3"
-    assert jucerFile.company_copyright == "GNU GENERAL PUBLIC LICENSE Version 3"
-    assert jucerFile.display_splash_screen == '0'
-    assert jucerFile.report_app_usage == '0'
-    assert jucerFile.compiler_flag_schemes == 'NewScheme'
-    assert jucerFile.project_line_feed == '\n'
 
     # Set id, No validation
     new_id = "jWny5B"
@@ -207,7 +255,7 @@ def test_modEQ_project_properties():
     assert jucerFile.project_line_feed == new_line_feed
 
 
-def test_modEQ_project_attributes_with_exceptions():
+def test_set_attributes_with_exceptions():
     path = 'tests/assets/modEQ.jucer'
     jucerFile = JucerFile(path)
     jucerFile.silent_validation = False
