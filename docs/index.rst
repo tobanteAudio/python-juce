@@ -47,7 +47,6 @@ Quick Start
     jucerFile.project_type = 'foo'                 
     jucerFile.display_splash_screen = "98"          
     jucerFile.binary_data_namespace = 'BAD NS'      
-    # Not 4 characters & No upper case
     jucerFile.plugin_code = 'too'
 
     # Turn on exceptions
@@ -72,7 +71,7 @@ Quick Start
     print(projucer.path_count)
 
     projucer.status("tests/assets/pluginA.jucer")
-    # projucer.resave("tests/assets/pluginA.jucer")  
+    projucer.resave("tests/assets/pluginA.jucer")  
 
 
 References

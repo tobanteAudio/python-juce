@@ -46,23 +46,22 @@ jucerFile.path = 'new/path/to/project.jucer'
 jucerFile.version = '0.2.1'
 
 # Basic validation, the following lines fail silently
-jucerFile.cpp_language_standard = '98'          # Not: 11, 14, 17, latest
-jucerFile.project_line_feed = '98'              # Not: '\n' or '\r\n'
-jucerFile.project_type = 'foo'                  # Not: guiapp, audioplug, etc...
-jucerFile.display_splash_screen = "98"          # Not a boolean
-jucerFile.binary_data_namespace = 'BAD NS'      # Includes unvalid char (space)
-# Not 4 characters & No upper case
+jucerFile.cpp_language_standard = '98'
+jucerFile.project_line_feed = '98'
+jucerFile.project_type = 'foo'
+jucerFile.display_splash_screen = "98"
+jucerFile.binary_data_namespace = 'BAD NS'
 jucerFile.plugin_code = 'too'
 
 # Turn on exceptions
 jucerFile.silent_validation = False
 
 # Basic validation, the following line will raise ValueError
-jucerFile.cpp_language_standard = '98'          # Not: 11, 14, 17, latest
+jucerFile.cpp_language_standard = '98'
 
 # Write to file
-jucerFile.save()                                # Override on save
-jucerFile.save_as('some/path/project.jucer')    # Save to new location
+jucerFile.save()
+jucerFile.save_as('some/path/project.jucer')
 
 # PROJUCER
 
@@ -76,7 +75,7 @@ print(projucer.which)
 print(projucer.path_count)
 
 projucer.status("tests/assets/pluginA.jucer")
-# projucer.resave("tests/assets/pluginA.jucer")
+projucer.resave("tests/assets/pluginA.jucer")
 ```
 
 ## Development
