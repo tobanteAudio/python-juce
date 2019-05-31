@@ -247,7 +247,7 @@ class JucerFile():
     # VST3 CATEGORY
     @property
     def vst3_category(self):
-        """Returns the plugin vst3 category"""
+        """Plugin vst3 category"""
         return get_attribute_from_tag(self.root, 'pluginVST3Category')
 
     @vst3_category.setter
@@ -273,7 +273,7 @@ class JucerFile():
     # C++ LANGUAGE STANDARD
     @property
     def cpp_language_standard(self):
-        """Returns the C++ standard"""
+        """C++ standard"""
         return get_attribute_from_tag(self.root, 'cppLanguageStandard')
 
     @cpp_language_standard.setter
@@ -296,7 +296,7 @@ class JucerFile():
     # COMPANY COPYRIGHT
     @property
     def company_copyright(self):
-        """Returns the company copyright"""
+        """Company copyright"""
         return get_attribute_from_tag(self.root, 'companyCopyright')
 
     @company_copyright.setter
@@ -306,7 +306,7 @@ class JucerFile():
     # DISPLAY SPLASH SCREEN
     @property
     def display_splash_screen(self):
-        """Returns the plugin splash screen setting"""
+        """Plugin splash screen flag"""
         return get_attribute_from_tag(self.root, 'displaySplashScreen')
 
     @display_splash_screen.setter
@@ -319,7 +319,7 @@ class JucerFile():
     # REPORT APP USAGE
     @property
     def report_app_usage(self):
-        """Returns the plugin report app usage setting"""
+        """Plugin report app usage flag"""
         return get_attribute_from_tag(self.root, 'reportAppUsage')
 
     @report_app_usage.setter
@@ -333,7 +333,7 @@ class JucerFile():
     # COMPILER FLAG SCHEMES
     @property
     def compiler_flag_schemes(self):
-        """Returns the plugin compiler flag schemes"""
+        """Plugin compiler flag schemes"""
         return get_attribute_from_tag(self.root, 'compilerFlagSchemes')
 
     @compiler_flag_schemes.setter
@@ -343,7 +343,7 @@ class JucerFile():
     # PROJECT LINE FEED
     @property
     def project_line_feed(self):
-        """Returns the project line feed"""
+        """Project line feed"""
         return get_attribute_from_tag(self.root, 'projectLineFeed')
 
     @project_line_feed.setter
