@@ -28,5 +28,7 @@ docs:
 	@cd $(DOC_DIRECTORY) && make html
 	
 stats:
+	@echo "CODE:"
 	@cloc $(PACKAGE_NAME)
+	@echo "TESTS:"
 	@cloc $(TEST_DIRECTORY)

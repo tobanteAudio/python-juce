@@ -1,5 +1,8 @@
 """Functions for validating jucer project attributes"""
 
+# LINE ENDINGS
+LINE_FEEDS = ['\n', '\r\n']
+
 # PROJECT TYPES
 PROJECT_TYPES = ["guiapp", "consoleapp", "library", "dll", "audioplug"]
 
@@ -184,6 +187,13 @@ def is_valid_boolean(boolean):
     if boolean == 1:
         return True
 
+    return False
+
+
+def is_valid_line_feed(line_feed):
+    """Returns true if the line feed is valid"""
+    if line_feed in LINE_FEEDS:
+        return True
     return False
 
 

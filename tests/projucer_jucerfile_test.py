@@ -1,3 +1,5 @@
+# pylint: skip-file
+
 import os
 
 import pytest
@@ -197,6 +199,13 @@ def test_modEQ_project_properties():
     jucerFile.report_app_usage = False
     assert jucerFile.report_app_usage == '0'
 
+    # Set line feed, with validation
+    new_line_feed = "\r\n"
+    jucerFile.project_line_feed = new_line_feed
+    assert jucerFile.project_line_feed == new_line_feed
+    jucerFile.project_line_feed = 'new_line_feed'           # Fail
+    assert jucerFile.project_line_feed == new_line_feed
+
 
 def test_modEQ_project_attributes_with_exceptions():
     path = 'tests/assets/modEQ.jucer'
@@ -230,5 +239,15 @@ def test_modEQ_project_attributes_with_exceptions():
 
     with pytest.raises(ValueError) as excinfo:
         jucerFile.report_app_usage = 'new_plugin_manufacturer_code'
+    assert "Attribute validation failed" in str(excinfo.value)
+    excinfo = None
+
+    with pytest.raises(ValueError) as excinfo:
+        jucerFile.project_line_feed = 'new_plugin_manufacturer_code'
+    assert "Attribute validation failed" in str(excinfo.value)
+    excinfo = None
+
+    with pytest.raises(ValueError) as excinfo:
+        jucerFile.binary_data_namespace = 'BAD NAMESPACE'
     assert "Attribute validation failed" in str(excinfo.value)
     excinfo = None

@@ -1,3 +1,5 @@
+# pylint: skip-file
+
 from juce.validation import (is_valid_vst3_category,
                              is_valid_project_type,
                              is_valid_vst2_category,
@@ -9,7 +11,18 @@ from juce.validation import (is_valid_vst3_category,
                              is_valid_boolean,
                              is_valid_plugin_manufacturer_code,
                              is_valid_plugin_code,
+                             is_valid_line_feed,
                              bool_to_integer_string)
+
+
+def test_line_feed_validation():
+    # INVALID
+    assert not is_valid_line_feed('\r')   # Too long
+    assert not is_valid_line_feed('test')    # No upper
+
+    # VALID
+    assert is_valid_line_feed('\n')
+    assert is_valid_line_feed('\r\n')
 
 
 def test_plugin_code_validation():

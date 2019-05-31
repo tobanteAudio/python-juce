@@ -13,6 +13,7 @@ from juce.validation import (
     is_valid_project_type,
     is_valid_plugin_code,
     is_valid_plugin_manufacturer_code,
+    is_valid_line_feed,
     bool_to_integer_string)
 
 
@@ -374,7 +375,10 @@ class JucerFile():
     @project_line_feed.setter
     def project_line_feed(self, line_feed):
         """Sets the project line feed"""
-        print("Setting projectLineFeed with: {}".format(line_feed))
+        if is_valid_line_feed(line_feed):
+            self.root.set('projectLineFeed', line_feed)
+            return
+        self.fail_silent_or_raise()
 
     def fail_silent_or_raise(self):
         """If silent_validation is False a ValueError is raised"""
