@@ -41,7 +41,7 @@ print(jucerFile.cpp_language_standard)          # 17
 jucerFile.path = 'new/path/to/project.jucer'
 jucerFile.version = '0.2.1'
 
-# Basic validation
+# Basic validation, the following lines fail silently
 jucerFile.cpp_language_standard = '98'          # Not: 11, 14, 17, latest
 jucerFile.project_type = 'foo'                  # Not: guiapp, consoleapp, library, dll, audioplug
 jucerFile.display_splash_screen = "98"          # Not a boolean
