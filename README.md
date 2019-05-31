@@ -4,7 +4,7 @@ Python classes & functions for manipulating Projucer `.jucer` files. Only vanill
 
 ## Status
 
-|                                                   LICENSE                                                   |                                                         Linux / macOS                                                         |                                     Coverage                                     |
+|                                                   LICENSE                                                   |                                                              CI                                                               |                                     Coverage                                     |
 | :---------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: |
 | [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) | [![Build Status](https://travis-ci.org/tobanteAudio/modEQ.svg?branch=master)](https://travis-ci.org/tobanteAudio/python-juce) | ![Codecov](https://img.shields.io/codecov/c/github/tobanteAudio/python-juce.svg) |
 

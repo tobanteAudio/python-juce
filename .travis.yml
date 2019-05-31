@@ -1,4 +1,4 @@
-# language: python
+language: python
 
 branches:
   only:
@@ -15,20 +15,12 @@ script-anchors:
     - cd $TRAVIS_BUILD_DIR
     - make docs
   
-  - &script-test
-    - make test
-
   - &script-coverage
     - make coverage
     - codecov
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode10.2
-      script: *script-test
-
-
     - os: linux
       sudo: false
       dist: xenial   # required for Python >= 3.7
