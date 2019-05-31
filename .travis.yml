@@ -13,7 +13,7 @@ install:
 script-anchors:
   - &script-documentation
     - cd $TRAVIS_BUILD_DIR
-    - make documentation
+    - make docs
   
   - &script-test
     - make test
@@ -25,12 +25,12 @@ script-anchors:
 matrix:
   include:
     - os: osx
+      python: "3.7"
       script: *script-test
 
 
     - os: linux
       sudo: false
       dist: xenial   # required for Python >= 3.7
-      python:
-        - "3.7"
+      python: "3.7"
       script: *script-coverage
