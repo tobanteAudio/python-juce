@@ -10,3 +10,4 @@ codecov
 # DOCUMENTATION
 sphinx
 recommonmark    # Markdown
+doc8
