@@ -52,14 +52,14 @@ def test_GuiApp_project_properties():
 
     # Properties (get)
     assert jucerFile.path == path
-    assert jucerFile.id == 'hgSXn0'
+    assert jucerFile.project_id == 'hgSXn0'
     assert jucerFile.name == 'GuiApp'
     assert jucerFile.project_type == 'guiapp'
     assert jucerFile.jucer_version == '5.4.3'
-    assert jucerFile.version == None
-    assert jucerFile.company == None
-    assert jucerFile.company_website == None
-    assert jucerFile.company_email == None
+    assert jucerFile.version is None
+    assert jucerFile.company is None
+    assert jucerFile.company_website is None
+    assert jucerFile.company_email is None
 
 
 def test_modEQ_project_properties():
@@ -68,7 +68,7 @@ def test_modEQ_project_properties():
 
     # Properties (get)
     assert jucerFile.path == path
-    assert jucerFile.id == 'jWny5A'
+    assert jucerFile.project_id == 'jWny5A'
     assert jucerFile.name == 'modEQ'
     assert jucerFile.project_type == 'audioplug'
     assert jucerFile.jucer_version == '5.4.3'

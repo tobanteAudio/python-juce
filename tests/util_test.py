@@ -1,4 +1,4 @@
-from juce.env_helpers import get_list_of_path_dirs
+from juce.util import get_list_of_path_dirs
 
 
 def test_get_list_of_path_dirs():
