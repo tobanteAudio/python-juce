@@ -57,9 +57,9 @@ class JucerFile():
         return self._path
 
     @path.setter
-    def path(self, x):
+    def path(self, path):
         """Sets the jucer file path"""
-        print("Setting path with: {}".format(x))
+        self._path = path
 
     # ID
     @property
@@ -123,9 +123,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'companyName')
 
     @company.setter
-    def company(self, x):
+    def company(self, company_name):
         """Sets the company name"""
-        print("Setting company with: {}".format(x))
+        self.root.set('companyName', company_name)
 
     # COMPANY WEBSITE
     @property
@@ -134,9 +134,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'companyWebsite')
 
     @company_website.setter
-    def company_website(self, x):
+    def company_website(self, company_website):
         """Sets the company website"""
-        print("Setting companyWebsite with: {}".format(x))
+        self.root.set('companyWebsite', company_website)
 
     # COMPANY EMAIL
     @property
@@ -145,9 +145,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'companyEmail')
 
     @company_email.setter
-    def company_email(self, x):
+    def company_email(self, company_email):
         """Sets the company email"""
-        print("Setting companyEmail with: {}".format(x))
+        self.root.set('companyEmail', company_email)
 
     # BUNDLE IDENTIFIER
     @property
