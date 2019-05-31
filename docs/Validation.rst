@@ -2,4 +2,5 @@ Validation
 =====================================
 
 .. automodule:: juce.validation
-    :members:
+   :members:
+   :undoc-members:

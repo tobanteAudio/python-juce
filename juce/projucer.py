@@ -314,7 +314,7 @@ class JucerFile():
     # BINARY DATA NAMESPACE
     @property
     def binary_data_namespace(self):
-        """Returns the plugin binary data namespace"""
+        """Binary data namespace"""
         return get_attribute_from_tag(self.root, 'binaryDataNamespace')
 
     @binary_data_namespace.setter
@@ -340,7 +340,7 @@ class JucerFile():
     # PLUGIN FORMATS
     @property
     def plugin_formats(self):
-        """Returns the plugin formats"""
+        """Plugin formats"""
         return get_attribute_from_tag(self.root, 'pluginFormats')
 
     @plugin_formats.setter
