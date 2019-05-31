@@ -25,4 +25,5 @@ docs:
 	@cd $(DOC_DIRECTORY) && make html
 	
 stats:
-	@cloc $(PACKAGE_NAME) $(TEST_DIRECTORY)
+	@cloc $(PACKAGE_NAME)
+	@cloc $(TEST_DIRECTORY)

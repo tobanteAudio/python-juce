@@ -3,6 +3,9 @@
 # PROJECT TYPES
 PROJECT_TYPES = ["guiapp", "consoleapp", "library", "dll", "audioplug"]
 
+# C++
+CPP_STANDARDS = ['11', '14', '17', 'latest']
+
 # PLUGIN CATEGORIES
 VST2_CATEGORIES = ["kPlugCategUnknown",
                    "kPlugCategEffect",
@@ -90,36 +93,43 @@ RTAS_CATEGORIES = ["ePlugInCategory_None",
                    "ePlugInCategory_Effect"]
 
 
-def valid_vst2_category(category):
+def is_valid_vst2_category(category):
     """Returns true if a valid VST2 category was given"""
     if category in VST2_CATEGORIES:
         return True
     return False
 
 
-def valid_vst3_category(category):
+def is_valid_vst3_category(category):
     """Returns true if a valid VST3 category was given"""
     if category in VST3_CATEGORIES:
         return True
     return False
 
 
-def valid_au_category(category):
+def is_valid_au_category(category):
     """Returns true if a valid AudioUnit category was given"""
     if category in AU_CATEGORIES:
         return True
     return False
 
 
-def valid_aax_category(category):
+def is_valid_aax_category(category):
     """Returns true if a valid AAX category was given"""
     if category in AAX_CATEGORIES:
         return True
     return False
 
 
-def valid_rtas_category(category):
+def is_valid_rtas_category(category):
     """Returns true if a valid RTAS category was given"""
     if category in RTAS_CATEGORIES:
+        return True
+    return False
+
+
+def is_valid_cpp_standard(standard):
+    """Returns true if the given standard is valid"""
+    if standard in CPP_STANDARDS:
         return True
     return False

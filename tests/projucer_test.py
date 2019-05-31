@@ -70,3 +70,8 @@ def test_modEQ_project_properties():
     assert jucerFile.report_app_usage == '0'
     assert jucerFile.compiler_flag_schemes == 'NewScheme'
     assert jucerFile.project_line_feed == '\n'
+
+    # SET COPYRIGHT, NO VALIDATION
+    new_copyright = "NEW COPYRIGHT"
+    jucerFile.company_copyright = new_copyright
+    assert jucerFile.company_copyright == new_copyright

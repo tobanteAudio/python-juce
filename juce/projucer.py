@@ -3,8 +3,8 @@ from xml.etree import ElementTree
 
 from juce.xml_helpers import XML_HEADER, get_attribute_from_tag
 from juce.env_helpers import get_list_of_path_dirs
-from juce.validation import (valid_aax_category, valid_au_category,
-                             valid_vst2_category, valid_vst3_category)
+from juce.validation import (is_valid_aax_category, is_valid_au_category,
+                             is_valid_vst2_category, is_valid_vst3_category, is_valid_cpp_standard)
 
 
 class Projucer():
@@ -242,7 +242,7 @@ class JucerFile():
     @vst3_category.setter
     def vst3_category(self, category):
         """Sets the plugin vst3 category"""
-        if valid_vst3_category(category):
+        if is_valid_vst3_category(category):
             print("Setting pluginVST3Category with: {}".format(category))
 
     # BINARY DATA NAMESPACE
@@ -263,14 +263,10 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'cppLanguageStandard')
 
     @cpp_language_standard.setter
-    def cpp_language_standard(self, x):
+    def cpp_language_standard(self, standard):
         """Sets the C++ standard"""
-        possible_values = ['11', '14', '17', 'latest']
-        if x not in possible_values:
-            print("{} is not a possible value. {}".format(x, possible_values))
-            return
-        print("Setting cppLanguageStandard with: {}".format(x))
-        self.root.set('cppLanguageStandard', x)
+        if is_valid_cpp_standard(standard):
+            self.root.set('cppLanguageStandard', standard)
 
     # PLUGIN FORMATS
     @property
@@ -290,9 +286,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'companyCopyright')
 
     @company_copyright.setter
-    def company_copyright(self, x):
+    def company_copyright(self, copyright):
         """Sets the company copyright"""
-        print("Setting companyCopyright with: {}".format(x))
+        self.root.set('companyCopyright', copyright)
 
     # DISPLAY SPLASH SCREEN
     @property
