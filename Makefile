@@ -1,9 +1,12 @@
-.PHONY: deps develop test coverage docs stats
+.PHONY: install deps develop test coverage docs stats
 default: develop
 
 PACKAGE_NAME = juce
 TEST_DIRECTORY = tests
 DOC_DIRECTORY = docs
+
+install:
+	@pip install .
 
 deps:
 	@pip install -r requirements-dev.txt

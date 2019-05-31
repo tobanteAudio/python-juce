@@ -46,7 +46,8 @@ jucerFile.save_as('some/path/project.jucer')    # Save to new location
 ### Makefile
 
 ```sh
-make deps       # pip install -r requirements.txt
+make install    # pip install .
+make deps       # pip install -r requirements-dev.txt
 make develop    # pip install -e .
 make test       # Unit tests
 make coverage   # Coverage report
