@@ -31,22 +31,26 @@ from juce.projucer import JucerFile
 
 jucerFile = JucerFile('path/to/project.jucer')
 
-# Properties (get)
+# Attributes (get)
 print(jucerFile.path)                           # path/to/project.jucer
 print(jucerFile.name)                           # project
 print(jucerFile.project_type)                   # audioplug
 print(jucerFile.cpp_language_standard)          # 17
 
-# Properties (set)
+# Attributes (set)
 jucerFile.path = 'new/path/to/project.jucer'
 jucerFile.version = '0.2.1'
 
-# Write to disc
+# Basic validation
+jucerFile.cpp_language_standard = '98'          # Not: 11, 14, 17, latest
+jucerFile.project_type = 'foo'                  # Not: guiapp, consoleapp, library, dll, audioplug
+jucerFile.display_splash_screen = "98"          # Not a boolean
+jucerFile.binary_data_namespace = 'BAD NS'      # Includes unvalid char (space)
+
+# Write to file
 jucerFile.save()                                # Override on save
 jucerFile.save_as('some/path/project.jucer')    # Save to new location
 
-# Basic validation
-jucerFile.cpp_language_standard = '98'          # Fails. Not a valid option
 ```
 
 ## Development
