@@ -68,9 +68,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'id')
 
     @id.setter
-    def id(self, x):
+    def id(self, id):
         """Sets the project id"""
-        print("Setting id with: {}".format(x))
+        self.root.set('id', id)
 
     # NAME
     @property
@@ -79,9 +79,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'name')
 
     @name.setter
-    def name(self, x):
+    def name(self, name):
         """Sets the project name"""
-        print("Setting name with: {}".format(x))
+        self.root.set('name', name)
 
     # PROJECT TYPE
     @property
@@ -101,9 +101,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'jucerVersion')
 
     @jucer_version.setter
-    def jucer_version(self, x):
+    def jucer_version(self, version):
         """Sets the project jucer_version"""
-        print("Setting jucerVersion with: {}".format(x))
+        self.root.set('jucerVersion', version)
 
     # VERSION
     @property
@@ -112,9 +112,9 @@ class JucerFile():
         return get_attribute_from_tag(self.root, 'version')
 
     @version.setter
-    def version(self, x):
+    def version(self, version):
         """Sets the project version"""
-        print("Setting version with: {}".format(x))
+        self.root.set('version', version)
 
     # COMPANY
     @property

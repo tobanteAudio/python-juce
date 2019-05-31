@@ -8,7 +8,8 @@ def test_write_to_file():
     jucerFile = JucerFile(original_path)
 
     out_dir = 'tests/output/'
-    os.mkdir(out_dir)
+    if not os.path.isdir(out_dir):
+        os.mkdir(out_dir)
 
     out1 = 'output.jucer'
     out2 = 'output2.jucer'
@@ -91,10 +92,25 @@ def test_modEQ_project_properties():
     assert jucerFile.compiler_flag_schemes == 'NewScheme'
     assert jucerFile.project_line_feed == '\n'
 
+    # Set id, No validation
+    new_id = "jWny5B"
+    jucerFile.id = new_id
+    assert jucerFile.id == new_id
+
+    # Set name, No validation
+    new_name = "newName"
+    jucerFile.name = new_name
+    assert jucerFile.name == new_name
+
     # Set version, No validation
     new_version = "1.0.0"
-    jucerFile.path = new_version
-    assert jucerFile.path == new_version
+    jucerFile.version = new_version
+    assert jucerFile.version == new_version
+
+    # Set jucer version, No validation
+    new_jucer_version = "6.0.0"
+    jucerFile.jucer_version = new_jucer_version
+    assert jucerFile.jucer_version == new_jucer_version
 
     # Set path, No validation
     new_path = "somepath/test.jucer"
