@@ -29,8 +29,6 @@ Quick Start
 
     jucerFile = JucerFile('path/to/project.jucer')
 
-    # Jucer File
-
     # Attributes (get)
     print(jucerFile.path)                           # path/to/project.jucer
     print(jucerFile.name)                           # project
@@ -59,7 +57,7 @@ Quick Start
     jucerFile.save()                                
     jucerFile.save_as('some/path/project.jucer')    
 
-    # PROJUCER
+.. code-block:: python
 
     # projucer = Projucer("/some/path")
     projucer = Projucer()

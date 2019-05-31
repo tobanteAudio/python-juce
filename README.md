@@ -33,8 +33,6 @@ from juce.projucer import JucerFile, Projucer
 
 jucerFile = JucerFile('path/to/project.jucer')
 
-# Jucer File
-
 # Attributes (get)
 print(jucerFile.path)                           # path/to/project.jucer
 print(jucerFile.name)                           # project
@@ -45,7 +43,7 @@ print(jucerFile.cpp_language_standard)          # 17
 jucerFile.path = 'new/path/to/project.jucer'
 jucerFile.version = '0.2.1'
 
-# Basic validation, the following lines fail silently
+# Attributes (validation), the following lines fail silently
 jucerFile.cpp_language_standard = '98'
 jucerFile.project_line_feed = '98'
 jucerFile.project_type = 'foo'
@@ -56,15 +54,15 @@ jucerFile.plugin_code = 'too'
 # Turn on exceptions
 jucerFile.silent_validation = False
 
-# Basic validation, the following line will raise ValueError
+# Attributes (validation), the following line will raise a ValueError
 jucerFile.cpp_language_standard = '98'
 
 # Write to file
 jucerFile.save()
 jucerFile.save_as('some/path/project.jucer')
+```
 
-# PROJUCER
-
+```py
 # projucer = Projucer("/some/path")
 projucer = Projucer()
 
