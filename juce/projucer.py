@@ -28,10 +28,11 @@ class Projucer():
     def __init__(self, path=None):
         """The script will look in $PATH & the path argument for the Projucer executable
         """
+        self._path = []
         if path:
             # Check path is string
             assert isinstance(path, str)
-            self._path = [path]
+            self._path.append(path)
             # Search in custom path
             self._which = shutil.which(Projucer.EXE_NAME, path=path)
             if not self._which:
