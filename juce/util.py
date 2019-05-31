@@ -21,3 +21,15 @@ def get_list_of_path_dirs():
     path_string = os.environ.get('PATH')
     path_list = path_string.split(';')
     return path_list
+
+
+def print_subprocess(process):
+    """Prints stdout & stderr
+    """
+    stdout, stderr = process.communicate()
+
+    if stdout:
+        print(stdout.decode('utf-8'))
+
+    if stderr:
+        print(stderr.decode('utf-8'))
