@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="nrGl9Q" name="AwesomeAudioApp" projectType="guiapp" jucerVersion="5.4.3">
+<JUCERPROJECT id="nrGl9Q" name="AwesomeAudioApp" projectType="guiapp" jucerVersion="5.4.3"
+              version="0.1.1">
   <MAINGROUP id="Mee91f" name="AwesomeAudioApp">
     <GROUP id="{D09801E9-F280-F002-78B3-7A43A90DB0EB}" name="Resource">
       <FILE id="ncrYGm" name="logo.png" compile="0" resource="1" file="Resource/logo.png"/>

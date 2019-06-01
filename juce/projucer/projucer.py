@@ -183,7 +183,7 @@ class Projucer():
         """
         if self._which:
             assert isinstance(target_folder, str)
-            proc = subprocess.Popen([self._which, '--tidy-divider-comment',
+            proc = subprocess.Popen([self._which, '--tidy-divider-comments',
                                      target_folder],
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT)
