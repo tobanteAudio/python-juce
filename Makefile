@@ -20,15 +20,15 @@ test:
 
 lint:
 	@flake8 $(PACKAGE_NAME) $(TEST_DIRECTORY) $(EXAMPLES_DIRECTORY)
-	@pylint $(PACKAGE_NAME) $(TEST_DIRECTORY)
+	@pylint --disable=fixme $(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 coverage:
-	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) 
+	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 docs:
 	# @cp README.md $(DOC_DIRECTORY)/README.md
 	@cd $(DOC_DIRECTORY) && make html
-	
+
 stats:
 	@echo "CODE:"
 	@cloc $(PACKAGE_NAME)
