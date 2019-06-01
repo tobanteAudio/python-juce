@@ -7,7 +7,7 @@ environment:
 
   matrix:
     - PYTHON: "C:\\Python37"
-      PYTHON_VERSION: "3.7.x" 
+      PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "32"
 
 install:
@@ -33,6 +33,6 @@ build_script:
   - "pip install -e ."
 
 test_script:
-  - "pylint juce"
+  - "pylint --disable=fixme juce"
   - "pytest tests"
-      
+
