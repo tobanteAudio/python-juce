@@ -94,12 +94,11 @@ Projucer Automation
         # Other (Not tested yet)
         # projucer.build_module("target", "module_name")
         # projucer.build_all_modules("target", "module_folder")
-        # projucer.encode_binary("path/to/source", "path/to/target_cpp")
+        # projucer.encode_binary("source", "target_cpp")
         # projucer.obfuscated_string_code("Somestring")
         # projucer.set_global_search_path("os", "identifier", "new/path")
-        # projucer.trans("path/to/target/folder")
-        # projucer.trans_finish(
-        #     "path/to/prefile", "path/to/postfile", "path/to/existing_file")
+        # projucer.trans("target/folder")
+        # projucer.trans_finish("prefile", "postfile", "existing_file")
 
     if __name__ == "__main__":
         main()
