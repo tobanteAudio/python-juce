@@ -2,14 +2,10 @@
 
 # pylint: disable=too-many-public-methods,no-self-use
 
-import shutil
-import subprocess
 from xml.etree import ElementTree
 
 from juce.util import (XML_HEADER,
-                       get_attribute_from_tag,
-                       get_list_of_path_dirs,
-                       print_subprocess)
+                       get_attribute_from_tag)
 
 from juce.validation import (is_valid_vst3_category,
                              is_valid_cpp_standard,
