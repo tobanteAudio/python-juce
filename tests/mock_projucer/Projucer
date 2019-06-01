@@ -1,0 +1,82 @@
+#!/usr/bin/env python
+"""Mock Projucer, for running unit tests that need to
+call the executable. Building Projucer from source in
+CI takes to long
+"""
+import sys
+
+PROJUCER_SUBCOMMANDS = [
+    "--buildallmodules",
+    "--buildmodule",
+    "--bump-version",
+    "--create-project-from-pip",
+    "--encode-binary",
+    "--fix-broken-include-paths",
+    "--get-version",
+    "--git-tag-version",
+    "--obfuscated-string-code",
+    "--remove-tabs",
+    "--resave",
+    "--resave-resources",
+    "--set-global-search-path",
+    "--set-version",
+    "--status",
+    "--tidy-divider-comments",
+    "--trans",
+    "--trans-finish",
+    "--trim_whitespace"
+]
+
+
+def check_argv_count(minimum):
+    """Check if enough command line arguments where called
+    """
+    if len(sys.argv) < minimum:
+        print("Not enough arguments given")
+        exit(1)
+
+
+def main():
+    """Entry Point
+    """
+    # print("This is the name of the script: ", sys.argv[0])
+    # print("Number of arguments: ", len(sys.argv))
+    # print("The arguments are: ", str(sys.argv))
+
+    subcommand = sys.argv[1]
+    if subcommand not in PROJUCER_SUBCOMMANDS:
+        print("Unkown subcommand: {}".format(subcommand))
+        exit(1)
+
+    if subcommand == "--buildallmodules":
+        check_argv_count(4)
+        target_folder = sys.argv[2]
+        module_folder = sys.argv[3]
+        print("Called {} with target_folder: {} and module_folder: {}".format(
+            subcommand, target_folder, module_folder))
+        exit(0)
+
+
+if __name__ == "__main__":
+    main()
+
+
+# build_all_modules(target_folder, module_folder)
+# build_module(target_folder, module_folder)
+# bump_version(project)
+# create_project_from_pip(path_to_pip, path_to_output)
+# encode_binary(source_binary_file, target_cpp_file)
+# fix_broken_include_paths(target_folder)
+# get_version(project)
+# git_tag_version(project)
+# obfuscated_string_code(string_to_obfuscate)
+# remove_tabs(target_folder)
+# resave(project)
+# resave_resources(project)
+# set_global_search_path(os_system, identifier_to_set, new_path)
+# set_version(project, version)
+# status(project)
+# tidy_divider_comments(target_folder)
+# trans(target_folder)
+# trans_finish(pre_translated_file, post_translated_file, optional_existing_translation_file)
+# trim_whitespace(target_folder)
