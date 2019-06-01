@@ -25,6 +25,13 @@ lint:
 coverage:
 	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY)
 
+clean:
+	rm -rf $(PACKAGE_NAME)/__pycache__
+	rm -rf $(PACKAGE_NAME)/projucer/__pycache__
+	rm -rf $(TEST_DIRECTORY)/__pycache__
+	rm -rf .pytest_cache
+	rm -rf .coverage
+
 docs:
 	# @cp README.md $(DOC_DIRECTORY)/README.md
 	@cd $(DOC_DIRECTORY) && make html
