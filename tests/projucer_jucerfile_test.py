@@ -4,7 +4,7 @@ import os
 
 import pytest
 
-from juce.projucer import JucerFile
+from juce.projucer.jucer_file import JucerFile
 
 GUI_APP_PROPTERY_RESULTS = {
     "path": 'tests/assets/GuiApp.jucer',

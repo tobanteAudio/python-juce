@@ -1,7 +1,8 @@
 """Getting started
 """
 
-from juce.projucer import JucerFile, Projucer
+from juce.projucer import Projucer
+from juce.projucer.jucer_file import JucerFile
 
 jucerFile = JucerFile('tests/assets/pluginA.jucer')
 

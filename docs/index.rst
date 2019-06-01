@@ -25,7 +25,8 @@ Quick Start
 
 .. code-block:: python
 
-    from juce.projucer import JucerFile, Projucer
+    from juce.projucer import Projucer
+    from juce.projucer.jucer_file import JucerFile
 
     jucerFile = JucerFile('path/to/project.jucer')
 
@@ -40,22 +41,22 @@ Quick Start
     jucerFile.version = '0.2.1'
 
     # Basic validation, the following lines fail silently
-    jucerFile.cpp_language_standard = '98'          
-    jucerFile.project_line_feed = '98'              
-    jucerFile.project_type = 'foo'                 
-    jucerFile.display_splash_screen = "98"          
-    jucerFile.binary_data_namespace = 'BAD NS'      
+    jucerFile.cpp_language_standard = '98'
+    jucerFile.project_line_feed = '98'
+    jucerFile.project_type = 'foo'
+    jucerFile.display_splash_screen = "98"
+    jucerFile.binary_data_namespace = 'BAD NS'
     jucerFile.plugin_code = 'too'
 
     # Turn on exceptions
     jucerFile.silent_validation = False
 
     # Basic validation, the following line will raise ValueError
-    jucerFile.cpp_language_standard = '98'          
+    jucerFile.cpp_language_standard = '98'
 
     # Write to file
-    jucerFile.save()                                
-    jucerFile.save_as('some/path/project.jucer')    
+    jucerFile.save()
+    jucerFile.save_as('some/path/project.jucer')
 
 .. code-block:: python
 
@@ -69,7 +70,7 @@ Quick Start
     print(projucer.path_count)
 
     projucer.status("tests/assets/pluginA.jucer")
-    projucer.resave("tests/assets/pluginA.jucer")  
+    projucer.resave("tests/assets/pluginA.jucer")
 
 
 References
@@ -77,7 +78,7 @@ References
 .. toctree::
 
     Projucer
-    JucerFile    
+    JucerFile
     Validation
     Examples
 

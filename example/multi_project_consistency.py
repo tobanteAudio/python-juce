@@ -1,6 +1,6 @@
 """Multi Project Consistency
 """
-from juce.projucer import JucerFile
+from juce.projucer.jucer_file import JucerFile
 
 
 def main():
