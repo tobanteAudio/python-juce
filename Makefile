@@ -1,4 +1,4 @@
-.PHONY: install deps develop test lint coverage docs stats
+.PHONY: install deps develop test lint coverage clean docs stats
 default: develop
 
 PACKAGE_NAME = juce
@@ -33,7 +33,6 @@ clean:
 	rm -rf .coverage
 
 docs:
-	# @cp README.md $(DOC_DIRECTORY)/README.md
 	@cd $(DOC_DIRECTORY) && make html
 
 stats:
