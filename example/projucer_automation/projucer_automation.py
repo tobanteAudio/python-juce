@@ -40,6 +40,14 @@ def main():
     projucer.tidy_divider_comments(SOURCE_DIRECTORY)
     projucer.remove_tabs(SOURCE_DIRECTORY)
 
+    # Other
+    # projucer.encode_binary("path/to/source", "path/to/target_cpp")
+    # projucer.obfuscated_string_code("Somestring")
+    # projucer.set_global_search_path("os", "identifier", "new/path")
+    # projucer.trans("path/to/target/folder")
+    # projucer.trans_finish(
+    #     "path/to/prefile", "path/to/postfile", "path/to/existing_file")
+
 
 if __name__ == "__main__":
     main()
