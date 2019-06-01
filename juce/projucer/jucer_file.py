@@ -358,9 +358,13 @@ class JucerFile():
         for modules in self.root.iter('MODULES'):
             for module in modules:
                 modules_list.append({"id": module.attrib['id'],
-                                     "showAllCode": module.attrib['showAllCode'],
-                                     "useLocalCopy": module.attrib['useLocalCopy'],
-                                     "useGlobalPath": module.attrib['useGlobalPath']})
+                                     "showAllCode":
+                                     module.attrib['showAllCode'],
+                                     "useLocalCopy":
+                                     module.attrib['useLocalCopy'],
+                                     "useGlobalPath":
+                                     module.attrib['useGlobalPath']}
+                                    )
         return modules_list
 
     def fail_silent_or_raise(self):
