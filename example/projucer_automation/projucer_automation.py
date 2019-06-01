@@ -40,7 +40,9 @@ def main():
     projucer.tidy_divider_comments(SOURCE_DIRECTORY)
     projucer.remove_tabs(SOURCE_DIRECTORY)
 
-    # Other
+    # Other (Not tested yet)
+    # projucer.build_module("target", "module_name")
+    # projucer.build_all_modules("target", "module_folder")
     # projucer.encode_binary("path/to/source", "path/to/target_cpp")
     # projucer.obfuscated_string_code("Somestring")
     # projucer.set_global_search_path("os", "identifier", "new/path")
