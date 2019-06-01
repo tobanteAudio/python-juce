@@ -25,8 +25,7 @@ Quick Start
 
 .. code-block:: python
 
-    from juce.projucer import Projucer
-    from juce.projucer.jucer_file import JucerFile
+    from juce.projucer import Projucer, JucerFile
 
     jucerFile = JucerFile('path/to/project.jucer')
 
