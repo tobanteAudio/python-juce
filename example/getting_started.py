@@ -15,7 +15,9 @@ print(jucerFile.path)                           # path/to/project.jucer
 print(jucerFile.name)                           # project
 print(jucerFile.project_type)                   # audioplug
 print(jucerFile.cpp_language_standard)          # 17
-print(jucerFile.defines)                        # 17
+print(jucerFile.defines)
+print(len(jucerFile.modules))                   # 16
+print(jucerFile.modules)
 
 # Attributes (set)
 # jucerFile.path = 'new/path/to/project.jucer'

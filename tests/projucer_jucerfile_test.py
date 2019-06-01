@@ -13,7 +13,8 @@ GUI_APP_PROPTERY_RESULTS = {
     "project_type": 'guiapp',
     "cpp_language_standard": 'latest',
     "jucer_version": '5.4.3',
-    'defines': 'TOBANTETEST=1\nTOBANTEAUDIO=1,TOBANTEAUDIO2=1'
+    'defines': 'TOBANTETEST=1\nTOBANTEAUDIO=1,TOBANTEAUDIO2=1',
+    "module_count": 12
 }
 
 MODEQ_PROPTERY_RESULTS = {
@@ -43,7 +44,8 @@ MODEQ_PROPTERY_RESULTS = {
     "report_app_usage": '0',
     "compiler_flag_schemes": 'NewScheme',
     'defines': None,
-    "project_line_feed": '\n'
+    "project_line_feed": '\n',
+    'module_count': 16
 }
 
 PROPTERY_RESULTS = [GUI_APP_PROPTERY_RESULTS, MODEQ_PROPTERY_RESULTS]
@@ -56,43 +58,45 @@ def none_or(dictionary, key):
         return None
 
 
-def table_tests():
+def test_files():
     for test in PROPTERY_RESULTS:
-        project_properties(test)
+        path = test['path']
+        jF = JucerFile(path)
 
-
-def project_properties(test):
-    path = test['path']
-    jF = JucerFile(path)
-
-    # Properties (get)
-    assert jF.path == none_or(test, "path")
-    assert jF.u_id == none_or(test, "u_id")
-    assert jF.name == none_or(test, "name")
-    assert jF.project_type == none_or(test, "project_type")
-    assert jF.jucer_version == none_or(test, "jucer_version")
-    assert jF.version == none_or(test, "version")
-    assert jF.company == none_or(test, "company")
-    assert jF.company_website == none_or(test, "company_website")
-    assert jF.company_email == none_or(test, "company_email")
-    assert jF.bundle_identifier == none_or(test, "bundle_identifier")
-    assert jF.plugin_name == none_or(test, "plugin_name")
-    assert jF.plugin_description == none_or(test, "plugin_description")
-    assert jF.plugin_manufacturer == none_or(test, "manufacturer")
-    assert jF.plugin_manufacturer_code == none_or(test, "manufacturer_code")
-    assert jF.plugin_code == none_or(test, "plugin_code")
-    assert jF.plugin_au_exporter_profile == none_or(test, "au_profile")
-    assert jF.aax_identifier == none_or(test, "aax_identifier")
-    assert jF.vst3_category == none_or(test, "vst3_category")
-    assert jF.binary_data_namespace == none_or(test, "binary_data_namespace")
-    assert jF.cpp_language_standard == none_or(test, "cpp_language_standard")
-    assert jF.plugin_formats == none_or(test, "plugin_formats")
-    assert jF.company_copyright == none_or(test, "company_copyright")
-    assert jF.display_splash_screen == none_or(test, "display_splash_screen")
-    assert jF.report_app_usage == none_or(test, "report_app_usage")
-    assert jF.compiler_flag_schemes == none_or(test, "compiler_flag_schemes")
-    assert jF.project_line_feed == none_or(test, "project_line_feed")
-    assert jF.defines == none_or(test, "defines")
+        # Properties (get)
+        assert jF.path == none_or(test, "path")
+        assert jF.u_id == none_or(test, "u_id")
+        assert jF.name == none_or(test, "name")
+        assert jF.project_type == none_or(test, "project_type")
+        assert jF.jucer_version == none_or(test, "jucer_version")
+        assert jF.version == none_or(test, "version")
+        assert jF.company == none_or(test, "company")
+        assert jF.company_website == none_or(test, "company_website")
+        assert jF.company_email == none_or(test, "company_email")
+        assert jF.bundle_identifier == none_or(test, "bundle_identifier")
+        assert jF.plugin_name == none_or(test, "plugin_name")
+        assert jF.plugin_description == none_or(test, "plugin_description")
+        assert jF.plugin_manufacturer == none_or(test, "manufacturer")
+        assert jF.plugin_manufacturer_code == none_or(
+            test, "manufacturer_code")
+        assert jF.plugin_code == none_or(test, "plugin_code")
+        assert jF.plugin_au_exporter_profile == none_or(test, "au_profile")
+        assert jF.aax_identifier == none_or(test, "aax_identifier")
+        assert jF.vst3_category == none_or(test, "vst3_category")
+        assert jF.binary_data_namespace == none_or(
+            test, "binary_data_namespace")
+        assert jF.cpp_language_standard == none_or(
+            test, "cpp_language_standard")
+        assert jF.plugin_formats == none_or(test, "plugin_formats")
+        assert jF.company_copyright == none_or(test, "company_copyright")
+        assert jF.display_splash_screen == none_or(
+            test, "display_splash_screen")
+        assert jF.report_app_usage == none_or(test, "report_app_usage")
+        assert jF.compiler_flag_schemes == none_or(
+            test, "compiler_flag_schemes")
+        assert jF.project_line_feed == none_or(test, "project_line_feed")
+        assert jF.defines == none_or(test, "defines")
+        assert len(jF.modules) == test["module_count"]
 
 
 def test_write_to_file():

@@ -10,9 +10,9 @@ def get_attribute_from_tag(tag, attribute):
     element = None
     try:
         element = tag.attrib[attribute]
-    except KeyError as e:
-        print("Error: attribute {} was not defined in this tag.".format(e))
-
+    except Exception as e:
+        pass
+        # print("Error: attribute {} was not defined in this tag.".format(e))
     return element
 
 
