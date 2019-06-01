@@ -1,4 +1,4 @@
-"""Holds the Projucer & JucerFile classes"""
+"""Holds the JucerFile class"""
 
 # pylint: disable=too-many-public-methods,no-self-use
 

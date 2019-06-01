@@ -13,7 +13,7 @@ settings are set equal.
 
     """Multi Project Consistency
     """
-    from juce.projucer.jucer_file import JucerFile
+    from juce.projucer import JucerFile
 
 
     def main():

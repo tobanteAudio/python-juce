@@ -1,6 +1,6 @@
 JucerFile
 =====================================
 
-.. autoclass:: juce.projucer.jucer_file.JucerFile
+.. autoclass:: juce.projucer.JucerFile
    :members:
    :undoc-members:

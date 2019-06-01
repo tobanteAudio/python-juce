@@ -2,8 +2,7 @@
 """
 import os
 
-from juce.projucer import Projucer
-from juce.projucer.jucer_file import JucerFile
+from juce.projucer import Projucer, JucerFile
 
 SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
