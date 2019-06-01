@@ -1,10 +1,13 @@
 """Getting started
 """
+import os
 
 from juce.projucer import Projucer
 from juce.projucer.jucer_file import JucerFile
 
-jucerFile = JucerFile('tests/assets/pluginA.jucer')
+SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+
+jucerFile = JucerFile('{}/example_plugin.jucer'.format(SCRIPT_DIRECTORY))
 
 # Jucer File
 
@@ -31,7 +34,7 @@ jucerFile.plugin_code = 'too'
 jucerFile.silent_validation = False
 
 # Basic validation, the following line will raise ValueError
-jucerFile.cpp_language_standard = '98'
+# jucerFile.cpp_language_standard = '98'
 
 # Write to file
 # jucerFile.save()
@@ -39,15 +42,15 @@ jucerFile.cpp_language_standard = '98'
 
 
 # PROJUCER
-
 # projucer = Projucer("/some/path")
 projucer = Projucer()
 
+# Print all directories in $PATH + optional directory
 for directory in projucer.path:
     print(directory)
 
 print(projucer.which)
 print(projucer.path_count)
 
-projucer.status("tests/assets/pluginA.jucer")
-# projucer.resave("tests/assets/pluginA.jucer")
+projucer.status('{}/example_plugin.jucer'.format(SCRIPT_DIRECTORY))
+# projucer.resave('{}/example_plugin.jucer'.format(SCRIPT_DIRECTORY))
