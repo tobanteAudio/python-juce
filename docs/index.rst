@@ -94,10 +94,12 @@ References
 ------------
 .. toctree::
 
+    Examples
     Projucer
     JucerFile
+    Exporter
     Validation
-    Examples
+    Utility
 
 .. |travis-status| image:: https://img.shields.io/travis/tobanteAudio/python-juce.svg?style=flat
     :alt: Build status Linux/macOS

@@ -26,6 +26,7 @@ coverage:
 	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) -m "not integration_test"
 
 clean:
+	rm -rf $(DOC_DIRECTORY)/_build
 	rm -rf $(PACKAGE_NAME)/__pycache__
 	rm -rf $(PACKAGE_NAME)/projucer/__pycache__
 	rm -rf $(TEST_DIRECTORY)/output
