@@ -4,8 +4,8 @@ import pytest
 from juce.projucer import Projucer
 
 BASE_PATH = "test_data/AwesomeAudioApp/"
-JUCER_FILE = BASE_PATH+"AwesomeAudioApp.jucer"
-SOURCE_DIR = BASE_PATH+"Source"
+JUCER_FILE = BASE_PATH + "AwesomeAudioApp.jucer"
+SOURCE_DIR = BASE_PATH + "Source"
 
 
 def test_projucer_bad_path():
