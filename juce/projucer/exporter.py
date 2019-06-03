@@ -4,7 +4,7 @@
 
 from xml.etree import ElementTree
 
-from juce.util import get_attribute_from_tag
+# from juce.util import get_attribute_from_tag
 
 
 XML_TAG_BUILD_FOLDER = 'targetFolder'
@@ -12,26 +12,28 @@ XML_TAG_CONFIGURATIONS = 'CONFIGURATIONS'
 XML_TAG_MODULEPATHS = 'MODULEPATHS'
 
 
-def exporter_tag_to_string(tag_name):
-    """Converts jucer xml tag to readable string
-    """
-    # Windows
-    if tag_name == 'VS2013':
-        return 'Windows (Visual Studio 2013)'
-    if tag_name == 'VS2015':
-        return 'Windows (Visual Studio 2015)'
-    if tag_name == 'VS2017':
-        return 'Windows (Visual Studio 2017)'
-    if tag_name == 'VS2019':
-        return 'Windows (Visual Studio 2019)'
+# def exporter_tag_to_string(tag_name):
+#     """Converts jucer xml tag to readable string
+#     """
+#     # Windows
+#     if tag_name == 'VS2013':
+#         return 'Windows (Visual Studio 2013)'
+#     if tag_name == 'VS2015':
+#         return 'Windows (Visual Studio 2015)'
+#     if tag_name == 'VS2017':
+#         return 'Windows (Visual Studio 2017)'
+#     if tag_name == 'VS2019':
+#         return 'Windows (Visual Studio 2019)'
 
-    # macOS
-    if tag_name == 'XCODE_MAC':
-        return 'macOS (XCode)'
+#     # macOS
+#     if tag_name == 'XCODE_MAC':
+#         return 'macOS (XCode)'
 
-    # Linux
-    if tag_name == 'LINUX_MAKE':
-        return 'Linux (Makefile)'
+#     # Linux
+#     if tag_name == 'LINUX_MAKE':
+#         return 'Linux (Makefile)'
+
+#     return 'unkown'
 
 
 class Exporter():
@@ -57,7 +59,7 @@ class Exporter():
     @property
     def name(self):
         """Exporter Name"""
-        return (self._root.tag)
+        return str(self._root.tag)
 
     # BUILD FOLDER
     @property
