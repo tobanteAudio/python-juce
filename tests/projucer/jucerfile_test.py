@@ -9,8 +9,8 @@ from juce.projucer import JucerFile
 
 # PATH
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'tests/assets/modEQ.jucer'),
-    ('tests/assets/GuiApp.jucer', 'tests/assets/GuiApp.jucer'),
+    ('test_data/modEQ.jucer', 'test_data/modEQ.jucer'),
+    ('test_data/GuiApp.jucer', 'test_data/GuiApp.jucer'),
 ])
 def test_jucer_file_path(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -19,8 +19,8 @@ def test_jucer_file_path(test_case, expected):
 
 # ID
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'jWny5A'),
-    ('tests/assets/GuiApp.jucer', 'hgSXn0'),
+    ('test_data/modEQ.jucer', 'jWny5A'),
+    ('test_data/GuiApp.jucer', 'hgSXn0'),
 ])
 def test_jucer_file_id(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -29,8 +29,8 @@ def test_jucer_file_id(test_case, expected):
 
 # NAME
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'modEQ'),
-    ('tests/assets/GuiApp.jucer', 'GuiApp'),
+    ('test_data/modEQ.jucer', 'modEQ'),
+    ('test_data/GuiApp.jucer', 'GuiApp'),
 ])
 def test_jucer_file_name(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -39,8 +39,8 @@ def test_jucer_file_name(test_case, expected):
 
 # PROJECT TYPE
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'audioplug'),
-    ('tests/assets/GuiApp.jucer', 'guiapp'),
+    ('test_data/modEQ.jucer', 'audioplug'),
+    ('test_data/GuiApp.jucer', 'guiapp'),
 ])
 def test_jucer_file_project_type(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -49,8 +49,8 @@ def test_jucer_file_project_type(test_case, expected):
 
 # JUCER VERSION
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', '5.4.3'),
-    ('tests/assets/GuiApp.jucer', '5.4.3'),
+    ('test_data/modEQ.jucer', '5.4.3'),
+    ('test_data/GuiApp.jucer', '5.4.3'),
 ])
 def test_jucer_file_jucer_version(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -59,8 +59,8 @@ def test_jucer_file_jucer_version(test_case, expected):
 
 # VERSION
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', '0.4.0'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', '0.4.0'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_version(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -69,8 +69,8 @@ def test_jucer_file_version(test_case, expected):
 
 # COMPANY
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'tobanteAudio'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'tobanteAudio'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_company(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -79,8 +79,8 @@ def test_jucer_file_company(test_case, expected):
 
 # COMPANY WEBSITE
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'https://github.com/tobanteAudio'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'https://github.com/tobanteAudio'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_company_website(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -89,8 +89,8 @@ def test_jucer_file_company_website(test_case, expected):
 
 # COMPANY EMAIL
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'tobanteAudio@gmail.com'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'tobanteAudio@gmail.com'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_company_email(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -99,8 +99,8 @@ def test_jucer_file_company_email(test_case, expected):
 
 # COMPANY COPYRIGHT
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'GNU GENERAL PUBLIC LICENSE Version 3'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'GNU GENERAL PUBLIC LICENSE Version 3'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_company_copyright(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -109,8 +109,8 @@ def test_jucer_file_company_copyright(test_case, expected):
 
 # BUNDLE IDENTIFIER
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'com.tobanteAudio.modEQ'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'com.tobanteAudio.modEQ'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_bundle_identifier(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -119,8 +119,8 @@ def test_jucer_file_bundle_identifier(test_case, expected):
 
 # PLUGIN NAME
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'modEQ'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'modEQ'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_plugin_name(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -129,8 +129,8 @@ def test_jucer_file_plugin_name(test_case, expected):
 
 # PLUGIN DESCRIPTION
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'EQ with modulation'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'EQ with modulation'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_plugin_description(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -139,8 +139,8 @@ def test_jucer_file_plugin_description(test_case, expected):
 
 # PLUGIN MANUFACTURER
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'tobanteAudio'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'tobanteAudio'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_plugin_manufacturer(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -149,8 +149,8 @@ def test_jucer_file_plugin_manufacturer(test_case, expected):
 
 # PLUGIN MANUFACTURER CODE
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'toAu'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'toAu'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_plugin_manufacturer_code(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -159,8 +159,8 @@ def test_jucer_file_plugin_manufacturer_code(test_case, expected):
 
 # PLUGIN CODE
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'tamq'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'tamq'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_plugin_code(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -169,8 +169,8 @@ def test_jucer_file_plugin_code(test_case, expected):
 
 # PLUGIN AU PROFILE
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'modEQAU'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'modEQAU'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_plugin_au_exporter_profile(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -179,8 +179,8 @@ def test_jucer_file_plugin_au_exporter_profile(test_case, expected):
 
 # PLUGIN AAX IDENTIFIER
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'com.tobanteAudio.modEQ'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'com.tobanteAudio.modEQ'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_aax_identifier(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -189,8 +189,8 @@ def test_jucer_file_aax_identifier(test_case, expected):
 
 # PLUGIN VST3 CATEGORY
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'Analyzer,EQ,Fx'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'Analyzer,EQ,Fx'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_vst3_category(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -199,8 +199,8 @@ def test_jucer_file_vst3_category(test_case, expected):
 
 # BINARY DATA NAMESPACE
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'TobanteAudioData'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'TobanteAudioData'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_binary_data_namespace(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -209,8 +209,8 @@ def test_jucer_file_binary_data_namespace(test_case, expected):
 
 # C++ STANDARD
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', '17'),
-    ('tests/assets/GuiApp.jucer', 'latest'),
+    ('test_data/modEQ.jucer', '17'),
+    ('test_data/GuiApp.jucer', 'latest'),
 ])
 def test_jucer_file_cpp_language_standard(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -219,8 +219,8 @@ def test_jucer_file_cpp_language_standard(test_case, expected):
 
 # PLUGIN FORMATS
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'buildAU,buildStandalone,buildVST3'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'buildAU,buildStandalone,buildVST3'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_plugin_formats(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -229,8 +229,8 @@ def test_jucer_file_plugin_formats(test_case, expected):
 
 # DISPLAY SPLASH SCREEN
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', '0'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', '0'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_display_splash_screen(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -239,8 +239,8 @@ def test_jucer_file_display_splash_screen(test_case, expected):
 
 # REPORT APP USAGE
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', '0'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', '0'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_report_app_usage(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -249,8 +249,8 @@ def test_jucer_file_report_app_usage(test_case, expected):
 
 # COMPILER FLAG SCHEMES
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 'NewScheme'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', 'NewScheme'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_compiler_flag_schemes(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -259,8 +259,8 @@ def test_jucer_file_compiler_flag_schemes(test_case, expected):
 
 # LINE FEED
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', '\n'),
-    ('tests/assets/GuiApp.jucer', None),
+    ('test_data/modEQ.jucer', '\n'),
+    ('test_data/GuiApp.jucer', None),
 ])
 def test_jucer_file_project_line_feed(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -269,8 +269,8 @@ def test_jucer_file_project_line_feed(test_case, expected):
 
 # DEFINES
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', None),
-    ('tests/assets/GuiApp.jucer',
+    ('test_data/modEQ.jucer', None),
+    ('test_data/GuiApp.jucer',
      'TOBANTETEST=1\nTOBANTEAUDIO=1,TOBANTEAUDIO2=1'),
 ])
 def test_jucer_file_defines(test_case, expected):
@@ -280,8 +280,8 @@ def test_jucer_file_defines(test_case, expected):
 
 # MODULES LENGTH
 @pytest.mark.parametrize("test_case, expected", [
-    ('tests/assets/modEQ.jucer', 16),
-    ('tests/assets/GuiApp.jucer', 12),
+    ('test_data/modEQ.jucer', 16),
+    ('test_data/GuiApp.jucer', 12),
 ])
 def test_jucer_file_modules_length(test_case, expected):
     jucer_file = JucerFile(test_case)
@@ -289,7 +289,7 @@ def test_jucer_file_modules_length(test_case, expected):
 
 
 def test_write_to_file():
-    original_path = 'tests/assets/modEQ.jucer'
+    original_path = 'test_data/modEQ.jucer'
     jucerFile = JucerFile(original_path)
 
     out_dir = 'tests/output/'
@@ -308,7 +308,7 @@ def test_write_to_file():
 
 
 def test_cpp_standard_validation():
-    path = 'tests/assets/modEQ.jucer'
+    path = 'test_data/modEQ.jucer'
     jucerFile = JucerFile(path)
 
     assert jucerFile.cpp_language_standard == '17'
@@ -330,7 +330,7 @@ def test_cpp_standard_validation():
 
 
 def test_set_attributes():
-    path = 'tests/assets/modEQ.jucer'
+    path = 'test_data/modEQ.jucer'
     jucerFile = JucerFile(path)
 
     assert jucerFile.silent_validation
@@ -457,7 +457,7 @@ def test_set_attributes():
 
 
 def test_set_attributes_with_exceptions():
-    path = 'tests/assets/modEQ.jucer'
+    path = 'test_data/modEQ.jucer'
     jucerFile = JucerFile(path)
     jucerFile.silent_validation = False
 

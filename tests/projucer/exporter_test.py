@@ -4,7 +4,7 @@ from juce.projucer import JucerFile
 
 
 def test_projucer_exporter():
-    path = 'tests/assets/modEQ.jucer'
+    path = 'test_data/modEQ.jucer'
     jucer_file = JucerFile(path)
 
     # Basic checks

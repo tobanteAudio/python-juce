@@ -3,7 +3,7 @@ import pytest
 
 from juce.projucer import Projucer
 
-BASE_PATH = "tests/assets/AwesomeAudioApp/"
+BASE_PATH = "test_data/AwesomeAudioApp/"
 JUCER_FILE = BASE_PATH+"AwesomeAudioApp.jucer"
 SOURCE_DIR = BASE_PATH+"Source"
 
