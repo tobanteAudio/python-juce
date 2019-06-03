@@ -37,6 +37,8 @@ class Projucer():
     def resave(self, project):
         """Resaves all files and resources in a project,
         to generate build files.
+
+        :param project: Path to .jucer file.
         """
         assert isinstance(project, str)
         proc = subprocess.Popen([self._which, '--resave', project],
@@ -46,6 +48,8 @@ class Projucer():
 
     def resave_resources(self, project):
         """Resaves just the binary resources for a project.
+
+        :param project: Path to .jucer file.
         """
         assert isinstance(project, str)
         proc = subprocess.Popen([self._which, '--resave-resources',
@@ -56,6 +60,8 @@ class Projucer():
 
     def get_version(self, project):
         """Returns the version number of a project.
+
+        :param project: Path to .jucer file.
         """
         assert isinstance(project, str)
         proc = subprocess.Popen([self._which, '--get-version', project],
@@ -65,6 +71,9 @@ class Projucer():
 
     def set_version(self, project, version):
         """Updates the version number in a project.
+
+        :param project: Path to .jucer file.
+        :param version: New version string.
         """
         assert isinstance(project, str)
         proc = subprocess.Popen([self._which, '--set-version',
@@ -75,6 +84,8 @@ class Projucer():
 
     def bump_version(self, project):
         """Updates the minor version number in a project by 1.
+
+        :param project: Path to .jucer file.
         """
         assert isinstance(project, str)
         proc = subprocess.Popen([self._which, '--bump-version',
@@ -86,6 +97,8 @@ class Projucer():
     def git_tag_version(self, project):
         """Invokes 'git tag' to attach the project's version
         number to the current git repository.
+
+        :param project: Path to .jucer file.
         """
         assert isinstance(project, str)
         proc = subprocess.Popen([self._which, '--git-tag-version',
@@ -96,6 +109,8 @@ class Projucer():
 
     def status(self, project):
         """Displays status info about the Projucer project
+
+        :param project: Path to .jucer file.
         """
         assert isinstance(project, str)
         proc = subprocess.Popen([self._which, '--status', project],
@@ -105,6 +120,9 @@ class Projucer():
 
     def build_module(self, target_folder, module_folder):
         """Zips a module into a downloadable file format.
+
+        :param target_folder: Target path.
+        :param module_folder: Module path.
         """
         assert isinstance(target_folder, str)
         assert isinstance(module_folder, str)
@@ -116,6 +134,9 @@ class Projucer():
 
     def build_all_modules(self, target_folder, module_folder):
         """Zips all modules in a given folder and creates an index for them.
+
+        :param target_folder: Target path.
+        :param module_folder: Module path.
         """
         assert isinstance(target_folder, str)
         assert isinstance(module_folder, str)
@@ -129,6 +150,8 @@ class Projucer():
         """Scans the given folder for C/C++ source files (recursively),
         and trims any trailing whitespace from their lines,
         as well as normalising their line-endings to CR-LF.
+
+        :param target_folder: Trim target path.
         """
         assert isinstance(target_folder, str)
         proc = subprocess.Popen([self._which, '--trim-whitespace',
@@ -140,6 +163,8 @@ class Projucer():
     def remove_tabs(self, target_folder):
         """Scans the given folder for C/C++ source files (recursively),
         and replaces any tab characters with 4 spaces.
+
+        :param target_folder: Trim target path.
         """
         assert isinstance(target_folder, str)
         proc = subprocess.Popen([self._which, '--remove-tabs',
@@ -152,6 +177,8 @@ class Projucer():
         """Scans the given folder for C/C++ source files (recursively),
         and normalises any juce-style comment division lines (i.e. any lines
         that look like //===== or //------- or /////////// will be replaced).
+
+        :param target_folder: Tidy target path.
         """
         assert isinstance(target_folder, str)
         proc = subprocess.Popen([self._which, '--tidy-divider-comments',
@@ -165,6 +192,8 @@ class Projucer():
         Where a file contains an #include of one of the other filenames,
         it changes it to use the optimum relative path. Helpful for
         auto-fixing includes when re-arranging files and folders in a project.
+
+        :param target_folder: Fix target path.
         """
         assert isinstance(target_folder, str)
         proc = subprocess.Popen([self._which, '--fix-broken-include-paths',
@@ -176,6 +205,8 @@ class Projucer():
     def obfuscated_string_code(self, string_to_obfuscate):
         """Generates a C++ function which returns the given string,
         but in an obfuscated way.
+
+        :param string_to_obfuscate:
         """
         assert isinstance(string_to_obfuscate, str)
         proc = subprocess.Popen([self._which, '--obfuscated-string-code',
@@ -188,6 +219,9 @@ class Projucer():
         """Converts a binary file to a C++ file containing its contents as
         a block of data. Provide a .h file as the target if you want a
         single output file, or a .cpp file if you want a pair of .h/.cpp files.
+
+        :param source_binary_file: Binary file to encode.
+        :param target_cpp_file: Encoded cpp file.
         """
         assert isinstance(source_binary_file, str)
         assert isinstance(target_cpp_file, str)
@@ -201,6 +235,8 @@ class Projucer():
         """Scans each of the given folders (recursively) for any NEEDS_TRANS macros,
         and generates a translation file that can be used with Projucer's
         translation file builder.
+
+        :param target_folder: Scan target path.
         """
         # ToDo: Make target_folder arg variatic length
         assert isinstance(target_folder, str)
@@ -232,6 +268,10 @@ class Projucer():
         be any of the following: defaultJuceModulePath, defaultUserModulePath,
         vst3Path, vstLegacyPath, aaxPath (not valid on linux),
         rtasPath (not valid on linux), androidSDKPath or androidNDKPath.
+
+        :param os_system: osx, windows or linux.
+        :param identifier_to_set:
+        :param new_path: New search path.
         """
         assert isinstance(os_system, str)
         assert isinstance(identifier_to_set, str)
@@ -247,6 +287,9 @@ class Projucer():
         """Generates a folder containing a JUCE project in the specified
         output path using the specified PIP file. Use the optional JUCE and
         user module paths to override the global module paths.
+
+        :param path_to_pip: Path to pip file.
+        :param path_to_output: Path to project output.
         """
         # ToDo: Add juce_modules & user_modules optional paths
         assert isinstance(path_to_pip, str)
