@@ -1,4 +1,5 @@
 .PHONY: install deps develop test lint coverage clean docs stats
+
 default: develop
 
 PACKAGE_NAME = juce
@@ -16,14 +17,15 @@ develop:
 	@pip install -e .
 
 test:
-	@pytest -v $(TEST_DIRECTORY)
+	@pytest -v --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) -m "not integration_test"
+
+integration:
+	@pytest -v --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 lint:
 	@flake8 $(PACKAGE_NAME) $(TEST_DIRECTORY) $(EXAMPLES_DIRECTORY)
 	@pylint --disable=fixme $(PACKAGE_NAME) $(TEST_DIRECTORY)
 
-coverage:
-	@pytest -v --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 clean:
 	rm -rf $(DOC_DIRECTORY)/_build

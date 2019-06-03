@@ -75,8 +75,17 @@ def main():
     projucer = Projucer()
     print(projucer.which)
 
-    projucer.status(JUCER_FILE_PATH)
-    projucer.resave(JUCER_FILE_PATH)
+    stdout, stderr = projucer.status(JUCER_FILE_PATH)
+    assert not stderr
+    print(stdout.decode('utf-8'))
+
+    stdout, stderr = projucer.resave(JUCER_FILE_PATH)
+    assert not stderr
+    print(stdout.decode('utf-8'))
+
+    stdout, stderr = projucer.resave_resources(JUCER_FILE_PATH)
+    assert not stderr
+    print(stdout.decode('utf-8'))
 
 
 if __name__ == "__main__":

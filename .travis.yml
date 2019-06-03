@@ -14,8 +14,7 @@ script-anchors:
   - &script-linux
     - make docs
     - make lint
-    - make coverage
-    - codecov
+    - make test
 
   - &script-linux-integration-tests
     - sudo apt-get update --fix-missing
@@ -50,7 +49,7 @@ script-anchors:
     # Python
     - make docs
     - make lint
-    - make coverage
+    - make integration
     - codecov
 
 matrix:

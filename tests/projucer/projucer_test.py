@@ -26,6 +26,10 @@ def test_projucer_status():
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
+    output = stdout.decode('utf-8')
+    assert 'Name: AwesomeAudioApp' in output
+    assert 'UID: nrGl9Q' in output
+
 
 @pytest.mark.integration_test
 def test_projucer_resave():
@@ -35,6 +39,10 @@ def test_projucer_resave():
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
+    output = stdout.decode('utf-8')
+    assert 'Re-saving file:' in output
+    assert 'Finished saving:' in output
+
 
 @pytest.mark.integration_test
 def test_projucer_resave_resources():
@@ -43,3 +51,18 @@ def test_projucer_resave_resources():
     assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
+
+    output = stdout.decode('utf-8')
+    assert 'Re-saving project resources:' in output
+
+
+@pytest.mark.integration_test
+def test_projucer_get_version():
+    projucer = Projucer()
+    stdout, stderr = projucer.get_version(JUCER_FILE)
+    assert stdout
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+    output = stdout.decode('utf-8')
+    assert '0.1.1' in output
