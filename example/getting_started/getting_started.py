@@ -87,6 +87,10 @@ def main():
     assert not stderr
     print(stdout.decode('utf-8'))
 
+    stdout, stderr = projucer.trim_whitespace(SOURCE_DIRECTORY)
+    assert not stderr
+    print(stdout.decode('utf-8'))
+
 
 if __name__ == "__main__":
     main()

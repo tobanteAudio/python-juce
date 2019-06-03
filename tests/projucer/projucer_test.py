@@ -66,3 +66,53 @@ def test_projucer_get_version():
 
     output = stdout.decode('utf-8')
     assert '0.1.1' in output
+
+
+@pytest.mark.integration_test
+def test_projucer_set_version():
+    old_version = '0.1.1'
+    new_version = '0.1.2'
+    projucer = Projucer()
+
+    # Set to new
+    stdout, stderr = projucer.set_version(JUCER_FILE, new_version)
+    assert stdout
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+    output = stdout.decode('utf-8')
+    assert new_version in output
+
+    # Set to old
+    stdout, stderr = projucer.set_version(JUCER_FILE, old_version)
+    assert stdout
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+    output = stdout.decode('utf-8')
+    assert old_version in output
+
+
+@pytest.mark.integration_test
+def test_projucer_bump_version():
+    old_version = '0.1.1'
+    new_version = '0.1.2'
+    projucer = Projucer()
+
+    # Set to new
+    stdout, stderr = projucer.bump_version(JUCER_FILE)
+    assert stdout
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+    output = stdout.decode('utf-8')
+    assert new_version in output
+
+    # Set to old
+    stdout, stderr = projucer.set_version(JUCER_FILE, old_version)
+    assert stdout
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+    output = stdout.decode('utf-8')
+    assert old_version in output
