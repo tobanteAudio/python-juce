@@ -6,12 +6,70 @@ branches:
 
 
 install:
-  - python --version 
+  - python --version
   - make deps
   - make develop
 
 script-anchors:
   - &script-linux
+    - make docs
+    - make lint
+    - make coverage
+    - codecov
+
+  - &script-linux-integration-tests
+    - sudo apt-get update --fix-missing
+    - sudo apt-get update -qq
+    - sudo apt-get install -y \
+        libfreetype6-dev \
+        libx11-dev \
+        libstdc++6 \
+        libc++-dev \
+        libxinerama-dev \
+        libxrandr-dev \
+        libxcursor-dev \
+        libxcomposite-dev \
+        mesa-common-dev \
+        libasound2-dev \
+        freeglut3-dev \
+        libcurl4-gnutls-dev+ \
+        libasound2-dev \
+        libsndfile1 \
+        libjack-dev
+    - sudo add-apt-repository -y ppa:webkit-team/ppa
+    - sudo apt-get update
+    - sudo apt-get install libwebkit2gtk-4.0-37 libwebkit2gtk-4.0-dev
+    - sudo apt-get update --fix-missing
+
+    # Fake display
+    - "export DISPLAY=:99.0"
+    - "sh -e /etc/init.d/xvfb start"
+    - sleep 3 # give xvfb some time to start
+    - sudo apt-get install libsndfile1
+
+    # Set PROJUCER to GPL mode
+    - mkdir $TRAVIS_BUILD_DIR/3rd_party
+    - cd $TRAVIS_BUILD_DIR/3rd_party
+    - git clone https://github.com/WeAreROLI/JUCE.git
+    - cd JUCE/extras/Projucer/JuceLibraryCode
+    - pwd
+    - sed -i "s/#define JUCER_ENABLE_GPL_MODE 0/#define JUCER_ENABLE_GPL_MODE 1/" AppConfig.h
+    - sed -i "s/#define JUCE_USE_DARK_SPLASH_SCREEN 1/#define JUCE_USE_DARK_SPLASH_SCREEN 0/" AppConfig.h
+    - sed -i "s/#define JUCE_WEB_BROWSER 1/#define JUCE_WEB_BROWSER 0/" AppConfig.h
+    - cat AppConfig.h
+
+    # Set gcc version
+    - ls
+    - cd $TRAVIS_BUILD_DIR
+    - sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+    - sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
+    - gcc -v && g++ -v
+
+    # Build PROJUCER
+    - cd ../Builds/LinuxMakefile
+    - make -j4 CONFIG=Release
+    - cd $TRAVIS_BUILD_DIR
+
     - make docs
     - make lint
     - make coverage
@@ -24,4 +82,16 @@ matrix:
       dist: xenial   # required for Python >= 3.7
       python: "3.7"
       script: *script-linux
-    
+
+    - os: linux
+      dist: trusty
+      sudo: required
+      python: "3.6"
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - gcc-6
+            - g++-6
+      script: *script-linux-integration-tests
