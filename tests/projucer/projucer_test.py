@@ -143,6 +143,21 @@ def test_projucer_trans():
 
 
 @pytest.mark.integration_test
+def test_projucer_trans_finishs():
+    projucer = Projucer()
+
+    # Fail (args not valid)
+    result = projucer.trans_finish(SOURCE_DIR + '/test',
+                                   SOURCE_DIR + '/out')
+    assert result['return_code'] == 1
+    assert isinstance(result['stdout'], bytes)
+    assert isinstance(result['stderr'], type(None))
+
+    output = result['stdout'].decode('utf-8')
+    assert 'Could not find' in output
+
+
+@pytest.mark.integration_test
 def test_projucer_obfuscated_string_code():
     projucer = Projucer()
     result = projucer.obfuscated_string_code(JUCER_FILE)

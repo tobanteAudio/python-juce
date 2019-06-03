@@ -279,17 +279,20 @@ class Projucer():
         return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def trans_finish(self, pre_translated_file, post_translated_file,
-                     optional_existing_translation_file):
+                     optional_existing_translation_file=None):
         """Creates a completed translations mapping file, that can be used to
         initialise a LocalisedStrings object. This allows you to localise
         the strings in your project.
         """
         assert isinstance(pre_translated_file, str)
         assert isinstance(post_translated_file, str)
-        assert isinstance(optional_existing_translation_file, str)
-        proc = subprocess.Popen([self._which, '--trans-finish',
-                                 pre_translated_file, post_translated_file,
-                                 optional_existing_translation_file],
+        process_args = [self._which, '--trans-finish',
+                        pre_translated_file, post_translated_file
+                        ]
+        if optional_existing_translation_file:
+            assert isinstance(optional_existing_translation_file, str)
+            process_args.append(optional_existing_translation_file)
+        proc = subprocess.Popen(process_args,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         stdout, stderr = proc.communicate()
