@@ -1,6 +1,6 @@
 # pylint: skip-file
 
-from juce.projucer import JucerFile, Exporter
+from juce.projucer import JucerFile
 
 
 def test_projucer_exporter():
