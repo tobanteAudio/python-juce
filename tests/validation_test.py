@@ -1,4 +1,5 @@
 # pylint: skip-file
+import pytest
 
 from juce.validation import (is_valid_vst3_category,
                              is_valid_project_type,
@@ -15,230 +16,225 @@ from juce.validation import (is_valid_vst3_category,
                              bool_to_integer_string)
 
 
-def test_line_feed_validation():
-    # INVALID
-    assert not is_valid_line_feed('\r')   # Too long
-    assert not is_valid_line_feed('test')    # No upper
-
-    # VALID
-    assert is_valid_line_feed('\n')
-    assert is_valid_line_feed('\r\n')
-
-
-def test_plugin_code_validation():
-    # INVALID
-    assert is_valid_plugin_code('taetl') is False  # Too long
-    assert is_valid_plugin_code('test') is False   # No upper
-
-    # VALID
-    assert is_valid_plugin_code('toAu')
-    assert is_valid_plugin_code('toAU')
-    assert is_valid_plugin_code('Gthl')
-    assert is_valid_plugin_code('hTFl')
+@pytest.mark.parametrize("test_case, expected", [
+    ('\r', False),
+    ('test', False),
+    ('\n', True),
+    ('\r\n', True),
+])
+def test_line_feed_validation(test_case, expected):
+    assert is_valid_line_feed(test_case) == expected
 
 
-def test_plugin_manufacturer_code_validation():
-    # INVALID
-    assert is_valid_plugin_manufacturer_code('taetl') is False  # Too long
-    assert is_valid_plugin_manufacturer_code('test') is False   # No upper
-
-    # VALID
-    assert is_valid_plugin_manufacturer_code('toAu')
-    assert is_valid_plugin_manufacturer_code('toAU')
-    assert is_valid_plugin_manufacturer_code('Gthl')
-    assert is_valid_plugin_manufacturer_code('hTFl')
-
-
-def test_project_type_validation():
-
-    # INVALID
-    assert is_valid_project_type('application') is False
-    assert is_valid_project_type('test-t') is False
-
-    # VALID
-    assert is_valid_project_type('audioplug')
-    assert is_valid_project_type('consoleapp')
-    assert is_valid_project_type('guiapp')
-    assert is_valid_project_type('dll')
-    assert is_valid_project_type('library')
+@pytest.mark.parametrize("test_case, expected", [
+    ('taetl', False),
+    ('test', False),
+    ('toAu', True),
+    ('toAU', True),
+    ('Gthl', True),
+    ('hTFl', True),
+])
+def test_plugin_code_validation(test_case, expected):
+    assert is_valid_plugin_code(test_case) == expected
 
 
-def test_boolean_to_integer_string():
-
-    assert bool_to_integer_string(True) == '1'
-    assert bool_to_integer_string(False) == '0'
-    assert bool_to_integer_string(1) == '1'
-    assert bool_to_integer_string(0) == '0'
-
-
-def test_boolean_validation():
-
-    # INVALID
-    assert is_valid_boolean('98') is False
-    assert is_valid_boolean('test-t') is False
-
-    # VALID
-    assert is_valid_boolean(True)
-    assert is_valid_boolean(False)
-    assert is_valid_boolean(1)
-    assert is_valid_boolean(0)
+@pytest.mark.parametrize("test_case, expected", [
+    ('taetl', False),
+    ('test', False),
+    ('toAu', True),
+    ('toAU', True),
+    ('Gthl', True),
+    ('hTFl', True),
+])
+def test_plugin_manufacturer_code_validation(test_case, expected):
+    assert is_valid_plugin_manufacturer_code(test_case) == expected
 
 
-def test_namespace_validation():
-
-    # INVALID
-    assert is_valid_namespace('98') is False
-    assert is_valid_namespace('test-t') is False
-    assert is_valid_namespace('test t') is False
-
-    # VALID
-    assert is_valid_namespace("ns")
-    assert is_valid_namespace("TobanteData")
-    assert is_valid_namespace("DATA17")
-    assert is_valid_namespace("foo")
-
-
-def test_cpp_standard_validation():
-
-    # INVALID
-    assert is_valid_cpp_standard('98') is False
-    assert is_valid_cpp_standard('2017') is False
-    assert is_valid_cpp_standard("2020") is False
-    assert is_valid_cpp_standard("20") is False
-
-    # VALID
-    assert is_valid_cpp_standard("11")
-    assert is_valid_cpp_standard("14")
-    assert is_valid_cpp_standard("17")
-    assert is_valid_cpp_standard("latest")
+@pytest.mark.parametrize("test_case, expected", [
+    ('application', False),
+    ('test-t', False),
+    ('audioplug', True),
+    ('consoleapp', True),
+    ('guiapp', True),
+    ('dll', True),
+    ('library', True),
+])
+def test_project_type_validation(test_case, expected):
+    assert is_valid_project_type(test_case) == expected
 
 
-def test_vst2_category_validation():
-
-    # INVALID
-    assert is_valid_vst2_category('Foo') is False
-    assert is_valid_vst2_category('Cool Effect') is False
-    assert is_valid_vst2_category("Fx") is False
-    assert is_valid_vst2_category("Instrument") is False
-
-    # VALID
-    assert is_valid_vst2_category("kPlugCategUnknown")
-    assert is_valid_vst2_category("kPlugCategEffect")
-    assert is_valid_vst2_category("kPlugCategSynth")
-    assert is_valid_vst2_category("kPlugCategAnalysis")
-    assert is_valid_vst2_category("kPlugCategMastering")
-    assert is_valid_vst2_category("kPlugCategSpacializer")
-    assert is_valid_vst2_category("kPlugCategRoomFx")
-    assert is_valid_vst2_category("kPlugSurroundFx")
-    assert is_valid_vst2_category("kPlugCategRestoration")
-    assert is_valid_vst2_category("kPlugCategOfflineProcess")
-    assert is_valid_vst2_category("kPlugCategShell")
-    assert is_valid_vst2_category("kPlugCategGenerator")
+@pytest.mark.parametrize("test_case, expected", [
+    (True, '1'),
+    (False, '0'),
+    (1, '1'),
+    (0, '0'),
+])
+def test_boolean_to_integer_string(test_case, expected):
+    assert bool_to_integer_string(test_case) == expected
 
 
-def test_vst3_category_validation():
-
-    assert is_valid_vst3_category('Foo') is False
-    assert is_valid_vst3_category('Cool Effect') is False
-
-    assert is_valid_vst3_category("Fx")
-    assert is_valid_vst3_category("Instrument")
-    assert is_valid_vst3_category("Analyzer")
-    assert is_valid_vst3_category("Delay")
-    assert is_valid_vst3_category("Distortion")
-    assert is_valid_vst3_category("Drum")
-    assert is_valid_vst3_category("Dynamics")
-    assert is_valid_vst3_category("EQ")
-    assert is_valid_vst3_category("External")
-    assert is_valid_vst3_category("Filter")
-    assert is_valid_vst3_category("Generator")
-    assert is_valid_vst3_category("Mastering")
-    assert is_valid_vst3_category("Modulation")
-    assert is_valid_vst3_category("Mono")
-    assert is_valid_vst3_category("Network")
-    assert is_valid_vst3_category("NoOfflineProcess")
-    assert is_valid_vst3_category("OnlyOfflineProcess")
-    assert is_valid_vst3_category("OnlyRT")
-    assert is_valid_vst3_category("Pitch Shift")
-    assert is_valid_vst3_category("Restoration")
-    assert is_valid_vst3_category("Reverb")
-    assert is_valid_vst3_category("Sampler")
-    assert is_valid_vst3_category("Spatial")
-    assert is_valid_vst3_category("Stereo")
-    assert is_valid_vst3_category("Surround")
-    assert is_valid_vst3_category("Synth")
-    assert is_valid_vst3_category("Tools")
-    assert is_valid_vst3_category("Up-Downmix")
+@pytest.mark.parametrize("test_case, expected", [
+    ('98', False),
+    ('test-t', False),
+    (True, True),
+    (False, True),
+    (1, True),
+    (0, True),
+])
+def test_boolean_to_integer_string(test_case, expected):
+    assert is_valid_boolean(test_case) == expected
 
 
-def test_au_category_validation():
-
-    # INVALID
-    assert is_valid_au_category('Foo') is False
-    assert is_valid_au_category('Cool Effect') is False
-    assert is_valid_au_category("Fx") is False
-    assert is_valid_au_category("Instrument") is False
-
-    # VALID
-    assert is_valid_au_category("kAudioUnitType_Effect")
-    assert is_valid_au_category("kAudioUnitType_FormatConverter")
-    assert is_valid_au_category("kAudioUnitType_Generator")
-    assert is_valid_au_category("kAudioUnitType_MIDIProcessor")
-    assert is_valid_au_category("kAudioUnitType_Mixer")
-    assert is_valid_au_category("kAudioUnitType_MusicDevice")
-    assert is_valid_au_category("kAudioUnitType_MusicEffect")
-    assert is_valid_au_category("kAudioUnitType_OfflineEffect")
-    assert is_valid_au_category("kAudioUnitType_Output")
-    assert is_valid_au_category("kAudioUnitType_Panner")
+@pytest.mark.parametrize("test_case, expected", [
+    ('98', False),
+    ('test-t', False),
+    ('test t', False),
+    ("ns", True),
+    ("TobanteData", True),
+    ("DATA17", True),
+    ("foo", True),
+])
+def test_namespace_validation(test_case, expected):
+    assert is_valid_namespace(test_case) == expected
 
 
-def test_aax_category_validation():
-
-    # INVALID
-    assert is_valid_aax_category('Foo') is False
-    assert is_valid_aax_category('Cool Effect') is False
-    assert is_valid_aax_category("Fx") is False
-    assert is_valid_aax_category("Instrument") is False
-
-    # VALID
-    assert is_valid_aax_category("AAX_ePlugInCategory_None")
-    assert is_valid_aax_category("AAX_ePlugInCategory_EQ")
-    assert is_valid_aax_category("AAX_ePlugInCategory_Dynamics")
-    assert is_valid_aax_category("AAX_ePlugInCategory_PitchShift")
-    assert is_valid_aax_category("AAX_ePlugInCategory_Reverb")
-    assert is_valid_aax_category("AAX_ePlugInCategory_Delay")
-    assert is_valid_aax_category("AAX_ePlugInCategory_Modulation")
-    assert is_valid_aax_category("AAX_ePlugInCategory_Harmonic")
-    assert is_valid_aax_category("AAX_ePlugInCategory_NoiseReduction")
-    assert is_valid_aax_category("AAX_ePlugInCategory_Dither")
-    assert is_valid_aax_category("AAX_ePlugInCategory_SoundField")
-    assert is_valid_aax_category("AAX_ePlugInCategory_HWGenerators")
-    assert is_valid_aax_category("AAX_ePlugInCategory_SWGenerators")
-    assert is_valid_aax_category("AAX_ePlugInCategory_WrappedPlugin")
-    assert is_valid_aax_category("AAX_EPlugInCategory_Effect")
+@pytest.mark.parametrize("test_case, expected", [
+    ('98', False),
+    ('2017', False),
+    ("2020", False),
+    ("20", False),
+    ("11", True),
+    ("14", True),
+    ("17", True),
+    ("latest", True),
+])
+def test_cpp_standard_validation(test_case, expected):
+    assert is_valid_cpp_standard(test_case) == expected
 
 
-def test_rtas_category_validation():
+@pytest.mark.parametrize("test_case, expected", [
+    ('Foo', False),
+    ('Cool Effect', False),
+    ("Fx", False),
+    ("Instrument", False),
+    ("kPlugCategUnknown", True),
+    ("kPlugCategEffect", True),
+    ("kPlugCategSynth", True),
+    ("kPlugCategAnalysis", True),
+    ("kPlugCategMastering", True),
+    ("kPlugCategSpacializer", True),
+    ("kPlugCategRoomFx", True),
+    ("kPlugSurroundFx", True),
+    ("kPlugCategRestoration", True),
+    ("kPlugCategOfflineProcess", True),
+    ("kPlugCategShell", True),
+    ("kPlugCategGenerator", True),
+])
+def test_vst2_category_validation(test_case, expected):
+    assert is_valid_vst2_category(test_case) == expected
 
-    # INVALID
-    assert is_valid_rtas_category('Foo') is False
-    assert is_valid_rtas_category('Cool Effect') is False
-    assert is_valid_rtas_category("Fx") is False
-    assert is_valid_rtas_category("Instrument") is False
 
-    # VALID
-    assert is_valid_rtas_category("ePlugInCategory_None")
-    assert is_valid_rtas_category("ePlugInCategory_EQ")
-    assert is_valid_rtas_category("ePlugInCategory_Dynamics")
-    assert is_valid_rtas_category("ePlugInCategory_PitchShift")
-    assert is_valid_rtas_category("ePlugInCategory_Reverb")
-    assert is_valid_rtas_category("ePlugInCategory_Delay")
-    assert is_valid_rtas_category("ePlugInCategory_Modulation")
-    assert is_valid_rtas_category("ePlugInCategory_Harmonic")
-    assert is_valid_rtas_category("ePlugInCategory_NoiseReduction")
-    assert is_valid_rtas_category("ePlugInCategory_Dither")
-    assert is_valid_rtas_category("ePlugInCategory_SoundField")
-    assert is_valid_rtas_category("ePlugInCategory_HWGenerators")
-    assert is_valid_rtas_category("ePlugInCategory_SWGenerators")
-    assert is_valid_rtas_category("ePlugInCategory_WrappedPlugin")
-    assert is_valid_rtas_category("ePlugInCategory_Effect")
+@pytest.mark.parametrize("test_case, expected", [
+    ('Foo', False),
+    ('Cool Effect', False),
+    ("Fx", True),
+    ("Instrument", True),
+    ("Analyzer", True),
+    ("Delay", True),
+    ("Distortion", True),
+    ("Drum", True),
+    ("Dynamics", True),
+    ("EQ", True),
+    ("External", True),
+    ("Filter", True),
+    ("Generator", True),
+    ("Mastering", True),
+    ("Modulation", True),
+    ("Mono", True),
+    ("Network", True),
+    ("NoOfflineProcess", True),
+    ("OnlyOfflineProcess", True),
+    ("OnlyRT", True),
+    ("Pitch Shift", True),
+    ("Restoration", True),
+    ("Reverb", True),
+    ("Sampler", True),
+    ("Spatial", True),
+    ("Stereo", True),
+    ("Surround", True),
+    ("Synth", True),
+    ("Tools", True),
+    ("Up-Downmix", True),
+])
+def test_vst3_category_validation(test_case, expected):
+    assert is_valid_vst3_category(test_case) == expected
+
+
+@pytest.mark.parametrize("test_case, expected", [
+    ('Foo', False),
+    ('Cool Effect', False),
+    ("Fx", False),
+    ("Instrument", False),
+    ("kAudioUnitType_Effect", True),
+    ("kAudioUnitType_FormatConverter", True),
+    ("kAudioUnitType_Generator", True),
+    ("kAudioUnitType_MIDIProcessor", True),
+    ("kAudioUnitType_Mixer", True),
+    ("kAudioUnitType_MusicDevice", True),
+    ("kAudioUnitType_MusicEffect", True),
+    ("kAudioUnitType_OfflineEffect", True),
+    ("kAudioUnitType_Output", True),
+    ("kAudioUnitType_Panner", True),
+])
+def test_au_category_validation(test_case, expected):
+    assert is_valid_au_category(test_case) == expected
+
+
+@pytest.mark.parametrize("test_case, expected", [
+    ('Foo', False),
+    ('Cool Effect', False),
+    ("Fx", False),
+    ("Instrument", False),
+    ("AAX_ePlugInCategory_None", True),
+    ("AAX_ePlugInCategory_EQ", True),
+    ("AAX_ePlugInCategory_Dynamics", True),
+    ("AAX_ePlugInCategory_PitchShift", True),
+    ("AAX_ePlugInCategory_Reverb", True),
+    ("AAX_ePlugInCategory_Delay", True),
+    ("AAX_ePlugInCategory_Modulation", True),
+    ("AAX_ePlugInCategory_Harmonic", True),
+    ("AAX_ePlugInCategory_NoiseReduction", True),
+    ("AAX_ePlugInCategory_Dither", True),
+    ("AAX_ePlugInCategory_SoundField", True),
+    ("AAX_ePlugInCategory_HWGenerators", True),
+    ("AAX_ePlugInCategory_SWGenerators", True),
+    ("AAX_ePlugInCategory_WrappedPlugin", True),
+    ("AAX_EPlugInCategory_Effect", True),
+])
+def test_aax_category_validation(test_case, expected):
+    assert is_valid_aax_category(test_case) == expected
+
+
+@pytest.mark.parametrize("test_case, expected", [
+    ('Foo', False),
+    ('Cool Effect', False),
+    ("Fx", False),
+    ("Instrument", False),
+    ("ePlugInCategory_None", True),
+    ("ePlugInCategory_EQ", True),
+    ("ePlugInCategory_Dynamics", True),
+    ("ePlugInCategory_PitchShift", True),
+    ("ePlugInCategory_Reverb", True),
+    ("ePlugInCategory_Delay", True),
+    ("ePlugInCategory_Modulation", True),
+    ("ePlugInCategory_Harmonic", True),
+    ("ePlugInCategory_NoiseReduction", True),
+    ("ePlugInCategory_Dither", True),
+    ("ePlugInCategory_SoundField", True),
+    ("ePlugInCategory_HWGenerators", True),
+    ("ePlugInCategory_SWGenerators", True),
+    ("ePlugInCategory_WrappedPlugin", True),
+    ("ePlugInCategory_Effect", True),
+])
+def test_rtas_category_validation(test_case, expected):
+    assert is_valid_rtas_category(test_case) == expected
