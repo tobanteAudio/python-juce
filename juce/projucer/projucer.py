@@ -266,7 +266,7 @@ class Projucer():
         and generates a translation file that can be used with Projucer's
         translation file builder.
 
-        :param target_folder: Variatic number if folder paths.
+        :param target_folder: Variatic number of folder paths.
         """
         assert isinstance(target_folder, tuple)
         target_folder = list(target_folder)
