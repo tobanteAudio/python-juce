@@ -17,6 +17,8 @@ from juce.validation import (is_valid_vst3_category,
                              is_valid_line_feed,
                              bool_to_integer_string)
 
+from .exporter import Exporter
+
 
 class JucerFile():
     """Represents a jucer file containing a JUCE project"""
@@ -366,6 +368,16 @@ class JucerFile():
                                      module.attrib['useGlobalPath']}
                                     )
         return modules_list
+
+    @property
+    def exporters(self):
+        """List of exporters
+        """
+        exporters_list = []
+        for exporters in self.root.iter('EXPORTFORMATS'):
+            for exporter in exporters:
+                exporters_list.append(Exporter(exporter))
+        return exporters_list
 
     def fail_silent_or_raise(self):
         """If silent_validation is False a ValueError is raised"""

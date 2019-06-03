@@ -19,6 +19,14 @@ print(jucerFile.defines)
 print(len(jucerFile.modules))                   # 16
 print(jucerFile.modules)
 
+# Exporters
+print(len(jucerFile.exporters))
+for exporter in jucerFile.exporters:
+    print("{}: {}".format(exporter.name, exporter.build_folder))
+    for config in exporter.configurations:
+        print("     {}, with debug: {}".format(
+            config.attrib['name'], config.attrib['isDebug']))
+
 # Attributes (set)
 # jucerFile.path = 'new/path/to/project.jucer'
 jucerFile.version = '0.2.1'
@@ -42,16 +50,16 @@ jucerFile.silent_validation = False
 # jucerFile.save_as('some/path/project.jucer')
 
 
-# PROJUCER
-# projucer = Projucer("/some/path")
-projucer = Projucer()
+# # PROJUCER
+# # projucer = Projucer("/some/path")
+# projucer = Projucer()
 
-# Print all directories in $PATH + optional directory
-for directory in projucer.path:
-    print(directory)
+# # Print all directories in $PATH + optional directory
+# for directory in projucer.path:
+#     print(directory)
 
-print(projucer.which)
-print(projucer.path_count)
+# print(projucer.which)
+# print(projucer.path_count)
 
-projucer.status('{}/example_plugin.jucer'.format(SCRIPT_DIRECTORY))
-# projucer.resave('{}/example_plugin.jucer'.format(SCRIPT_DIRECTORY))
+# projucer.status('{}/example_plugin.jucer'.format(SCRIPT_DIRECTORY))
+# # projucer.resave('{}/example_plugin.jucer'.format(SCRIPT_DIRECTORY))

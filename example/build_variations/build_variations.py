@@ -16,20 +16,25 @@ def main():
     """Entry point"""
 
     jucer_file = JucerFile(JUCER_FILE_PATH)
+
+    # Set C++ standard
     jucer_file.cpp_language_standard = '17'
-    # jucer_file.save()
 
-    print(jucer_file.modules)
-    # # Create object controlling the Projucer binary
-    # projucer = Projucer()
-    # assert projucer.which
+    # Set build folder for windows exporter
+    for exporter in jucer_file.exporters:
+        if exporter.name == "VS2017":
+            if exporter.build_folder == "Builds/VisualStudio2017":
+                exporter.build_folder = "Builds/NewWindowsBuild"
 
-    # # Status
-    # projucer.status(JUCER_FILE_PATH)
+    # Save changes to .jucer file
+    jucer_file.save()
 
-    # # Generate build files
-    # projucer.resave(JUCER_FILE_PATH)
-    # projucer.resave_resources(JUCER_FILE_PATH)
+    # Create object controlling the Projucer binary & check that it's in $PATH
+    projucer = Projucer()
+    assert projucer.which
+
+    # Generate build files
+    projucer.resave(JUCER_FILE_PATH)
 
 
 if __name__ == "__main__":
