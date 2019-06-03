@@ -2,7 +2,9 @@
 
 Python classes & functions for manipulating Projucer `.jucer` files. Only vanilla python is used. No dependencies!
 
-[Documentation](https://python-juce.readthedocs.io/en/latest)
+[**Github Repository**](https://github.com/tobanteaudio/python-juce)
+
+[**Developer Documentation**](https://python-juce.readthedocs.io/en/latest)
 
 ## Status
 
