@@ -95,7 +95,7 @@ def main():
         'linux', 'defaultUserModulePath', '~/modules2')
     assert not results['stderr']
 
-    results = projucer.trans(SOURCE_DIRECTORY)
+    results = projucer.trans(SOURCE_DIRECTORY, SOURCE_DIRECTORY)
     assert not results['stderr']
     print(results['stdout'].decode('utf-8'))
 

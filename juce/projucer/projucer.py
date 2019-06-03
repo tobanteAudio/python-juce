@@ -266,13 +266,11 @@ class Projucer():
         and generates a translation file that can be used with Projucer's
         translation file builder.
 
-        :param target_folder: Scan target path.
+        :param target_folder: Variatic number if folder paths.
         """
-        # ToDo: Make target_folder arg variatic length
         assert isinstance(target_folder, tuple)
         target_folder = list(target_folder)
         process_args = [self._which, '--trans'] + target_folder
-        print(process_args)
         proc = subprocess.Popen(process_args,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
@@ -321,19 +319,30 @@ class Projucer():
         return_code = proc.returncode
         return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
-    def create_project_from_pip(self, path_to_pip, path_to_output):
+    def create_project_from_pip(self, path_to_pip, path_to_output,
+                                juce_modules=None, user_modules=None):
         """Generates a folder containing a JUCE project in the specified
         output path using the specified PIP file. Use the optional JUCE and
         user module paths to override the global module paths.
 
         :param path_to_pip: Path to pip file.
         :param path_to_output: Path to project output.
+        :param juce_modules: Path to JUCE modules.
+        :param user_modules: Path to user modules.
         """
-        # ToDo: Add juce_modules & user_modules optional paths
         assert isinstance(path_to_pip, str)
         assert isinstance(path_to_output, str)
-        proc = subprocess.Popen([self._which, '--create-project-from-pip',
-                                 path_to_pip, path_to_output],
+        process_args = [self._which, '--create-project-from-pip',
+                        path_to_pip, path_to_output]
+
+        if juce_modules:
+            assert isinstance(juce_modules, str)
+            process_args.append(juce_modules)
+        if user_modules:
+            assert isinstance(user_modules, str)
+            process_args.append(user_modules)
+
+        proc = subprocess.Popen(process_args,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         stdout, stderr = proc.communicate()
