@@ -75,36 +75,36 @@ def main():
     projucer = Projucer()
     print(projucer.which)
 
-    stdout, stderr = projucer.status(JUCER_FILE_PATH)
-    assert not stderr
-    print(stdout.decode('utf-8'))
+    results = projucer.status(JUCER_FILE_PATH)
+    assert not results['stderr']
+    print(results['stdout'].decode('utf-8'))
 
-    stdout, stderr = projucer.resave(JUCER_FILE_PATH)
-    assert not stderr
-    print(stdout.decode('utf-8'))
+    results = projucer.resave(JUCER_FILE_PATH)
+    assert not results['stderr']
+    print(results['stdout'].decode('utf-8'))
 
-    stdout, stderr = projucer.resave_resources(JUCER_FILE_PATH)
-    assert not stderr
-    print(stdout.decode('utf-8'))
+    results = projucer.resave_resources(JUCER_FILE_PATH)
+    assert not results['stderr']
+    print(results['stdout'].decode('utf-8'))
 
-    stdout, stderr = projucer.obfuscated_string_code('SOURCE_DIRECTORY')
-    assert not stderr
-    print(stdout.decode('utf-8'))
+    results = projucer.obfuscated_string_code('SOURCE_DIRECTORY')
+    assert not results['stderr']
+    print(results['stdout'].decode('utf-8'))
 
-    stdout, stderr = projucer.set_global_search_path(
+    results = projucer.set_global_search_path(
         'linux', 'defaultUserModulePath', '~/modules2')
-    assert not stderr
+    assert not results['stderr']
 
-    stdout, stderr = projucer.trans(SOURCE_DIRECTORY)
-    assert not stderr
-    print(stdout.decode('utf-8'))
+    results = projucer.trans(SOURCE_DIRECTORY)
+    assert not results['stderr']
+    print(results['stdout'].decode('utf-8'))
 
-    stdout, stderr = projucer.encode_binary(
+    results = projucer.encode_binary(
         PROJECT_DIRECTORY + "/Resource/logo.png",
         PROJECT_DIRECTORY + "/Resource/binary_data.h"
     )
-    assert not stderr
-    print(stdout.decode('utf-8'))
+    assert not results['stderr']
+    print(results['stdout'].decode('utf-8'))
 
 
 if __name__ == "__main__":

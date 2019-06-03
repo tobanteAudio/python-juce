@@ -261,7 +261,7 @@ class Projucer():
         return_code = proc.returncode
         return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
-    def trans(self, target_folder):
+    def trans(self, *target_folder):
         """Scans each of the given folders (recursively) for any NEEDS_TRANS macros,
         and generates a translation file that can be used with Projucer's
         translation file builder.
@@ -269,9 +269,11 @@ class Projucer():
         :param target_folder: Scan target path.
         """
         # ToDo: Make target_folder arg variatic length
-        assert isinstance(target_folder, str)
-        proc = subprocess.Popen([self._which, '--trans',
-                                 target_folder],
+        assert isinstance(target_folder, tuple)
+        target_folder = list(target_folder)
+        process_args = [self._which, '--trans'] + target_folder
+        print(process_args)
+        proc = subprocess.Popen(process_args,
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         stdout, stderr = proc.communicate()
