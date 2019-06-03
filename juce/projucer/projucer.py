@@ -44,7 +44,9 @@ class Projucer():
         proc = subprocess.Popen([self._which, '--resave', project],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def resave_resources(self, project):
         """Resaves just the binary resources for a project.
@@ -56,7 +58,9 @@ class Projucer():
                                  project],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def get_version(self, project):
         """Returns the version number of a project.
@@ -67,7 +71,9 @@ class Projucer():
         proc = subprocess.Popen([self._which, '--get-version', project],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def set_version(self, project, version):
         """Updates the version number in a project.
@@ -80,7 +86,9 @@ class Projucer():
                                  version, project],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def bump_version(self, project):
         """Updates the minor version number in a project by 1.
@@ -92,7 +100,9 @@ class Projucer():
                                  project],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def git_tag_version(self, project):
         """Invokes 'git tag' to attach the project's version
@@ -105,7 +115,9 @@ class Projucer():
                                  project],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def status(self, project):
         """Displays status info about the Projucer project
@@ -116,7 +128,9 @@ class Projucer():
         proc = subprocess.Popen([self._which, '--status', project],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def build_module(self, target_folder, module_folder):
         """Zips a module into a downloadable file format.
@@ -130,7 +144,9 @@ class Projucer():
                                  target_folder, module_folder],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def build_all_modules(self, target_folder, module_folder):
         """Zips all modules in a given folder and creates an index for them.
@@ -144,7 +160,9 @@ class Projucer():
                                  target_folder, module_folder],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def trim_whitespace(self, target_folder):
         """Scans the given folder for C/C++ source files (recursively),
@@ -158,7 +176,9 @@ class Projucer():
                                  target_folder],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def remove_tabs(self, target_folder):
         """Scans the given folder for C/C++ source files (recursively),
@@ -171,7 +191,9 @@ class Projucer():
                                  target_folder],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def tidy_divider_comments(self, target_folder):
         """Scans the given folder for C/C++ source files (recursively),
@@ -185,7 +207,9 @@ class Projucer():
                                  target_folder],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def fix_broken_include_paths(self, target_folder):
         """Scans the given folder for C/C++ source files (recursively).
@@ -200,7 +224,9 @@ class Projucer():
                                  target_folder],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def obfuscated_string_code(self, string_to_obfuscate):
         """Generates a C++ function which returns the given string,
@@ -213,7 +239,9 @@ class Projucer():
                                  string_to_obfuscate],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def encode_binary(self, source_binary_file, target_cpp_file):
         """Converts a binary file to a C++ file containing its contents as
@@ -229,7 +257,9 @@ class Projucer():
                                  source_binary_file, target_cpp_file],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def trans(self, target_folder):
         """Scans each of the given folders (recursively) for any NEEDS_TRANS macros,
@@ -244,7 +274,9 @@ class Projucer():
                                  target_folder],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def trans_finish(self, pre_translated_file, post_translated_file,
                      optional_existing_translation_file):
@@ -260,7 +292,9 @@ class Projucer():
                                  optional_existing_translation_file],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def set_global_search_path(self, os_system, identifier_to_set, new_path):
         """Sets the global path for a specified os and identifier.
@@ -281,7 +315,9 @@ class Projucer():
                                  new_path],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
 
     def create_project_from_pip(self, path_to_pip, path_to_output):
         """Generates a folder containing a JUCE project in the specified
@@ -299,7 +335,5 @@ class Projucer():
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
         stdout, stderr = proc.communicate()
-        rc = proc.returncode
-
-        assert rc == 0
-        return (stdout, stderr)
+        return_code = proc.returncode
+        return {'return_code': return_code, 'stdout': stdout, 'stderr': stderr}
