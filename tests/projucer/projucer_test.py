@@ -198,10 +198,29 @@ def test_projucer_create_project_from_pip():
     assert isinstance(result['stdout'], bytes)
     assert isinstance(result['stderr'], type(None))
 
-    # Check if size changed
+    # Check file does exist
     assert os.path.isfile(
         output + '/ArpeggiatorTutorial/ArpeggiatorTutorial.jucer')
 
     # Delete file
     import shutil
     shutil.rmtree(output)
+
+
+@pytest.mark.integration_test
+def test_projucer_create_project_from_pip_broken_module_path():
+    # Create empty header file
+    pip_file = 'test_data/pip/ArpeggiatorTutorial.h'
+    # Call Projucer encode binary
+    output = 'test_data/pip/output'
+    projucer = Projucer()
+    result = projucer.create_project_from_pip(
+        pip_file, output, juce_modules='foo/', user_modules='/bar')
+
+    assert result['return_code'] == 1
+    assert isinstance(result['stdout'], bytes)
+    assert isinstance(result['stderr'], type(None))
+
+    # Check file does NOT exist
+    assert not os.path.isfile(
+        output + '/ArpeggiatorTutorial/ArpeggiatorTutorial.jucer')
