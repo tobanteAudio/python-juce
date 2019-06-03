@@ -3,7 +3,7 @@ Python JUCE
 
 Python classes & functions for manipulating Projucer `.jucer` files. Only vanilla python is used. No dependencies!
 
-|travis-status| |appveyor-status| |coverage|
+|license| |travis-status| |appveyor-status| |coverage|
 
 
 Features
@@ -101,6 +101,10 @@ References
     Validation
     Utility
 
+.. |license| image:: https://img.shields.io/badge/License-MIT-yellow.svg
+    :alt: MIT License
+    :target: https://github.com/tobanteAudio/python-juce/blob/master/LICENSE
+
 .. |travis-status| image:: https://img.shields.io/travis/tobanteAudio/python-juce.svg?style=flat
     :alt: Build status Linux/macOS
     :target: https://travis-ci.org/tobanteAudio/python-juce
@@ -113,10 +117,5 @@ References
     :alt: Test coverage
     :target: https://codecov.io/gh/tobanteAudio/python-juce
 
-License
--------
 
-`MIT`_ © 2019 Tobias Hienzsch
-
-.. _MIT: LICENSE
 
