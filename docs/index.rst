@@ -18,7 +18,9 @@ Install
 
     git clone https://github.com/tobanteAudio/python-juce.git
     cd python-juce
-    make install
+    make install    # pip install .
+    # or
+    make develop    # pip install -e .
 
 Quick Start
 ------------
@@ -28,6 +30,9 @@ Quick Start
     from juce.projucer import Projucer, JucerFile
 
     jucerFile = JucerFile('path/to/project.jucer')
+
+
+.. code-block:: python
 
     # Attributes (get)
     print(jucerFile.path)                           # path/to/project.jucer
@@ -53,23 +58,36 @@ Quick Start
     # Basic validation, the following line will raise ValueError
     jucerFile.cpp_language_standard = '98'
 
+
+.. code-block:: python
+
     # Write to file
     jucerFile.save()
     jucerFile.save_as('some/path/project.jucer')
 
 .. code-block:: python
 
-    # projucer = Projucer("/some/path")
+    # Create a controller for the Projucer executable.
+    # It searches in $PATH for Projucer
     projucer = Projucer()
 
-    for directory in projucer.path:
-        print(directory)
+    # Search in custom path
+    projucer = Projucer("/some/path")
 
+    # Info
     print(projucer.which)
-    print(projucer.path_count)
+    projucer.status("path/to/project.jucer")
 
-    projucer.status("tests/assets/pluginA.jucer")
-    projucer.resave("tests/assets/pluginA.jucer")
+    projucer.resave("path/to/project.jucer")
+
+    projucer.set_version("path/to/project.jucer", "0.1.0")
+    projucer.get_version("path/to/project.jucer")
+
+    # Cleanup
+    projucer.fix_broken_include_paths("path/to/src")
+    projucer.trim_whitespace("path/to/src")
+    projucer.tidy_divider_comments("path/to/src")
+    projucer.remove_tabs("path/to/src")
 
 
 References
