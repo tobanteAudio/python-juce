@@ -73,13 +73,7 @@ def main():
     # PROJUCER
     # projucer = Projucer("/some/path")
     projucer = Projucer()
-
-    # Print all directories in $PATH + optional directory
-    for directory in projucer.path:
-        print(directory)
-
     print(projucer.which)
-    print(projucer.path_count)
 
     projucer.status(JUCER_FILE_PATH)
     projucer.resave(JUCER_FILE_PATH)
