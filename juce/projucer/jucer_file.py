@@ -44,7 +44,12 @@ from .xml_structure import (
     ATTRIBUTE_REPORT_APP_USAGE,
     ATTRIBUTE_COMPILER_FLAGS,
     ATTRIBUTE_LINE_FEEDS,
-    ATTRIBUTE_DEFINES
+    ATTRIBUTE_DEFINES,
+    TAG_MODULES,
+    ATTRIBUTE_SHOW_ALL_CODE,
+    ATTRIBUTE_USE_LOCAL_COPY,
+    ATTRIBUTE_USE_GLOBAL_PATH,
+    TAG_EXPORTERS
 )
 
 
@@ -389,15 +394,15 @@ class JucerFile():
         """List of modules
         """
         modules_list = []
-        for modules in self.root.iter('MODULES'):
+        for modules in self.root.iter(TAG_MODULES):
             for module in modules:
-                modules_list.append({"id": module.attrib['id'],
-                                     "showAllCode":
-                                     module.attrib['showAllCode'],
-                                     "useLocalCopy":
-                                     module.attrib['useLocalCopy'],
-                                     "useGlobalPath":
-                                     module.attrib['useGlobalPath']}
+                modules_list.append({ATTRIBUTE_ID: module.attrib[ATTRIBUTE_ID],
+                                     ATTRIBUTE_SHOW_ALL_CODE:
+                                     module.attrib[ATTRIBUTE_SHOW_ALL_CODE],
+                                     ATTRIBUTE_USE_LOCAL_COPY:
+                                     module.attrib[ATTRIBUTE_USE_LOCAL_COPY],
+                                     ATTRIBUTE_USE_GLOBAL_PATH:
+                                     module.attrib[ATTRIBUTE_USE_GLOBAL_PATH]}
                                     )
         return modules_list
 
@@ -406,7 +411,7 @@ class JucerFile():
         """List of exporters
         """
         exporters_list = []
-        for exporters in self.root.iter('EXPORTFORMATS'):
+        for exporters in self.root.iter(TAG_EXPORTERS):
             for exporter in exporters:
                 exporters_list.append(Exporter(exporter))
         return exporters_list
