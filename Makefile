@@ -23,7 +23,7 @@ lint:
 	@pylint --disable=fixme $(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 coverage:
-	@pytest -v --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) -m "not integration_test"
+	@pytest -v --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 clean:
 	rm -rf $(DOC_DIRECTORY)/_build
