@@ -81,7 +81,7 @@ def test_boolean_to_integer_string(test_case, expected):
     (1, True),
     (0, True),
 ])
-def test_boolean_to_integer_string(test_case, expected):
+def test_boolean_validation(test_case, expected):
     assert is_valid_boolean(test_case) == expected
 
 

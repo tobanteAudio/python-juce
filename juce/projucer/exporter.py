@@ -48,11 +48,6 @@ class Exporter():
         """Root xml element"""
         return self._root
 
-    @root.setter
-    def root(self, root):
-        assert isinstance(root, ElementTree.Element)
-        self._root = root
-
     # NAME
     @property
     def name(self):
