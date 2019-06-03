@@ -17,9 +17,9 @@ def main():
 
     jucer_file = JucerFile(JUCER_FILE_PATH)
     jucer_file.cpp_language_standard = '17'
-    jucer_file.save()
+    # jucer_file.save()
 
-    print()
+    print(jucer_file.modules)
     # # Create object controlling the Projucer binary
     # projucer = Projucer()
     # assert projucer.which
