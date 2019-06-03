@@ -12,3 +12,6 @@ codecov
 sphinx
 recommonmark    # Markdown
 doc8
+
+# REFACTOR
+rope

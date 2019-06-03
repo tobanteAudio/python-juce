@@ -5,9 +5,9 @@
 from xml.etree import ElementTree
 
 # from juce.util import get_attribute_from_tag
-from juce.projucer.xml_structure import (XML_TAG_BUILD_FOLDER,
-                                         XML_TAG_CONFIGURATIONS,
-                                         XML_TAG_MODULEPATHS)
+from juce.projucer.xml_structure import (ATTRIBUTE_BUILD_FOLDER,
+                                         TAG_CONFIGURATIONS,
+                                         TAG_MODULEPATHS)
 
 
 # def exporter_tag_to_string(tag_name):
@@ -63,19 +63,19 @@ class Exporter():
     @property
     def build_folder(self):
         """Target build folder"""
-        return self._root.attrib[XML_TAG_BUILD_FOLDER]
+        return self._root.attrib[ATTRIBUTE_BUILD_FOLDER]
 
     @build_folder.setter
     def build_folder(self, folder):
         assert isinstance(folder, str)
-        self._root.set(XML_TAG_BUILD_FOLDER, folder)
+        self._root.set(ATTRIBUTE_BUILD_FOLDER, folder)
 
     # CONFIGURATIONS
     @property
     def configurations(self):
         """Configurations"""
         config_list = []
-        for configs in self.root.iter(XML_TAG_CONFIGURATIONS):
+        for configs in self.root.iter(TAG_CONFIGURATIONS):
             for config in configs:
                 config_list.append(config)
         return config_list
@@ -85,7 +85,7 @@ class Exporter():
     def module_paths(self):
         """Module Paths"""
         module_list = []
-        for modules in self.root.iter(XML_TAG_MODULEPATHS):
+        for modules in self.root.iter(TAG_MODULEPATHS):
             for module in modules:
                 module_list.append(module)
         return module_list
