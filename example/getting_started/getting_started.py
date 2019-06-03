@@ -99,6 +99,11 @@ def main():
     assert not stderr
     print(stdout.decode('utf-8'))
 
+    stdout, stderr = projucer.encode_binary(
+        PROJECT_DIRECTORY+"/Resource/logo.png", PROJECT_DIRECTORY+"/Resource/binary_data.h")
+    assert not stderr
+    print(stdout.decode('utf-8'))
+
 
 if __name__ == "__main__":
     main()
