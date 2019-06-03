@@ -218,7 +218,9 @@ class JucerFile():
     @property
     def plugin_manufacturer_code(self):
         """Plugin manufacturer code"""
-        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_MANUFACTURER_CODE)
+        return get_attribute_from_tag(self.root,
+                                      ATTRIBUTE_PLUGIN_MANUFACTURER_CODE
+                                      )
 
     @plugin_manufacturer_code.setter
     def plugin_manufacturer_code(self, code):
@@ -277,7 +279,9 @@ class JucerFile():
     @property
     def binary_data_namespace(self):
         """Binary data namespace"""
-        return get_attribute_from_tag(self.root, ATTRIBUTE_BINARY_DATA_NAMESPACE)
+        return get_attribute_from_tag(self.root,
+                                      ATTRIBUTE_BINARY_DATA_NAMESPACE
+                                      )
 
     @binary_data_namespace.setter
     def binary_data_namespace(self, namespace):
