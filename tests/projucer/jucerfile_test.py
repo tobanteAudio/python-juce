@@ -58,45 +58,293 @@ def none_or(dictionary, key):
         return None
 
 
-def test_files():
-    for test in PROPTERY_RESULTS:
-        path = test['path']
-        jF = JucerFile(path)
+# PATH
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'tests/assets/modEQ.jucer'),
+    ('tests/assets/GuiApp.jucer', 'tests/assets/GuiApp.jucer'),
+])
+def test_jucer_file_path(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.path == expected
 
-        # Properties (get)
-        assert jF.path == none_or(test, "path")
-        assert jF.u_id == none_or(test, "u_id")
-        assert jF.name == none_or(test, "name")
-        assert jF.project_type == none_or(test, "project_type")
-        assert jF.jucer_version == none_or(test, "jucer_version")
-        assert jF.version == none_or(test, "version")
-        assert jF.company == none_or(test, "company")
-        assert jF.company_website == none_or(test, "company_website")
-        assert jF.company_email == none_or(test, "company_email")
-        assert jF.bundle_identifier == none_or(test, "bundle_identifier")
-        assert jF.plugin_name == none_or(test, "plugin_name")
-        assert jF.plugin_description == none_or(test, "plugin_description")
-        assert jF.plugin_manufacturer == none_or(test, "manufacturer")
-        assert jF.plugin_manufacturer_code == none_or(
-            test, "manufacturer_code")
-        assert jF.plugin_code == none_or(test, "plugin_code")
-        assert jF.plugin_au_exporter_profile == none_or(test, "au_profile")
-        assert jF.aax_identifier == none_or(test, "aax_identifier")
-        assert jF.vst3_category == none_or(test, "vst3_category")
-        assert jF.binary_data_namespace == none_or(
-            test, "binary_data_namespace")
-        assert jF.cpp_language_standard == none_or(
-            test, "cpp_language_standard")
-        assert jF.plugin_formats == none_or(test, "plugin_formats")
-        assert jF.company_copyright == none_or(test, "company_copyright")
-        assert jF.display_splash_screen == none_or(
-            test, "display_splash_screen")
-        assert jF.report_app_usage == none_or(test, "report_app_usage")
-        assert jF.compiler_flag_schemes == none_or(
-            test, "compiler_flag_schemes")
-        assert jF.project_line_feed == none_or(test, "project_line_feed")
-        assert jF.defines == none_or(test, "defines")
-        assert len(jF.modules) == test["module_count"]
+
+# ID
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'jWny5A'),
+    ('tests/assets/GuiApp.jucer', 'hgSXn0'),
+])
+def test_jucer_file_id(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.u_id == expected
+
+
+# NAME
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'modEQ'),
+    ('tests/assets/GuiApp.jucer', 'GuiApp'),
+])
+def test_jucer_file_name(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.name == expected
+
+
+# PROJECT TYPE
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'audioplug'),
+    ('tests/assets/GuiApp.jucer', 'guiapp'),
+])
+def test_jucer_file_project_type(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.project_type == expected
+
+
+# JUCER VERSION
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', '5.4.3'),
+    ('tests/assets/GuiApp.jucer', '5.4.3'),
+])
+def test_jucer_file_jucer_version(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.jucer_version == expected
+
+
+# VERSION
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', '0.4.0'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_version(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.version == expected
+
+
+# COMPANY
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'tobanteAudio'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_company(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.company == expected
+
+
+# COMPANY WEBSITE
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'https://github.com/tobanteAudio'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_company_website(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.company_website == expected
+
+
+# COMPANY EMAIL
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'tobanteAudio@gmail.com'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_company_email(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.company_email == expected
+
+
+# COMPANY COPYRIGHT
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'GNU GENERAL PUBLIC LICENSE Version 3'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_company_copyright(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.company_copyright == expected
+
+
+# BUNDLE IDENTIFIER
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'com.tobanteAudio.modEQ'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_bundle_identifier(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.bundle_identifier == expected
+
+
+# PLUGIN NAME
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'modEQ'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_plugin_name(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.plugin_name == expected
+
+
+# PLUGIN DESCRIPTION
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'EQ with modulation'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_plugin_description(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.plugin_description == expected
+
+
+# PLUGIN MANUFACTURER
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'tobanteAudio'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_plugin_manufacturer(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.plugin_manufacturer == expected
+
+
+# PLUGIN MANUFACTURER CODE
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'toAu'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_plugin_manufacturer_code(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.plugin_manufacturer_code == expected
+
+
+# PLUGIN CODE
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'tamq'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_plugin_code(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.plugin_code == expected
+
+
+# PLUGIN AU PROFILE
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'modEQAU'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_plugin_au_exporter_profile(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.plugin_au_exporter_profile == expected
+
+
+# PLUGIN AAX IDENTIFIER
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'com.tobanteAudio.modEQ'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_aax_identifier(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.aax_identifier == expected
+
+
+# PLUGIN VST3 CATEGORY
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'Analyzer,EQ,Fx'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_vst3_category(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.vst3_category == expected
+
+
+# BINARY DATA NAMESPACE
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'TobanteAudioData'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_binary_data_namespace(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.binary_data_namespace == expected
+
+
+# C++ STANDARD
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', '17'),
+    ('tests/assets/GuiApp.jucer', 'latest'),
+])
+def test_jucer_file_cpp_language_standard(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.cpp_language_standard == expected
+
+
+# PLUGIN FORMATS
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'buildAU,buildStandalone,buildVST3'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_plugin_formats(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.plugin_formats == expected
+
+
+# DISPLAY SPLASH SCREEN
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', '0'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_display_splash_screen(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.display_splash_screen == expected
+
+
+# REPORT APP USAGE
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', '0'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_report_app_usage(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.report_app_usage == expected
+
+
+# COMPILER FLAG SCHEMES
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 'NewScheme'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_compiler_flag_schemes(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.compiler_flag_schemes == expected
+
+
+# LINE FEED
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', '\n'),
+    ('tests/assets/GuiApp.jucer', None),
+])
+def test_jucer_file_project_line_feed(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.project_line_feed == expected
+
+
+# DEFINES
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', None),
+    ('tests/assets/GuiApp.jucer', 'TOBANTETEST=1\nTOBANTEAUDIO=1,TOBANTEAUDIO2=1'),
+])
+def test_jucer_file_defines(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert jucer_file.defines == expected
+
+
+# MODULES LENGTH
+@pytest.mark.parametrize("test_case, expected", [
+    ('tests/assets/modEQ.jucer', 16),
+    ('tests/assets/GuiApp.jucer', 12),
+])
+def test_jucer_file_modules_length(test_case, expected):
+    jucer_file = JucerFile(test_case)
+    assert len(jucer_file.modules) == expected
+
+
+# def test_files():
+#     for test in PROPTERY_RESULTS:
+#         path = test['path']
+#         jF = JucerFile(path)
+
+#         # Properties (get)
+#         assert len(jF.modules) == test["module_count"]
 
 
 def test_write_to_file():
