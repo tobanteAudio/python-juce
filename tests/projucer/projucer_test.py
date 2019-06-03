@@ -167,3 +167,28 @@ def test_projucer_encode_binary():
 
     # Delete file
     os.remove(header_file)
+
+
+@pytest.mark.integration_test
+def test_projucer_create_project_from_pip():
+    # Create empty header file
+    pip_file = 'test_data/pip/ArpeggiatorTutorial.h'
+    pip_size = os.path.getsize(pip_file)
+    assert pip_size > 0
+
+    # Call Projucer encode binary
+    output = 'test_data/pip/output'
+    projucer = Projucer()
+    stdout, stderr = projucer.create_project_from_pip(
+        pip_file, output)
+
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+    # Check if size changed
+    assert os.path.isfile(
+        output + '/ArpeggiatorTutorial/ArpeggiatorTutorial.jucer')
+
+    # Delete file
+    import shutil
+    shutil.rmtree(output)
