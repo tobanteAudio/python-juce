@@ -98,14 +98,14 @@ projucer.remove_tabs("path/to/src")
 ### Makefile
 
 ```sh
-make install    # pip install .
-make deps       # pip install -r requirements-dev.txt
-make develop    # pip install -e .
-make test       # Unit tests (pytest)
-make lint       # Linting (pylint)
-make coverage   # Coverage report (pytest-cov)
-make docs       # Documentation (sphinx)
-make stats      # Repository stats (cloc)
+make install        # pip install .
+make deps           # pip install -r requirements-dev.txt
+make develop        # pip install -e .
+make test           # Unit tests (pytest)
+make integration    # Integration tests (require Projucer in $PATH)
+make lint           # Linting (pylint)
+make docs           # Documentation (sphinx)
+make stats          # Repository stats (cloc)
 ```
 
 ## ToDO
