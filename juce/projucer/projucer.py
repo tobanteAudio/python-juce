@@ -18,32 +18,16 @@ class Projucer():
         """The script will look in $PATH & the path argument for
         the Projucer executable
         """
-        self._path = []
+        # Search in $PATH
         self._which = shutil.which(Projucer.EXE_NAME, path=None)
+
+        # Search in custom path
         if path:
-            # Check path is string
             assert isinstance(path, str)
-            self._path.append(path)
-            # Search in custom path
             self._which = shutil.which(Projucer.EXE_NAME, path=path)
-            if not self._which:
-                # Fallback to $PATH
-                self._which = shutil.which(Projucer.EXE_NAME, path=None)
 
-        # Append $PATH
-        self._path += get_list_of_path_dirs()
-
-    @property
-    def path(self):
-        """List of paths equal to the $PATH variable
-        """
-        return self._path
-
-    @property
-    def path_count(self):
-        """Number of directories in $PATH
-        """
-        return len(self._path)
+        if not self._which:
+            raise OSError("Projucer executable could not be found")
 
     @property
     def which(self):
