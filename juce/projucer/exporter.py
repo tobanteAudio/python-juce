@@ -10,35 +10,14 @@ from juce.projucer.xml_structure import (ATTRIBUTE_BUILD_FOLDER,
                                          TAG_MODULEPATHS)
 
 
-# def exporter_tag_to_string(tag_name):
-#     """Converts jucer xml tag to readable string
-#     """
-#     # Windows
-#     if tag_name == 'VS2013':
-#         return 'Windows (Visual Studio 2013)'
-#     if tag_name == 'VS2015':
-#         return 'Windows (Visual Studio 2015)'
-#     if tag_name == 'VS2017':
-#         return 'Windows (Visual Studio 2017)'
-#     if tag_name == 'VS2019':
-#         return 'Windows (Visual Studio 2019)'
-
-#     # macOS
-#     if tag_name == 'XCODE_MAC':
-#         return 'macOS (XCode)'
-
-#     # Linux
-#     if tag_name == 'LINUX_MAKE':
-#         return 'Linux (Makefile)'
-
-#     return 'unkown'
-
-
 class Exporter():
-    """Represents a Projucer exporter"""
+    """Represents a Projucer exporter
+
+    :param root: Root element for exporter
+    :type root: xml.etree.ElementTree.Element
+    """
 
     def __init__(self, root):
-        """Sets the root xml element"""
         assert isinstance(root, ElementTree.Element)
         self._root = root
 
