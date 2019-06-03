@@ -5,11 +5,9 @@
 from xml.etree import ElementTree
 
 # from juce.util import get_attribute_from_tag
-
-
-XML_TAG_BUILD_FOLDER = 'targetFolder'
-XML_TAG_CONFIGURATIONS = 'CONFIGURATIONS'
-XML_TAG_MODULEPATHS = 'MODULEPATHS'
+from juce.projucer.xml_structure import (XML_TAG_BUILD_FOLDER,
+                                         XML_TAG_CONFIGURATIONS,
+                                         XML_TAG_MODULEPATHS)
 
 
 # def exporter_tag_to_string(tag_name):

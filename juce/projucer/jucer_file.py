@@ -18,6 +18,34 @@ from juce.validation import (is_valid_vst3_category,
                              bool_to_integer_string)
 
 from .exporter import Exporter
+from .xml_structure import (
+    ATTRIBUTE_ID,
+    ATTRIBUTE_NAME,
+    ATTRIBUTE_PROJECT_TYPE,
+    ATTRIBUTE_JUCER_VERSION,
+    ATTRIBUTE_VERSION,
+    ATTRIBUTE_COMPANY,
+    ATTRIBUTE_COMPANY_WEBSITE,
+    ATTRIBUTE_COMPANY_EMAIL,
+    ATTRIBUTE_COMPANY_COPYRIGHT,
+    ATTRIBUTE_BUNDLE_IDENTIFIER,
+    ATTRIBUTE_PLUGIN_NAME,
+    ATTRIBUTE_PLUGIN_DESC,
+    ATTRIBUTE_PLUGIN_MANUFACTURER,
+    ATTRIBUTE_PLUGIN_MANUFACTURER_CODE,
+    ATTRIBUTE_PLUGIN_CODE,
+    ATTRIBUTE_PLUGIN_AU_PREFIX,
+    ATTRIBUTE_PLUGIN_VST_CATEGORY,
+    ATTRIBUTE_AAX_IDENTIFIER,
+    ATTRIBUTE_BINARY_DATA_NAMESPACE,
+    ATTRIBUTE_CPP_STANDARD,
+    ATTRIBUTE_PLUGIN_FORMATS,
+    ATTRIBUTE_SPLASH_SCREEN,
+    ATTRIBUTE_REPORT_APP_USAGE,
+    ATTRIBUTE_COMPILER_FLAGS,
+    ATTRIBUTE_LINE_FEEDS,
+    ATTRIBUTE_DEFINES
+)
 
 
 class JucerFile():
@@ -67,32 +95,32 @@ class JucerFile():
     @property
     def u_id(self):
         """Project unique id"""
-        return get_attribute_from_tag(self.root, 'id')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_ID)
 
     @u_id.setter
     def u_id(self, u_id):
-        self.root.set('id', u_id)
+        self.root.set(ATTRIBUTE_ID, u_id)
 
     # NAME
     @property
     def name(self):
         """Project name"""
-        return get_attribute_from_tag(self.root, 'name')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_NAME)
 
     @name.setter
     def name(self, name):
-        self.root.set('name', name)
+        self.root.set(ATTRIBUTE_NAME, name)
 
     # PROJECT TYPE
     @property
     def project_type(self):
         """Project type"""
-        return get_attribute_from_tag(self.root, 'projectType')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PROJECT_TYPE)
 
     @project_type.setter
     def project_type(self, project_type):
         if is_valid_project_type(project_type):
-            self.root.set('projectType', project_type)
+            self.root.set(ATTRIBUTE_PROJECT_TYPE, project_type)
             return
         self.fail_silent_or_raise()
 
@@ -100,102 +128,102 @@ class JucerFile():
     @property
     def jucer_version(self):
         """Project jucer version"""
-        return get_attribute_from_tag(self.root, 'jucerVersion')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_JUCER_VERSION)
 
     @jucer_version.setter
     def jucer_version(self, version):
-        self.root.set('jucerVersion', version)
+        self.root.set(ATTRIBUTE_JUCER_VERSION, version)
 
     # VERSION
     @property
     def version(self):
         """Project version"""
-        return get_attribute_from_tag(self.root, 'version')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_VERSION)
 
     @version.setter
     def version(self, version):
-        self.root.set('version', version)
+        self.root.set(ATTRIBUTE_VERSION, version)
 
     # COMPANY
     @property
     def company(self):
         """Company name"""
-        return get_attribute_from_tag(self.root, 'companyName')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_COMPANY)
 
     @company.setter
     def company(self, company_name):
-        self.root.set('companyName', company_name)
+        self.root.set(ATTRIBUTE_COMPANY, company_name)
 
     # COMPANY WEBSITE
     @property
     def company_website(self):
         """Company website"""
-        return get_attribute_from_tag(self.root, 'companyWebsite')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_COMPANY_WEBSITE)
 
     @company_website.setter
     def company_website(self, company_website):
-        self.root.set('companyWebsite', company_website)
+        self.root.set(ATTRIBUTE_COMPANY_WEBSITE, company_website)
 
     # COMPANY EMAIL
     @property
     def company_email(self):
         """Company email"""
-        return get_attribute_from_tag(self.root, 'companyEmail')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_COMPANY_EMAIL)
 
     @company_email.setter
     def company_email(self, company_email):
-        self.root.set('companyEmail', company_email)
+        self.root.set(ATTRIBUTE_COMPANY_EMAIL, company_email)
 
     # BUNDLE IDENTIFIER
     @property
     def bundle_identifier(self):
         """Project bundle identifier"""
-        return get_attribute_from_tag(self.root, 'bundleIdentifier')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_BUNDLE_IDENTIFIER)
 
     @bundle_identifier.setter
     def bundle_identifier(self, identifier):
-        self.root.set('bundleIdentifier', identifier)
+        self.root.set(ATTRIBUTE_BUNDLE_IDENTIFIER, identifier)
 
     # PLUGIN NAME
     @property
     def plugin_name(self):
         """Plugin name"""
-        return get_attribute_from_tag(self.root, 'pluginName')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_NAME)
 
     @plugin_name.setter
     def plugin_name(self, name):
-        self.root.set('pluginName', name)
+        self.root.set(ATTRIBUTE_PLUGIN_NAME, name)
 
     # PLUGIN DESCRIPTION
     @property
     def plugin_description(self):
         """Plugin description"""
-        return get_attribute_from_tag(self.root, 'pluginDesc')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_DESC)
 
     @plugin_description.setter
     def plugin_description(self, description):
-        self.root.set('pluginDesc', description)
+        self.root.set(ATTRIBUTE_PLUGIN_DESC, description)
 
     # PLUGIN MANUFACTURER
     @property
     def plugin_manufacturer(self):
         """Plugin manufacturer"""
-        return get_attribute_from_tag(self.root, 'pluginManufacturer')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_MANUFACTURER)
 
     @plugin_manufacturer.setter
     def plugin_manufacturer(self, manufacturer):
-        self.root.set('pluginManufacturer', manufacturer)
+        self.root.set(ATTRIBUTE_PLUGIN_MANUFACTURER, manufacturer)
 
     # PLUGIN MANUFACTURER CODE
     @property
     def plugin_manufacturer_code(self):
         """Plugin manufacturer code"""
-        return get_attribute_from_tag(self.root, 'pluginManufacturerCode')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_MANUFACTURER_CODE)
 
     @plugin_manufacturer_code.setter
     def plugin_manufacturer_code(self, code):
         if is_valid_plugin_manufacturer_code(code):
-            self.root.set('pluginManufacturerCode', code)
+            self.root.set(ATTRIBUTE_PLUGIN_MANUFACTURER_CODE, code)
             return
         self.fail_silent_or_raise()
 
@@ -203,12 +231,12 @@ class JucerFile():
     @property
     def plugin_code(self):
         """Plugin code"""
-        return get_attribute_from_tag(self.root, 'pluginCode')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_CODE)
 
     @plugin_code.setter
     def plugin_code(self, code):
         if is_valid_plugin_code(code):
-            self.root.set('pluginCode', code)
+            self.root.set(ATTRIBUTE_PLUGIN_CODE, code)
             return
         self.fail_silent_or_raise()
 
@@ -216,27 +244,27 @@ class JucerFile():
     @property
     def plugin_au_exporter_profile(self):
         """AU exporter profile"""
-        return get_attribute_from_tag(self.root, 'pluginAUExportPrefix')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_AU_PREFIX)
 
     @plugin_au_exporter_profile.setter
     def plugin_au_exporter_profile(self, exporter_profile):
-        self.root.set('pluginAUExportPrefix', exporter_profile)
+        self.root.set(ATTRIBUTE_PLUGIN_AU_PREFIX, exporter_profile)
 
     # AAX IDENTIFIER
     @property
     def aax_identifier(self):
         """AAX identifier"""
-        return get_attribute_from_tag(self.root, 'aaxIdentifier')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_AAX_IDENTIFIER)
 
     @aax_identifier.setter
     def aax_identifier(self, aax_identifier):
-        self.root.set('aaxIdentifier', aax_identifier)
+        self.root.set(ATTRIBUTE_AAX_IDENTIFIER, aax_identifier)
 
     # VST3 CATEGORY
     @property
     def vst3_category(self):
         """Plugin vst3 category"""
-        return get_attribute_from_tag(self.root, 'pluginVST3Category')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_VST_CATEGORY)
 
     @vst3_category.setter
     def vst3_category(self, category):
@@ -249,12 +277,12 @@ class JucerFile():
     @property
     def binary_data_namespace(self):
         """Binary data namespace"""
-        return get_attribute_from_tag(self.root, 'binaryDataNamespace')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_BINARY_DATA_NAMESPACE)
 
     @binary_data_namespace.setter
     def binary_data_namespace(self, namespace):
         if is_valid_namespace(namespace):
-            self.root.set('binaryDataNamespace', namespace)
+            self.root.set(ATTRIBUTE_BINARY_DATA_NAMESPACE, namespace)
             return
         self.fail_silent_or_raise()
 
@@ -262,12 +290,12 @@ class JucerFile():
     @property
     def cpp_language_standard(self):
         """C++ standard"""
-        return get_attribute_from_tag(self.root, 'cppLanguageStandard')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_CPP_STANDARD)
 
     @cpp_language_standard.setter
     def cpp_language_standard(self, standard):
         if is_valid_cpp_standard(standard):
-            self.root.set('cppLanguageStandard', standard)
+            self.root.set(ATTRIBUTE_CPP_STANDARD, standard)
             return
         self.fail_silent_or_raise()
 
@@ -275,7 +303,7 @@ class JucerFile():
     @property
     def plugin_formats(self):
         """Plugin formats"""
-        return get_attribute_from_tag(self.root, 'pluginFormats')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_PLUGIN_FORMATS)
 
     @plugin_formats.setter
     def plugin_formats(self, formats):
@@ -285,23 +313,23 @@ class JucerFile():
     @property
     def company_copyright(self):
         """Company copyright"""
-        return get_attribute_from_tag(self.root, 'companyCopyright')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_COMPANY_COPYRIGHT)
 
     @company_copyright.setter
     def company_copyright(self, copyright_text):
-        self.root.set('companyCopyright', copyright_text)
+        self.root.set(ATTRIBUTE_COMPANY_COPYRIGHT, copyright_text)
 
     # DISPLAY SPLASH SCREEN
     @property
     def display_splash_screen(self):
         """Plugin splash screen flag"""
-        return get_attribute_from_tag(self.root, 'displaySplashScreen')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_SPLASH_SCREEN)
 
     @display_splash_screen.setter
     def display_splash_screen(self, toggle):
         if is_valid_boolean(toggle):
             toggle_number = bool_to_integer_string(toggle)
-            self.root.set('displaySplashScreen', toggle_number)
+            self.root.set(ATTRIBUTE_SPLASH_SCREEN, toggle_number)
             return
         self.fail_silent_or_raise()
 
@@ -309,13 +337,13 @@ class JucerFile():
     @property
     def report_app_usage(self):
         """Plugin report app usage flag"""
-        return get_attribute_from_tag(self.root, 'reportAppUsage')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_REPORT_APP_USAGE)
 
     @report_app_usage.setter
     def report_app_usage(self, toggle):
         if is_valid_boolean(toggle):
             toggle_number = bool_to_integer_string(toggle)
-            self.root.set('reportAppUsage', toggle_number)
+            self.root.set(ATTRIBUTE_REPORT_APP_USAGE, toggle_number)
             return
         self.fail_silent_or_raise()
 
@@ -323,7 +351,7 @@ class JucerFile():
     @property
     def compiler_flag_schemes(self):
         """Plugin compiler flag schemes"""
-        return get_attribute_from_tag(self.root, 'compilerFlagSchemes')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_COMPILER_FLAGS)
 
     @compiler_flag_schemes.setter
     def compiler_flag_schemes(self, compiler_schemes):
@@ -333,12 +361,12 @@ class JucerFile():
     @property
     def project_line_feed(self):
         """Project line feed"""
-        return get_attribute_from_tag(self.root, 'projectLineFeed')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_LINE_FEEDS)
 
     @project_line_feed.setter
     def project_line_feed(self, line_feed):
         if is_valid_line_feed(line_feed):
-            self.root.set('projectLineFeed', line_feed)
+            self.root.set(ATTRIBUTE_LINE_FEEDS, line_feed)
             return
         self.fail_silent_or_raise()
 
@@ -346,11 +374,11 @@ class JucerFile():
     @property
     def defines(self):
         """Project defines"""
-        return get_attribute_from_tag(self.root, 'defines')
+        return get_attribute_from_tag(self.root, ATTRIBUTE_DEFINES)
 
     @defines.setter
     def defines(self, defines):
-        self.root.set('defines', defines)
+        self.root.set(ATTRIBUTE_DEFINES, defines)
 
     @property
     def modules(self):
