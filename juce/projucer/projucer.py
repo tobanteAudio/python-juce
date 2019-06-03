@@ -298,4 +298,8 @@ class Projucer():
                                  path_to_pip, path_to_output],
                                 stdout=subprocess.PIPE,
                                 stderr=subprocess.STDOUT)
-        return proc.communicate()
+        stdout, stderr = proc.communicate()
+        rc = proc.returncode
+
+        assert rc == 0
+        return (stdout, stderr)

@@ -262,14 +262,3 @@ def is_valid_line_feed(line_feed):
     if line_feed in LINE_FEEDS:
         return True
     return False
-
-
-def bool_to_integer_string(boolean):
-    """Returns '0' for False & '1' for True
-
-    :param `boolean`: Value to convert
-    :returns: Conversion result
-    :rtype: str
-
-    """
-    return "{}".format(int(boolean))

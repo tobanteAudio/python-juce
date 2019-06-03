@@ -14,13 +14,12 @@ def get_attribute_from_tag(tag, attribute):
     return element
 
 
-# def print_subprocess(process):
-#     """Prints stdout & stderr
-#     """
-#     stdout, stderr = process.communicate()
+def bool_to_integer_string(boolean):
+    """Returns '0' for False & '1' for True
 
-#     if stdout:
-#         print(stdout.decode('utf-8'))
+    :param `boolean`: Value to convert
+    :returns: Conversion result
+    :rtype: str
 
-#     if stderr:
-#         print(stderr.decode('utf-8'))
+    """
+    return "{}".format(int(boolean))

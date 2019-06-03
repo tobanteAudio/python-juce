@@ -1,6 +1,7 @@
 # pylint: skip-file
 import pytest
 
+from juce.util import bool_to_integer_string
 from juce.validation import (is_valid_vst3_category,
                              is_valid_project_type,
                              is_valid_vst2_category,
@@ -12,8 +13,18 @@ from juce.validation import (is_valid_vst3_category,
                              is_valid_boolean,
                              is_valid_plugin_manufacturer_code,
                              is_valid_plugin_code,
-                             is_valid_line_feed,
-                             bool_to_integer_string)
+                             is_valid_line_feed
+                             )
+
+
+@pytest.mark.parametrize("test_case, expected", [
+    (True, '1'),
+    (False, '0'),
+    (1, '1'),
+    (0, '0'),
+])
+def test_boolean_to_integer_string(test_case, expected):
+    assert bool_to_integer_string(test_case) == expected
 
 
 @pytest.mark.parametrize("test_case, expected", [
@@ -61,16 +72,6 @@ def test_plugin_manufacturer_code_validation(test_case, expected):
 ])
 def test_project_type_validation(test_case, expected):
     assert is_valid_project_type(test_case) == expected
-
-
-@pytest.mark.parametrize("test_case, expected", [
-    (True, '1'),
-    (False, '0'),
-    (1, '1'),
-    (0, '0'),
-])
-def test_boolean_to_integer_string(test_case, expected):
-    assert bool_to_integer_string(test_case) == expected
 
 
 @pytest.mark.parametrize("test_case, expected", [
