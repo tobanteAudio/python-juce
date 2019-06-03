@@ -3,7 +3,9 @@ import pytest
 
 from juce.projucer import Projucer
 
-JUCER_FILE = "tests/assets/AwesomeAudioApp/AwesomeAudioApp.jucer"
+BASE_PATH = "tests/assets/AwesomeAudioApp/"
+JUCER_FILE = BASE_PATH+"AwesomeAudioApp.jucer"
+SOURCE_DIR = BASE_PATH+"Source"
 
 
 def test_projucer_bad_path():
@@ -22,7 +24,6 @@ def test_projucer_default_path():
 def test_projucer_status():
     projucer = Projucer()
     stdout, stderr = projucer.status(JUCER_FILE)
-    assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
@@ -35,20 +36,17 @@ def test_projucer_status():
 def test_projucer_resave():
     projucer = Projucer()
     stdout, stderr = projucer.resave(JUCER_FILE)
-    assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
     output = stdout.decode('utf-8')
     assert 'Re-saving file:' in output
-    assert 'Finished saving:' in output
 
 
 @pytest.mark.integration_test
 def test_projucer_resave_resources():
     projucer = Projucer()
     stdout, stderr = projucer.resave_resources(JUCER_FILE)
-    assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
@@ -60,7 +58,6 @@ def test_projucer_resave_resources():
 def test_projucer_get_version():
     projucer = Projucer()
     stdout, stderr = projucer.get_version(JUCER_FILE)
-    assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
@@ -76,7 +73,6 @@ def test_projucer_set_version():
 
     # Set to new
     stdout, stderr = projucer.set_version(JUCER_FILE, new_version)
-    assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
@@ -85,7 +81,6 @@ def test_projucer_set_version():
 
     # Set to old
     stdout, stderr = projucer.set_version(JUCER_FILE, old_version)
-    assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
@@ -101,7 +96,6 @@ def test_projucer_bump_version():
 
     # Set to new
     stdout, stderr = projucer.bump_version(JUCER_FILE)
-    assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
@@ -110,9 +104,40 @@ def test_projucer_bump_version():
 
     # Set to old
     stdout, stderr = projucer.set_version(JUCER_FILE, old_version)
-    assert stdout
     assert isinstance(stdout, bytes)
     assert isinstance(stderr, type(None))
 
     output = stdout.decode('utf-8')
     assert old_version in output
+
+
+@pytest.mark.integration_test
+def test_projucer_set_global_search_path():
+    projucer = Projucer()
+    stdout, stderr = projucer.set_global_search_path(
+        'linux', 'defaultUserModulePath', '~/modules')
+
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+
+@pytest.mark.integration_test
+def test_projucer_trans():
+    projucer = Projucer()
+    stdout, stderr = projucer.trans(SOURCE_DIR)
+
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+
+@pytest.mark.integration_test
+def test_projucer_obfuscated_string_code():
+    projucer = Projucer()
+    stdout, stderr = projucer.obfuscated_string_code(JUCER_FILE)
+
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+    output = stdout.decode('utf-8')
+    assert 'String createString()' in output
+    assert 'jassert (result ==' in output

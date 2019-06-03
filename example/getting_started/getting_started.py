@@ -87,7 +87,15 @@ def main():
     assert not stderr
     print(stdout.decode('utf-8'))
 
-    stdout, stderr = projucer.trim_whitespace(SOURCE_DIRECTORY)
+    stdout, stderr = projucer.obfuscated_string_code('SOURCE_DIRECTORY')
+    assert not stderr
+    print(stdout.decode('utf-8'))
+
+    stdout, stderr = projucer.set_global_search_path(
+        'linux', 'defaultUserModulePath', '~/modules2')
+    assert not stderr
+
+    stdout, stderr = projucer.trans(SOURCE_DIRECTORY)
     assert not stderr
     print(stdout.decode('utf-8'))
 
