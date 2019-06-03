@@ -3,6 +3,7 @@
 import os
 
 from juce.projucer import Projucer, JucerFile
+from juce.util import get_attribute_from_tag
 
 SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
@@ -22,10 +23,18 @@ print(jucerFile.modules)
 # Exporters
 print(len(jucerFile.exporters))
 for exporter in jucerFile.exporters:
+    # Name & Folder
     print("{}: {}".format(exporter.name, exporter.build_folder))
+    # Configs
     for config in exporter.configurations:
         print("     {}, with debug: {}".format(
-            config.attrib['name'], config.attrib['isDebug']))
+            get_attribute_from_tag(config, 'name'),
+            get_attribute_from_tag(config, 'isDebug')))
+    # Module Paths
+    for module in exporter.module_paths:
+        print("     Module: {}, path: {}".format(
+            get_attribute_from_tag(module, 'id'),
+            get_attribute_from_tag(module, 'path')))
 
 # Attributes (set)
 # jucerFile.path = 'new/path/to/project.jucer'

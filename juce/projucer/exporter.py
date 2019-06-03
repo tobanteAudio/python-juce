@@ -7,8 +7,9 @@ from xml.etree import ElementTree
 from juce.util import get_attribute_from_tag
 
 
-XML_TAG_BUILD_FOLDER = "targetFolder"
+XML_TAG_BUILD_FOLDER = 'targetFolder'
 XML_TAG_CONFIGURATIONS = 'CONFIGURATIONS'
+XML_TAG_MODULEPATHS = 'MODULEPATHS'
 
 
 def exporter_tag_to_string(tag_name):
@@ -78,3 +79,13 @@ class Exporter():
             for config in configs:
                 config_list.append(config)
         return config_list
+
+    # MODULE PATHS
+    @property
+    def module_paths(self):
+        """Module Paths"""
+        module_list = []
+        for modules in self.root.iter(XML_TAG_MODULEPATHS):
+            for module in modules:
+                module_list.append(module)
+        return module_list
