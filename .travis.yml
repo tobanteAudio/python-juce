@@ -14,7 +14,6 @@ script-anchors:
   - &script-linux
     - make docs
     - make lint
-    - make examples
     - make test
 
   - &script-linux-integration-tests
@@ -50,6 +49,7 @@ script-anchors:
     # Python
     - make docs
     - make lint
+    - make examples
     - make integration
     - codecov
 
