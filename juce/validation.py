@@ -99,6 +99,10 @@ RTAS_CATEGORIES = ["ePlugInCategory_None",
 def is_valid_four_digit_code(code):
     """Returns true if a code with 4 digits and at least
     one upper case letter was given
+
+    :param `code`: String to test
+    :returns: Validation result
+    :rtype: bool
     """
     if len(code) == 4:
         for char in code:
@@ -108,70 +112,121 @@ def is_valid_four_digit_code(code):
 
 
 def is_valid_plugin_code(code):
-    """Returns true if a valid plugin code was given"""
+    """Returns true if a valid plugin code was given
+
+    :param `code`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if is_valid_four_digit_code(code):
         return True
     return False
 
 
 def is_valid_plugin_manufacturer_code(code):
-    """Returns true if a valid plugin manufacturer code was given"""
+    """Returns true if a valid plugin manufacturer code was given
+
+    :param `code`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if is_valid_four_digit_code(code):
         return True
     return False
 
 
 def is_valid_project_type(project_type):
-    """Returns true if a valid project type was given"""
+    """Returns true if a valid project type was give
+
+    :param `project_type`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if project_type in PROJECT_TYPES:
         return True
     return False
 
 
 def is_valid_vst2_category(category):
-    """Returns true if a valid VST2 category was given"""
+    """Returns true if a valid VST2 category was given
+
+    :param `category`: String to test
+    :returns: Validation result
+    :rtype: bool
+
+    """
     if category in VST2_CATEGORIES:
         return True
     return False
 
 
 def is_valid_vst3_category(category):
-    """Returns true if a valid VST3 category was given"""
+    """Returns true if a valid VST3 category was given
+
+    :param `category`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if category in VST3_CATEGORIES:
         return True
     return False
 
 
 def is_valid_au_category(category):
-    """Returns true if a valid AudioUnit category was given"""
+    """Returns true if a valid AudioUnit category was given
+
+    :param `category`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if category in AU_CATEGORIES:
         return True
     return False
 
 
 def is_valid_aax_category(category):
-    """Returns true if a valid AAX category was given"""
+    """Returns true if a valid AAX category was given
+
+    :param `category`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if category in AAX_CATEGORIES:
         return True
     return False
 
 
 def is_valid_rtas_category(category):
-    """Returns true if a valid RTAS category was given"""
+    """Returns true if a valid RTAS category was given
+
+    :param `category`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if category in RTAS_CATEGORIES:
         return True
     return False
 
 
 def is_valid_cpp_standard(standard):
-    """Returns true if the given standard is valid"""
+    """Returns true if the given standard is valid
+
+    :param `standard`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if standard in CPP_STANDARDS:
         return True
     return False
 
 
 def is_valid_namespace(namespace):
-    """Returns true if the given namespace is valid"""
+    """Returns true if the given namespace is valid
+
+    :param `namespace`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     digits = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
     if namespace[0] in digits:
         return False
@@ -183,7 +238,12 @@ def is_valid_namespace(namespace):
 
 
 def is_valid_boolean(boolean):
-    """Returns true if the given value represents a bool"""
+    """Returns true if the given value represents a bool
+
+    :param `boolean`: Value to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if boolean == 0:
         return True
     if boolean == 1:
@@ -193,12 +253,23 @@ def is_valid_boolean(boolean):
 
 
 def is_valid_line_feed(line_feed):
-    """Returns true if the line feed is valid"""
+    """Returns true if the line feed is valid
+
+    :param `line_feed`: String to test
+    :returns: Validation result
+    :rtype: bool
+    """
     if line_feed in LINE_FEEDS:
         return True
     return False
 
 
 def bool_to_integer_string(boolean):
-    """Returns '0' for False & '1' for True"""
+    """Returns '0' for False & '1' for True
+
+    :param `boolean`: Value to convert
+    :returns: Conversion result
+    :rtype: str
+
+    """
     return "{}".format(int(boolean))
