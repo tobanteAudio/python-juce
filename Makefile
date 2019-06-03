@@ -16,14 +16,14 @@ develop:
 	@pip install -e .
 
 test:
-	@pytest $(TEST_DIRECTORY)
+	@pytest -v $(TEST_DIRECTORY)
 
 lint:
 	@flake8 $(PACKAGE_NAME) $(TEST_DIRECTORY) $(EXAMPLES_DIRECTORY)
 	@pylint --disable=fixme $(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 coverage:
-	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) -m "not integration_test"
+	@pytest -v --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) -m "not integration_test"
 
 clean:
 	rm -rf $(DOC_DIRECTORY)/_build

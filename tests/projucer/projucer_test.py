@@ -6,15 +6,15 @@ from juce.projucer import Projucer
 JUCER_FILE = "tests/assets/AwesomeAudioApp/AwesomeAudioApp.jucer"
 
 
+def test_projucer_bad_path():
+    with pytest.raises(OSError) as excinfo:
+        Projucer('/root')
+    assert "Projucer executable could not be found" in str(excinfo.value)
+
+
 @pytest.mark.integration_test
 def test_projucer_default_path():
     projucer = Projucer()
-    assert isinstance(projucer.which, str)
-
-
-@pytest.mark.integration_test
-def test_projucer_custom_path():
-    projucer = Projucer(r'C:\Dev\bin')
     assert isinstance(projucer.which, str)
 
 

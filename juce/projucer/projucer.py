@@ -5,21 +5,20 @@
 import shutil
 import subprocess
 
-from juce.util import (get_list_of_path_dirs)
-
 
 class Projucer():
-    """Represents the Projucer executable
+    """Represents a controller to the Projucer executable.
+
+        :param path: Optional path to search for Projucer. Default is $PATH
+        :raises: :class:`OSError`: On construction, if exe was not found.
     """
 
     EXE_NAME = 'Projucer'
 
     def __init__(self, path=None):
-        """The script will look in $PATH & the path argument for
-        the Projucer executable
-        """
         # Search in $PATH
-        self._which = shutil.which(Projucer.EXE_NAME, path=None)
+        if not path:
+            self._which = shutil.which(Projucer.EXE_NAME, path=None)
 
         # Search in custom path
         if path:
