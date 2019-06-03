@@ -1,4 +1,6 @@
 # pylint: skip-file
+import os
+
 import pytest
 
 from juce.projucer import Projucer
@@ -141,3 +143,27 @@ def test_projucer_obfuscated_string_code():
     output = stdout.decode('utf-8')
     assert 'String createString()' in output
     assert 'jassert (result ==' in output
+
+
+@pytest.mark.integration_test
+def test_projucer_encode_binary():
+    # Create empty header file
+    header_file = 'test_data/binary/binary_data.h'
+    open(header_file, 'a').close()
+    empty_size = os.path.getsize(header_file)
+    assert empty_size == 0
+
+    # Call Projucer encode binary
+    projucer = Projucer()
+    stdout, stderr = projucer.encode_binary(
+        'test_data/binary/logo.png', header_file)
+
+    assert isinstance(stdout, bytes)
+    assert isinstance(stderr, type(None))
+
+    # Check if size changed
+    full_size = os.path.getsize(header_file)
+    assert full_size > empty_size
+
+    # Delete file
+    os.remove(header_file)
