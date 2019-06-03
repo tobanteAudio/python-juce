@@ -109,7 +109,7 @@ def test_projucer_bump_version():
     assert isinstance(result['stderr'], type(None))
 
     output = result['stdout'].decode('utf-8')
-    # assert new_version in output
+    assert new_version in output
 
     # Set to old
     result = projucer.set_version(JUCER_FILE, old_version)

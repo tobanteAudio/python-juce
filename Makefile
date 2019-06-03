@@ -22,10 +22,10 @@ develop:
 	@pip install -e .
 
 test:
-	@pytest -v --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) -m "not integration_test"
+	@pytest -v --cov-report term-missing --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) -m "not integration_test"
 
 integration:
-	@pytest -v --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY)
+	@pytest -v --cov-report term-missing --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 examples:
 	@python $(EXAMPLE_BUILD_VARIANT)
