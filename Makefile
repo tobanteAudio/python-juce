@@ -3,7 +3,7 @@ default: develop
 
 PACKAGE_NAME = juce
 TEST_DIRECTORY = tests
-EXAMPLES_DIRECTORY = examples
+EXAMPLES_DIRECTORY = example
 DOC_DIRECTORY = docs
 
 install:
@@ -42,3 +42,8 @@ stats:
 	@cloc $(PACKAGE_NAME)
 	@echo "TESTS:"
 	@cloc $(TEST_DIRECTORY)
+	@echo "EXAMPLES:"
+	@cloc  $(EXAMPLES_DIRECTORY)/getting_started/getting_started.py \
+		$(EXAMPLES_DIRECTORY)/build_variations/build_variations.py \
+		$(EXAMPLES_DIRECTORY)/multi_project_consistency/multi_project_consistency.py \
+		$(EXAMPLES_DIRECTORY)/projucer_automation/projucer_automation.py
