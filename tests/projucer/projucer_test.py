@@ -157,6 +157,58 @@ def test_projucer_obfuscated_string_code():
 
 
 @pytest.mark.integration_test
+def test_projucer_trim_whitespace():
+    projucer = Projucer()
+    result = projucer.trim_whitespace(SOURCE_DIR)
+
+    assert result['return_code'] == 0
+    assert isinstance(result['stdout'], bytes)
+    assert isinstance(result['stderr'], type(None))
+
+    output = result['stdout'].decode('utf-8')
+    assert output == ''
+
+
+@pytest.mark.integration_test
+def test_projucer_remove_tabs():
+    projucer = Projucer()
+    result = projucer.remove_tabs(SOURCE_DIR)
+
+    assert result['return_code'] == 0
+    assert isinstance(result['stdout'], bytes)
+    assert isinstance(result['stderr'], type(None))
+
+    output = result['stdout'].decode('utf-8')
+    assert output == ''
+
+
+@pytest.mark.integration_test
+def test_projucer_tidy_divider_comments():
+    projucer = Projucer()
+    result = projucer.tidy_divider_comments(SOURCE_DIR)
+
+    assert result['return_code'] == 0
+    assert isinstance(result['stdout'], bytes)
+    assert isinstance(result['stderr'], type(None))
+
+    output = result['stdout'].decode('utf-8')
+    assert output == ''
+
+
+@pytest.mark.integration_test
+def test_projucer_fix_broken_include_paths():
+    projucer = Projucer()
+    result = projucer.fix_broken_include_paths(SOURCE_DIR)
+
+    assert result['return_code'] == 0
+    assert isinstance(result['stdout'], bytes)
+    assert isinstance(result['stderr'], type(None))
+
+    output = result['stdout'].decode('utf-8')
+    assert output == ''
+
+
+@pytest.mark.integration_test
 def test_projucer_encode_binary():
     # Create empty header file
     header_file = 'test_data/binary/binary_data.h'
