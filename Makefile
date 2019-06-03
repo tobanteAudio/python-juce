@@ -23,7 +23,7 @@ lint:
 	@pylint --disable=fixme $(PACKAGE_NAME) $(TEST_DIRECTORY)
 
 coverage:
-	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY)
+	@pytest --cov=$(PACKAGE_NAME) $(TEST_DIRECTORY) -m "not integration_test"
 
 clean:
 	rm -rf $(PACKAGE_NAME)/__pycache__

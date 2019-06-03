@@ -49,14 +49,14 @@ class Projucer():
     def which(self):
         """Path to Projucer executable
         """
-        return str(self._which)
+        return self._which
 
     def resave(self, project):
         """Resaves all files and resources in a project,
         to generate build files.
         """
+        assert isinstance(project, str)
         if self._which:
-            assert isinstance(project, str)
             proc = subprocess.Popen([self._which, '--resave', project],
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT)
@@ -65,8 +65,8 @@ class Projucer():
     def resave_resources(self, project):
         """Resaves just the binary resources for a project.
         """
+        assert isinstance(project, str)
         if self._which:
-            assert isinstance(project, str)
             proc = subprocess.Popen([self._which, '--resave-resources',
                                      project],
                                     stdout=subprocess.PIPE,
@@ -76,8 +76,8 @@ class Projucer():
     def get_version(self, project):
         """Returns the version number of a project.
         """
+        assert isinstance(project, str)
         if self._which:
-            assert isinstance(project, str)
             proc = subprocess.Popen([self._which, '--get-version', project],
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT)
@@ -86,8 +86,8 @@ class Projucer():
     def set_version(self, project, version):
         """Updates the version number in a project.
         """
+        assert isinstance(project, str)
         if self._which:
-            assert isinstance(project, str)
             proc = subprocess.Popen([self._which, '--set-version',
                                      version, project],
                                     stdout=subprocess.PIPE,
@@ -97,8 +97,8 @@ class Projucer():
     def bump_version(self, project):
         """Updates the minor version number in a project by 1.
         """
+        assert isinstance(project, str)
         if self._which:
-            assert isinstance(project, str)
             proc = subprocess.Popen([self._which, '--bump-version',
                                      project],
                                     stdout=subprocess.PIPE,
@@ -109,8 +109,8 @@ class Projucer():
         """Invokes 'git tag' to attach the project's version
         number to the current git repository.
         """
+        assert isinstance(project, str)
         if self._which:
-            assert isinstance(project, str)
             proc = subprocess.Popen([self._which, '--git-tag-version',
                                      project],
                                     stdout=subprocess.PIPE,
@@ -120,8 +120,8 @@ class Projucer():
     def status(self, project):
         """Displays status info about the Projucer project
         """
+        assert isinstance(project, str)
         if self._which:
-            assert isinstance(project, str)
             proc = subprocess.Popen([self._which, '--status', project],
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT)
@@ -130,9 +130,9 @@ class Projucer():
     def build_module(self, target_folder, module_folder):
         """Zips a module into a downloadable file format.
         """
+        assert isinstance(target_folder, str)
+        assert isinstance(module_folder, str)
         if self._which:
-            assert isinstance(target_folder, str)
-            assert isinstance(module_folder, str)
             proc = subprocess.Popen([self._which, '--buildmodule',
                                      target_folder, module_folder],
                                     stdout=subprocess.PIPE,
@@ -142,9 +142,9 @@ class Projucer():
     def build_all_modules(self, target_folder, module_folder):
         """Zips all modules in a given folder and creates an index for them.
         """
+        assert isinstance(target_folder, str)
+        assert isinstance(module_folder, str)
         if self._which:
-            assert isinstance(target_folder, str)
-            assert isinstance(module_folder, str)
             proc = subprocess.Popen([self._which, '--buildallmodules',
                                      target_folder, module_folder],
                                     stdout=subprocess.PIPE,
@@ -156,8 +156,8 @@ class Projucer():
         and trims any trailing whitespace from their lines,
         as well as normalising their line-endings to CR-LF.
         """
+        assert isinstance(target_folder, str)
         if self._which:
-            assert isinstance(target_folder, str)
             proc = subprocess.Popen([self._which, '--trim-whitespace',
                                      target_folder],
                                     stdout=subprocess.PIPE,
@@ -168,8 +168,8 @@ class Projucer():
         """Scans the given folder for C/C++ source files (recursively),
         and replaces any tab characters with 4 spaces.
         """
+        assert isinstance(target_folder, str)
         if self._which:
-            assert isinstance(target_folder, str)
             proc = subprocess.Popen([self._which, '--remove-tabs',
                                      target_folder],
                                     stdout=subprocess.PIPE,
@@ -181,8 +181,8 @@ class Projucer():
         and normalises any juce-style comment division lines (i.e. any lines
         that look like //===== or //------- or /////////// will be replaced).
         """
+        assert isinstance(target_folder, str)
         if self._which:
-            assert isinstance(target_folder, str)
             proc = subprocess.Popen([self._which, '--tidy-divider-comments',
                                      target_folder],
                                     stdout=subprocess.PIPE,
@@ -195,8 +195,8 @@ class Projucer():
         it changes it to use the optimum relative path. Helpful for
         auto-fixing includes when re-arranging files and folders in a project.
         """
+        assert isinstance(target_folder, str)
         if self._which:
-            assert isinstance(target_folder, str)
             proc = subprocess.Popen([self._which, '--fix-broken-include-paths',
                                      target_folder],
                                     stdout=subprocess.PIPE,
@@ -207,8 +207,8 @@ class Projucer():
         """Generates a C++ function which returns the given string,
         but in an obfuscated way.
         """
+        assert isinstance(string_to_obfuscate, str)
         if self._which:
-            assert isinstance(string_to_obfuscate, str)
             proc = subprocess.Popen([self._which, '--obfuscated-string-code',
                                      string_to_obfuscate],
                                     stdout=subprocess.PIPE,
@@ -220,9 +220,9 @@ class Projucer():
         a block of data. Provide a .h file as the target if you want a
         single output file, or a .cpp file if you want a pair of .h/.cpp files.
         """
+        assert isinstance(source_binary_file, str)
+        assert isinstance(target_cpp_file, str)
         if self._which:
-            assert isinstance(source_binary_file, str)
-            assert isinstance(target_cpp_file, str)
             proc = subprocess.Popen([self._which, '--encode-binary',
                                      source_binary_file, target_cpp_file],
                                     stdout=subprocess.PIPE,
@@ -235,8 +235,8 @@ class Projucer():
         translation file builder.
         """
         # ToDo: Make target_folder arg variatic length
+        assert isinstance(target_folder, str)
         if self._which:
-            assert isinstance(target_folder, str)
             proc = subprocess.Popen([self._which, '--trans',
                                      target_folder],
                                     stdout=subprocess.PIPE,
@@ -249,10 +249,10 @@ class Projucer():
         initialise a LocalisedStrings object. This allows you to localise
         the strings in your project.
         """
+        assert isinstance(pre_translated_file, str)
+        assert isinstance(post_translated_file, str)
+        assert isinstance(optional_existing_translation_file, str)
         if self._which:
-            assert isinstance(pre_translated_file, str)
-            assert isinstance(post_translated_file, str)
-            assert isinstance(optional_existing_translation_file, str)
             proc = subprocess.Popen([self._which, '--trans-finish',
                                      pre_translated_file, post_translated_file,
                                      optional_existing_translation_file],
@@ -267,10 +267,10 @@ class Projucer():
         vst3Path, vstLegacyPath, aaxPath (not valid on linux),
         rtasPath (not valid on linux), androidSDKPath or androidNDKPath.
         """
+        assert isinstance(os_system, str)
+        assert isinstance(identifier_to_set, str)
+        assert isinstance(new_path, str)
         if self._which:
-            assert isinstance(os_system, str)
-            assert isinstance(identifier_to_set, str)
-            assert isinstance(new_path, str)
             proc = subprocess.Popen([self._which, '--set-global-search-path',
                                      os_system, identifier_to_set,
                                      new_path],
@@ -284,9 +284,9 @@ class Projucer():
         user module paths to override the global module paths.
         """
         # ToDo: Add juce_modules & user_modules optional paths
+        assert isinstance(path_to_pip, str)
+        assert isinstance(path_to_output, str)
         if self._which:
-            assert isinstance(path_to_pip, str)
-            assert isinstance(path_to_output, str)
             proc = subprocess.Popen([self._which, '--create-project-from-pip',
                                      path_to_pip, path_to_output],
                                     stdout=subprocess.PIPE,
