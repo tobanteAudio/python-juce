@@ -34,5 +34,5 @@ build_script:
 
 test_script:
   - "pylint --disable=fixme juce"
-  - "pytest tests"
+  - "pytest tests -m \"not integration_test\""
 

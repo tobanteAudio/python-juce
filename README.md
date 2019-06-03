@@ -97,3 +97,4 @@ make stats      # Repository stats (cloc)
 - Set enablePluginBinaryCopyStep
 - Set warning levels, optimizations
 - Warnings for useGlobalPath
+- Validate `.jucer` files
