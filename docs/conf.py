@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('..'))
 
 # -- Project information -----------------------------------------------------
 project = 'python-juce'
-copyright = '2019, Tobias Hienzsch'
+copyright = '2019-2020, Tobias Hienzsch'
 author = 'Tobias Hienzsch'
 
 
